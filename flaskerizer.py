@@ -10,13 +10,6 @@ class Flaskerizer():
         if not os.path.exists(dir_path):
             os.makedirs(dir_path)
 
-    def name_file(self):
-        print(os.listdir(self.directory))
-
-    def name_directories(self):
-        for item in os.listdir(self.directory):
-            print(os.path.abspath(item))
-
     def migrate_static(self):
         self.mkdir('static')
         for item in os.listdir(self.directory):
@@ -39,8 +32,12 @@ class Flaskerizer():
             with open(os.path.join(os.getcwd(), os.path.basename('templates'), os.path.basename(item))) as read_obj:
                 for line in read_obj:
                     for folder in os.listdir(os.path.join(os.getcwd(), os.path.basename('static'))):
-                        if ("\"" + str(folder) + "/") in line:
-                            print(line)
+                        if ('=\"' + str(folder) + "/") in line: #https://stackoverflow.com/questions/1325905/inserting-line-at-specified-position-of-a-text-file
+                            print(line)                         #This needs to be more selective
+                            split_line = line.split("\"" + str(folder) + "/")
+                            join_line = ("\"" + '/static/' + (str(folder) + "/")).join(split_line)
+                            print(join_line)
+
 
 
 if __name__ == "__main__":
