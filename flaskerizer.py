@@ -11,6 +11,7 @@ class Flaskerizer():
             os.makedirs(dir_path)
 
     def migrate_static(self):
+        shutil.rmtree(os.path.join(os.getcwd(), os.path.basename('static')))
         self.mkdir('static')
         for item in os.listdir(self.directory):
             item_path = os.path.join(self.directory, os.path.basename(item))
@@ -18,30 +19,25 @@ class Flaskerizer():
                 shutil.copytree(item_path,
                                 os.path.join(os.getcwd(), os.path.basename('static'), os.path.basename(item)))
 
-    def migrate_templates(self):
+    def write_templates(self):
+        #This needs to be refactored for readability
+        shutil.rmtree(os.path.join(os.getcwd(), os.path.basename('templates')))
         self.mkdir('templates')
         for item in os.listdir(self.directory):
-            print(item)
-            item_path = os.path.join(self.directory, os.path.basename(item))
-            if os.path.isfile(item_path):
-                shutil.copyfile(item_path, #ToDo only copy files that have .html extension by using ReGex
-                                os.path.join(os.getcwd(), os.path.basename('templates'), os.path.basename(item)))
-
-    def parse_templates(self):
-        for item in os.listdir(os.path.join(os.getcwd(), os.path.basename('templates'))):
-            with open(os.path.join(os.getcwd(), os.path.basename('templates'), os.path.basename(item))) as read_obj:
-                for line in read_obj:
-                    for folder in os.listdir(os.path.join(os.getcwd(), os.path.basename('static'))):
-                        if ('=\"' + str(folder) + "/") in line: #https://stackoverflow.com/questions/1325905/inserting-line-at-specified-position-of-a-text-file
-                            print(line)                         #This needs to be more selective
-                            split_line = line.split("\"" + str(folder) + "/")
-                            join_line = ("\"" + '/static/' + (str(folder) + "/")).join(split_line)
-                            print(join_line)
-
-
+            if '.html' in item:
+                with open(os.path.join(self.directory, os.path.basename(item))) as read_obj:
+                    for line in read_obj:
+                        with open(os.path.join(os.getcwd(), os.path.basename('templates'),
+                                               os.path.basename(item)), 'a') as write_obj:
+                            for folder in os.listdir(os.path.join(os.getcwd(), os.path.basename('static'))):
+                                if ('=\"' + str(folder) + "/") in line:
+                                    split_line = line.split("\"" + str(folder) + "/")
+                                    line = ("\"" + '/static/' + (str(folder) + "/")).join(split_line)
+                            write_obj.write(line)
 
 if __name__ == "__main__":
     my_object = Flaskerizer(directroy=r'C:\Users\vande060\Desktop\coding\projects\Flaskerizer\Folio')
-    my_object.parse_templates()
+    my_object.migrate_static()
+    my_object.write_templates()
 
 
