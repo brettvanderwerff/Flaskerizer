@@ -6,13 +6,14 @@ class Flaskerizer():
         self.directory = directroy
 
     def mkdir(self, dir):
-        '''Makes folder of dir name in base '''
+        '''Makes folder of dir name in the working direectory.
+        '''
         dir_path = os.path.join(os.getcwd(), os.path.basename(dir))
         if not os.path.exists(dir_path):
             os.makedirs(dir_path)
 
     def migrate_static(self):
-        shutil.rmtree(os.path.join(os.getcwd(), os.path.basename('static')))
+        #shutil.rmtree(os.path.join(os.getcwd(), os.path.basename('static')))
         self.mkdir('static')
         for item in os.listdir(self.directory):
             item_path = os.path.join(self.directory, os.path.basename(item))
@@ -31,7 +32,7 @@ class Flaskerizer():
                 write_obj.write(line)
 
     def parse_html(self):
-        shutil.rmtree(os.path.join(os.getcwd(), os.path.basename('templates')))
+        #shutil.rmtree(os.path.join(os.getcwd(), os.path.basename('templates')))
         self.mkdir('templates')
         for file_name in os.listdir(self.directory):
             if '.html' in file_name:
