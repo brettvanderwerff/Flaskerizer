@@ -1,0 +1,185 @@
+.progress {
+  height: 30px;
+  margin-bottom: 20px;
+}
+.progress-bar {
+line-height: 30px;
+font-size: 14px;
+}
+.breadcrumb {
+  border-left-color: #50a846;
+}
+.btn-link {
+  color: #50a846;
+}
+.btn-link:hover,
+.btn-link:focus {
+  color: #367230;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus,
+.navbar-inverse .navbar-nav > li > a:focus {
+  border-bottom-color: #50a846;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus,
+.navbar-inverse .navbar-nav > .active > a:focus {
+  border-bottom-color: #50a846;
+}
+.navbar-inverse .dropdown-menu > li > a:hover,
+.navbar-inverse .dropdown-menu > li > a:focus {
+  color: #50a846;
+}
+.nav > li > a:hover,
+.nav > li > a:focus {
+  color: #50a846;
+}
+.nav.open > a,
+.nav.open > a:hover,
+.nav.open > a:focus {
+  background-color: #50a846;
+  border-color: #50a846;
+}
+.nav-tabs.nav-stacked > li > a:hover,
+.nav-tabs.nav-stacked > li > a:focus,
+.nav-tabs.nav-stacked > .active > a,
+.nav-tabs.nav-stacked > .active > a:hover,
+.nav-tabs.nav-stacked > .active > a:focus {
+  border-left-color: #367230;
+  background-color: #50a846;
+  outline: 0;
+}
+.nav-list > .active > a,
+.nav-list > .active > a:hover,
+.nav-list > .active > a:focus {
+  background-color: #50a846;
+  outline: 0;
+}
+
+.nav.nav-tabs li a:focus {
+  outline: 0;
+}
+
+.nav.nav-tabs li a:hover {
+  color: #666;
+}
+
+.tab-content > .tab-pane {
+   padding: 20px;
+  border: 1px solid #ddd;
+  border-top-color: transparent;
+}
+
+
+a {
+  color: #50a846;
+}
+a:hover,
+a:focus {
+  color: #367230;
+}
+a.thumbnail:hover,
+a.thumbnail:focus {
+  border-color: #50a846;
+}
+.tt-suggestion.tt-is-under-cursor {
+  color: #50a846;
+}
+.typeahead:focus {
+  border-color: #50a846;
+}
+.form-control:focus {
+  border-color: none;
+  outline: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+  color: #50a846;
+}
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  color: #50a846;
+}
+.pager li > a:hover,
+.pager li > a:focus {
+  background-color: #50a846;
+}
+.pagination > li > a:hover,
+.pagination > li > a:focus,
+.pagination > .active > a,
+.pagination > .active > span {
+  background-color: #50a846;
+}
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  background-color: #50a846;
+}
+a.list-group-item.active > .badge,
+.nav-pills > .active > a > .badge {
+  color: #50a846;
+}
+blockquote {
+  border-left-color: #50a846;
+}
+blockquote.pull-right {
+  border-right-color: #50a846;
+}
+.text-primary {
+  color: #50a846;
+}
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+  background-color: #50a846;
+}
+a.list-group-item.active {
+  background-color: #50a846;
+  border-color: #50a846;
+}
+a.list-group-item.active .list-group-item-text {
+  color: #d2ebcf;
+}
+.btn-primary {
+  color: #ffffff;
+  background-color: #50a846;
+  border-color: transparent;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active {
+  color: #fff;
+  background-color: #555555;
+}
+.btn-primary.disabled,
+.btn-primary[disabled],
+fieldset[disabled] .btn-primary,
+.btn-primary.disabled:hover,
+.btn-primary[disabled]:hover,
+fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus,
+.btn-primary[disabled]:focus,
+fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled:active,
+.btn-primary[disabled]:active,
+fieldset[disabled] .btn-primary:active,
+.btn-primary.disabled.active,
+.btn-primary[disabled].active,
+fieldset[disabled] .btn-primary.active {
+  background-color: #50a846;
+}
+.panel-primary .panel-heading {
+  background-color: #50a846;
+  border-color: #50a846;
+}

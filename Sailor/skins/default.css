@@ -1,0 +1,226 @@
+/* === color === */
+
+a, a:hover,a:focus,a:active, strike, .post-meta span a:hover, 
+ul.meta-post li a:hover, ul.cat li a:hover, ul.recent li h6 a:hover, ul.portfolio-categ li.active a, ul.portfolio-categ li.active a:hover, ul.portfolio-categ li a:hover,ul.related-post li h4 a:hover, span.highlight,article .post-heading h3 a:hover,
+.navbar .nav > .active > a,.navbar .nav > .active > a:hover,.navbar .nav > li > a:hover,.navbar .nav > li > a:focus,.navbar .nav > .active > a:focus, .validation  { 
+	color:#d9232d;
+}
+
+.highlight {
+  background-color: #d9232d;
+}
+
+.sb-icon-search {
+	background: #d9232d;
+}
+
+.navbar-brand span{
+    color: #d9232d;
+}
+
+header .nav li a:hover,
+header .nav li a:focus,
+header .nav li.active a,
+header .nav li.active a:hover,
+header .nav li a.dropdown-toggle:hover,
+header .nav li a.dropdown-toggle:focus,
+header .nav li.active ul.dropdown-menu li a:hover,
+header .nav li.active ul.dropdown-menu li.active a{
+	color:#d9232d;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+	color:#d9232d;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+	color:#d9232d;
+}	
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+	color:#d9232d;
+}
+/* === background color === */
+
+.custom-carousel-nav.right:hover, .custom-carousel-nav.left:hover, 
+.pagination ul > .active > a:hover,
+.pagination ul > .active > a,
+.pagination ul > .active > span,
+.flex-control-nav li a:hover, 
+.flex-control-nav li a.active {
+  background-color: #d9232d;
+}
+
+.cbp-l-caption-buttonLeft,
+.cbp-l-caption-buttonRight,.cbp-l-filters-button .cbp-filter-counter {
+    background-color: #d9232d;
+}
+
+.breadcrumb {
+  background-color: #d9232d;
+}
+
+/* === border color === */
+.pagination ul > li.active > a,
+.pagination ul > li.active > span, a.thumbnail:hover, input[type="text"].search-form:focus {
+	border:1px solid #d9232d;
+}
+
+.cbp-l-filters-button .cbp-filter-counter:before {
+    border-top: 4px solid #d9232d;
+}
+
+textarea:focus,
+.form-control:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+  border-color: #d9232d;
+}
+
+input:focus {
+	border-color: #d9232d;
+}
+
+
+#sendmessage {
+	color: #d9232d;
+}
+
+.pullquote-left {
+	border-left:5px solid #d9232d;
+}
+
+.pullquote-right {
+	border-right:5px solid #d9232d;
+}
+
+/* cta */
+
+.cta-text h2 span {
+	color: #d9232d;
+}
+
+ul.clients li:hover {
+	border:4px solid #d9232d;
+}
+
+
+/* buttons */
+.btn-dark:hover,.btn-dark:focus,.btn-dark:active  {
+  background: #d9232d;
+  border:1px solid #d9232d;
+}
+
+.btn-theme {
+  border:1px solid #d9232d;
+  background: #d9232d;
+}
+
+/* modal styled */
+.modal.styled .modal-header {
+  background-color: #d9232d;
+}
+
+
+/* blog */
+.post-meta {
+	border-top:4px solid #d9232d;
+}
+
+.post-meta .comments a:hover  {
+	color:#d9232d;
+}
+
+.widget ul.tags li a:hover {
+	background: #d9232d;
+}
+
+.recent-post .text h5 a:hover{
+	color:#d9232d;
+}
+
+/* pricing box */
+
+.pricing-box-alt.special .pricing-heading {
+	background: #d9232d;
+}
+
+
+/* portfolio */
+.cbp-l-filters-dropdownWrap {
+    background: #d9232d;
+}
+.cbp-l-filters-alignLeft .cbp-filter-item-active {
+    background-color: #d9232d;
+    border:1px solid #d9232d;
+}
+.cbp-l-filters-alignCenter .cbp-filter-item:hover {
+    color: #d9232d;
+}
+
+.cbp-l-filters-alignCenter .cbp-filter-item-active {
+    color: #d9232d !important;
+}
+.cbp-l-filters-alignRight .cbp-filter-counter {
+    background: none repeat scroll 0 0 #d9232d;
+}
+.cbp-l-filters-list .cbp-filter-item {
+    border-color: #d9232d;
+}
+.cbp-l-filters-list .cbp-filter-item-active {
+    background-color:#d9232d;
+}
+
+.cbp-popup-singlePage .cbp-popup-navigation-wrap {
+    background-color: #d9232d;
+}
+.cbp-popup-singlePage .cbp-l-project-details-visit {
+    background-color: #d9232d;
+}
+
+/* pagination */
+#pagination a:hover {
+    background: #d9232d;
+}
+
+/* pricing box */
+.pricing-box.special .pricing-offer{
+	background: #d9232d;
+}
+
+
+/* fontawesome icons */
+.icon-square:hover,
+.icon-rounded:hover,
+.icon-circled:hover {
+    background-color: #d9232d;
+}
+[class^="icon-"].active,
+[class*=" icon-"].active {
+    background-color: #d9232d;
+}
+
+
+/* flexslider */
+#featured .flexslider .slide-caption {
+	border-left:5px solid #d9232d;
+}
+
+/* footer */
+
