@@ -14,7 +14,10 @@ class StructureDirectory():
             os.makedirs(dir_path)
 
     def migrate_static(self):
-        #shutil.rmtree(os.path.join(os.getcwd(), os.path.basename('static'))) #uncomment to overwrite
+        '''Makes a static folder then migrates all the folders from the bootstrap template directory that belong in
+        the static folder (css, js, etc) to the newly made static folder.
+        '''
+        #shutil.rmtree(os.path.join(os.getcwd(), os.path.basename('static'))) #uncomment to overwrite old static folder
         self.mkdir('static')
         for item in os.listdir(self.directory):
             print('migrating {} to static folder'.format(item))
@@ -24,6 +27,10 @@ class StructureDirectory():
                                 os.path.join(os.getcwd(), os.path.basename('static'), os.path.basename(item)))
 
     def migrate_templates(self, html_content, file_name):
+        '''Iterates through every line in the html_content of an HTML document with the filename 'file_name' and
+        adds /static/ to any line that should point to contents of the static folder of the flask app (i.e. lines that
+        reference content of the css or js folder etc.).
+        '''
         write_directory = os.path.join(os.getcwd(), os.path.basename('templates'), os.path.basename(file_name))
         for line in html_content:
             with open(write_directory, 'a') as write_obj:
@@ -34,7 +41,9 @@ class StructureDirectory():
                 write_obj.write(line)
 
     def parse_html(self):
-        #shutil.rmtree(os.path.join(os.getcwd(), os.path.basename('templates')))
+        '''Locates all the HTML files in the Bootstrap template directory.
+        '''
+        #shutil.rmtree(os.path.join(os.getcwd(), os.path.basename('templates'))) #uncomment to overwrite old templates
         self.mkdir('templates')
         for file_name in os.listdir(self.directory):
             if '.html' in file_name:
@@ -44,7 +53,7 @@ class StructureDirectory():
                     self.migrate_templates(html_content, file_name)
 
 if __name__ == "__main__":
-    my_object = StructureDirectory(directroy=r'C:\Users\vande060\Desktop\coding\projects\Flaskerizer\Folio')
+    my_object = StructureDirectory(directroy=os.path.join(os.getcwd(), os.path.basename('Folio')))
     my_object.migrate_static()
     my_object.parse_html()
 
