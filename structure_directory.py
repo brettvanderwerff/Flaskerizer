@@ -12,12 +12,14 @@ class StructureDirectory():
         if not os.path.exists(dir_path):
             print('generating {} folder'.format(dir))
             os.makedirs(dir_path)
+        else:
+            shutil.rmtree(os.path.join(os.getcwd(), os.path.basename(dir)))
+            os.makedirs(dir_path)
 
     def migrate_static(self):
         '''Makes a static folder then migrates all the folders from the bootstrap template directory that belong in
         the static folder (css, js, etc) to the newly made static folder.
         '''
-        #shutil.rmtree(os.path.join(os.getcwd(), os.path.basename('static'))) #uncomment to overwrite old static folder
         self.mkdir('static')
         for item in os.listdir(self.directory):
             print('migrating {} to static folder'.format(item))
@@ -43,7 +45,6 @@ class StructureDirectory():
     def parse_html(self):
         '''Locates all the HTML files in the Bootstrap template directory.
         '''
-        #shutil.rmtree(os.path.join(os.getcwd(), os.path.basename('templates'))) #uncomment to overwrite old templates
         self.mkdir('templates')
         for file_name in os.listdir(self.directory):
             if '.html' in file_name:
