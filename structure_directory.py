@@ -13,6 +13,7 @@ class StructureDirectory():
             print('generating {} folder'.format(dir))
             os.makedirs(dir_path)
         else:
+            print('overwriting old {} folder'.format(dir))
             shutil.rmtree(os.path.join(os.getcwd(), os.path.basename(dir)))
             os.makedirs(dir_path)
 
