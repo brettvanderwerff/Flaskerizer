@@ -3,13 +3,19 @@ from structure_directory import StructureDirectory
 import os
 
 class TestStructureDirectory(unittest.TestCase):
-    maxDiff = None
+    maxDiff = None # reveals difference between test strings and "gold standard" strings
+
+    def setUp(self):
+        '''Instantiates an object 'test' from the StructureDirectory class. The path to the Bootstrap
+        template 'Folio' is given as an argument for testing purposes.
+        '''
+        self.test = StructureDirectory(directroy=os.path.join(os.getcwd(), os.path.basename('Folio')))
+
     def test_mkdir(self):
         '''Tests that mkdir creates a folder named static and a folder named templates.
         '''
-        test = StructureDirectory(directroy=os.path.join(os.getcwd(), os.path.basename('Folio')))
-        test.mkdir('static')
-        test.mkdir('templates')
+        self.test.mkdir('static')
+        self.test.mkdir('templates')
         self.assertTrue(os.path.exists(os.path.join(os.getcwd(), os.path.basename('static'))))
         self.assertTrue(os.path.exists(os.path.join(os.getcwd(), os.path.basename('templates'))))
 
@@ -19,8 +25,7 @@ class TestStructureDirectory(unittest.TestCase):
         '''
         source_directory = os.path.join(os.getcwd(), os.path.basename('Folio'))
         write_directory = os.path.join(os.getcwd(), os.path.basename('static'))
-        test = StructureDirectory(source_directory)
-        test.migrate_static()
+        self.test.migrate_static()
         source_dir_list = []
         write_dir_list = []
         for folder in os.listdir(source_directory):
@@ -31,13 +36,11 @@ class TestStructureDirectory(unittest.TestCase):
                 write_dir_list.append(folder)
         self.assertEqual(len(source_dir_list), len(write_dir_list))
 
-    def test_parse_html(self): #ToDo make test that compares newly written HTML to a saved version that is the expected output
-        '''Tests that parse_html migrates the correct number of HTML documents from the bootstrap template directory to
-        the templates directory of the Flask app.
+    def test_parse_html(self):
+        ''' Tests that parse_html creates a file 'blog-grid.html' in a templates folder that matches a "gold standard"
+         version of 'blog-grid.html' called 'blog-grid_test_file.html'.
         '''
-        source_directory = os.path.join(os.getcwd(), os.path.basename('Folio'))
-        test = StructureDirectory(source_directory)
-        test.parse_html()
+        self.test.parse_html()
         html_dir = os.path.join(os.getcwd(), os.path.basename('templates'), os.path.basename('blog-grid.html'))
         with open(html_dir, 'r') as test_obj:
             test_string = test_obj.read()
