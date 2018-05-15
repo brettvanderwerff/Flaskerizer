@@ -8,9 +8,9 @@
 	<meta name="description" content="Bootstrap 3 template for corporate business" />
 	<!-- css -->
 	<link href="css/bootstrap.min.css" rel="stylesheet" />
-	<link href="plugins/flexslider/flexslider.css" rel="stylesheet" media="screen" />
 	<link href="css/cubeportfolio.min.css" rel="stylesheet" />
 	<link href="css/style.css" rel="stylesheet" />
+
 
 	<!-- Theme skin -->
 	<link id="t-colors" href="skins/default.css" rel="stylesheet" />
@@ -19,7 +19,7 @@
 	<link id="bodybg" href="bodybg/bg1.css" rel="stylesheet" type="text/css" />
 
 	<!-- =======================================================
-    Theme Name: Sailor
+    Theme Name: Sailor_example
     Theme URL: https://bootstrapmade.com/sailor-free-bootstrap-theme/
     Author: BootstrapMade
     Author URL: https://bootstrapmade.com
@@ -99,7 +99,7 @@
 								</ul>
 							</li>
 							<li><a href="portfolio.html">Portfolio</a></li>
-							<li class="dropdown active"><a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Blog <i class="fa fa-angle-down"></i></a>
+							<li class="dropdown"><a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Blog <i class="fa fa-angle-down"></i></a>
 								<ul class="dropdown-menu">
 									<li><a href="blog-rightsidebar.html">Blog right sidebar</a></li>
 									<li><a href="blog-leftsidebar.html">Blog left sidebar</a></li>
@@ -107,7 +107,7 @@
 									<li><a href="post-leftsidebar.html">Post left sidebar</a></li>
 								</ul>
 							</li>
-							<li><a href="contact.html">Contact</a></li>
+							<li class="active"><a href="contact.html">Contact</a></li>
 						</ul>
 					</div>
 				</div>
@@ -119,184 +119,47 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<ul class="breadcrumb">
-							<li><a href="#"><i class="fa fa-home"></i></a></li>
-							<li class="active">Single post</li>
+							<li><a href="#"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
+							<li class="active">Contact</li>
 						</ul>
 					</div>
 				</div>
 			</div>
 		</section>
-
 		<section id="content">
+			<div class="map">
+				<div id="google-map" data-latitude="40.713732" data-longitude="-74.0092704"></div>
+			</div>
 			<div class="container">
 				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<h2>Contact us <small>get in touch with us by filling form below</small></h2>
+						<hr class="colorgraph">
+						<div id="sendmessage">Your message has been sent. Thank you!</div>
+						<div id="errormessage"></div>
+						<form action="" method="post" role="form" class="contactForm">
+							<div class="form-group">
+								<input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+								<div class="validation"></div>
+							</div>
+							<div class="form-group">
+								<input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+								<div class="validation"></div>
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+								<div class="validation"></div>
+							</div>
+							<div class="form-group">
+								<textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+								<div class="validation"></div>
+							</div>
 
-					<div class="col-lg-4">
-						<aside class="left-sidebar">
-							<div class="widget">
-								<form role="form">
-									<div class="form-group">
-										<input type="text" class="form-control" id="s" placeholder="Search..">
-									</div>
-								</form>
-							</div>
-							<div class="widget">
-								<h5 class="widgetheading">Categories</h5>
-								<ul class="cat">
-									<li><i class="fa fa-angle-right"></i><a href="#">Web design</a><span> (20)</span></li>
-									<li><i class="fa fa-angle-right"></i><a href="#">Online business</a><span> (11)</span></li>
-									<li><i class="fa fa-angle-right"></i><a href="#">Marketing strategy</a><span> (9)</span></li>
-									<li><i class="fa fa-angle-right"></i><a href="#">Technology</a><span> (12)</span></li>
-									<li><i class="fa fa-angle-right"></i><a href="#">About finance</a><span> (18)</span></li>
-								</ul>
-							</div>
-							<div class="widget">
-								<h5 class="widgetheading">Latest posts</h5>
-								<ul class="recent">
-									<li>
-										<img src="img/dummies/blog/65x65/thumb1.jpg" class="pull-left" alt="" />
-										<h6><a href="#">Lorem ipsum dolor sit</a></h6>
-										<p>
-											Mazim alienum appellantur eu cu ullum officiis pro pri
-										</p>
-									</li>
-									<li>
-										<a href="#"><img src="img/dummies/blog/65x65/thumb2.jpg" class="pull-left" alt="" /></a>
-										<h6><a href="#">Maiorum ponderum eum</a></h6>
-										<p>
-											Mazim alienum appellantur eu cu ullum officiis pro pri
-										</p>
-									</li>
-									<li>
-										<a href="#"><img src="img/dummies/blog/65x65/thumb3.jpg" class="pull-left" alt="" /></a>
-										<h6><a href="#">Et mei iusto dolorum</a></h6>
-										<p>
-											Mazim alienum appellantur eu cu ullum officiis pro pri
-										</p>
-									</li>
-								</ul>
-							</div>
-							<div class="widget">
-								<h5 class="widgetheading">Popular tags</h5>
-								<ul class="tags">
-									<li><a href="#">Web design</a></li>
-									<li><a href="#">Trends</a></li>
-									<li><a href="#">Technology</a></li>
-									<li><a href="#">Internet</a></li>
-									<li><a href="#">Tutorial</a></li>
-									<li><a href="#">Development</a></li>
-								</ul>
-							</div>
-						</aside>
+							<div class="text-center"><button type="submit" class="btn btn-theme btn-block btn-md">Send Message</button></div>
+						</form>
+						<hr class="colorgraph">
+
 					</div>
-
-					<div class="col-lg-8">
-						<article>
-							<div class="post-image">
-								<div class="post-heading">
-									<h3><a href="#">This is an example of single post page</a></h3>
-								</div>
-								<img src="img/dummies/blog/img1.jpg" alt="" class="img-responsive" />
-							</div>
-							<p>
-								<strong>Qui ut ceteros</strong> comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia
-								est ei, usu timeam persius ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.
-							</p>
-							<blockquote>
-								Eos veniam inermis adolescens te. Te mei partiendo constituam vituperatoribus, usu no duis propriae. Mea feugiat blandit lobortis ei
-							</blockquote>
-							<p>
-								Lorem ipsum dolor sit amet, id integre rationibus mei, nec eu erat dicunt sapientem. Sit cu augue referrentur, pri omnes complectitur comprehensam te. Doctus alienum ad sed, at doming cetero referrentur mei. Qui quas oportere inciderint et, et persius
-								antiopam has, sed ex verterem quaestio. Id alii eligendi mei, an cum feugiat persequeris. Eam id sententiae intellegebat, accusata tractatos urbanitas ei mea, pro causae doctus quaestio at.
-							</p>
-							<div class="bottom-article">
-								<ul class="meta-post">
-									<li><i class="fa fa-calendar"></i><a href="#"> Mar 27, 2014</a></li>
-									<li><i class="fa fa-user"></i><a href="#"> Admin</a></li>
-									<li><i class="fa fa-comments"></i><a href="#">4 Comments</a></li>
-									<li><i class="fa fa-tags"></i><a href="#">Design</a>, <a href="#">Blog</a></li>
-								</ul>
-							</div>
-						</article>
-						<div class="comment-area">
-
-							<h4>4 Comments</h4>
-							<div class="media">
-								<a href="#" class="pull-left"><img src="img/avatar.png" alt="" class="img-circle" /></a>
-								<div class="media-body">
-									<div class="media-content">
-										<h6><span>March 12, 2013</span> Michael Simpson</h6>
-										<p>
-											Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-										</p>
-
-										<a href="#" class="align-right reply">Reply</a>
-									</div>
-								</div>
-							</div>
-							<div class="media">
-								<a href="#" class="pull-left"><img src="img/avatar.png" alt="" class="img-circle" /></a>
-								<div class="media-body">
-									<div class="media-content">
-										<h6><span>March 12, 2013</span> Smith karlsen</h6>
-										<p>
-											Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-										</p>
-
-										<a href="#" class="align-right reply">Reply</a>
-									</div>
-									<div class="media">
-										<a href="#" class="pull-left"><img src="img/avatar.png" alt="" class="img-circle" /></a>
-										<div class="media-body">
-											<div class="media-content">
-												<h6><span>June 22, 2013</span> Jay Moeller</h6>
-												<p>
-													Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-												</p>
-
-												<a href="#" class="align-right reply">Reply</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="media">
-								<a href="#" class="pull-left"><img src="img/avatar.png" alt="" class="img-circle" /></a>
-								<div class="media-body">
-									<div class="media-content">
-										<h6><span>June 24, 2013</span> Dean Zaloza</h6>
-										<p>
-											Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-										</p>
-
-										<a href="#" class="align-right reply">Reply</a>
-									</div>
-								</div>
-							</div>
-
-							<div class="marginbot30"></div>
-							<h4>Leave your comment</h4>
-
-
-							<form role="form">
-								<div class="form-group">
-									<input type="text" class="form-control" id="name" placeholder="* Enter name">
-								</div>
-								<div class="form-group">
-									<input type="email" class="form-control" id="email" placeholder="* Enter email address">
-								</div>
-								<div class="form-group">
-									<textarea class="form-control" rows="8" placeholder="* Your comment here"></textarea>
-								</div>
-								<button type="submit" class="btn btn-theme btn-md">Submit</button>
-							</form>
-
-						</div>
-
-						<div class="clear"></div>
-					</div>
-
-
 				</div>
 			</div>
 		</section>
@@ -394,8 +257,6 @@
 	<script src="js/modernizr.custom.js"></script>
 	<script src="js/jquery.easing.1.3.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<script src="plugins/flexslider/jquery.flexslider-min.js"></script>
-	<script src="plugins/flexslider/flexslider.config.js"></script>
 	<script src="js/jquery.appear.js"></script>
 	<script src="js/stellar.js"></script>
 	<script src="js/classie.js"></script>
@@ -403,8 +264,34 @@
 	<script src="js/jquery.cubeportfolio.min.js"></script>
 	<script src="js/google-code-prettify/prettify.js"></script>
 	<script src="js/animate.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8HeI8o-c1NppZA-92oYlXakhDPYR7XMY"></script>
 	<script src="js/custom.js"></script>
+	<script>
+		jQuery(document).ready(function($) {
 
+			//Google Map
+			var get_latitude = $('#google-map').data('latitude');
+			var get_longitude = $('#google-map').data('longitude');
+
+			function initialize_google_map() {
+				var myLatlng = new google.maps.LatLng(get_latitude, get_longitude);
+				var mapOptions = {
+					zoom: 14,
+					scrollwheel: false,
+					center: myLatlng
+				};
+				var map = new google.maps.Map(document.getElementById('google-map'), mapOptions);
+				var marker = new google.maps.Marker({
+					position: myLatlng,
+					map: map
+				});
+			}
+			google.maps.event.addDomListener(window, 'load', initialize_google_map);
+
+		});
+	</script>
+
+	<script src="contactform/contactform.js"></script>
 
 </body>
 
