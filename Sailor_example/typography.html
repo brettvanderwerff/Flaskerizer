@@ -16,14 +16,12 @@
 
 	<!-- boxed bg -->
 	<link id="bodybg" href="bodybg/bg1.css" rel="stylesheet" type="text/css" />
-
 	<!-- =======================================================
     Theme Name: Sailor
     Theme URL: https://bootstrapmade.com/sailor-free-bootstrap-theme/
     Author: BootstrapMade
     Author URL: https://bootstrapmade.com
 	======================================================= -->
-
 </head>
 
 <body>
@@ -120,7 +118,7 @@
 						<ul class="breadcrumb">
 							<li><a href="#"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
 							<li><a href="#">Features</a><i class="icon-angle-right"></i></li>
-							<li class="active">Components</li>
+							<li class="active">Typography</li>
 						</ul>
 					</div>
 				</div>
@@ -128,207 +126,224 @@
 		</section>
 		<section id="content">
 			<div class="container">
-				<div class="row demobtn">
+				<div class="row">
+					<div class="col-lg-4">
+						<h4>H1-H6 Heading style</h4>
+						<h1>Heading H1</h1>
+						<h2>Heading H2</h2>
+						<h3>Heading H3</h3>
+						<h4>Heading H4</h4>
+						<h5>Heading H5</h5>
+						<h6>Heading H6</h6>
+					</div>
+					<div class="col-lg-4">
+						<h4>Example of paragraph</h4>
+						<p>
+							<strong>Lorem ipsum dolor sit amet</strong>, consetetur sadipscing elitr, sed diam non mod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+						</p>
+						<p class="lead">
+							At vero eos et accusam et justo duo dolores et eabum.
+						</p>
+						<p>
+							<em>
+					Consetetur sadipscing elitr, sed diam non mod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. </em>
+						</p>
+						<p>
+							<small>
+					Consetetur sadipscing elitr, sed diam non mod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. </small>
+						</p>
+					</div>
+					<div class="col-lg-4">
+						<h4>Float image in paragraph</h4>
+						<img src="img/dummies/dummy-1.jpg" alt="" class="img-responsive pull-left" />
+						<p>
+							Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam non mod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et eabum. Stet clita kasd gubergren, no sea takimata sanctus
+							est Lorem ipsum dolor sit amet
+						</p>
+					</div>
+				</div>
+				<!-- divider -->
+				<div class="row">
 					<div class="col-lg-12">
-						<div class="row">
-							<div class="col-lg-12">
-								<h4>Button types</h4>
-								<a href="#" class="btn btn-theme">btn theme</a>
-								<a href="#" class="btn btn-primary">btn-primary</a>
-								<a href="#" class="btn btn-warning">btn-warning</a>
-								<a href="#" class="btn btn-danger">btn-danger</a>
-								<a href="#" class="btn btn-info">btn-info</a>
-								<a href="#" class="btn btn-success">btn-success</a>
-							</div>
-						</div>
-						<!-- divider -->
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="solidline">
-								</div>
-							</div>
-						</div>
-						<!-- end divider -->
-						<div class="row">
-							<div class="col-lg-6">
-								<h4>Button with icon</h4>
-								<p>
-									You can add icon from about 249 available icons to any choosen buttons. See some example below:
-								</p>
-								<a href="#" class="btn btn-primary"><i class="fa fa-cog"></i> button icon cog</a>
-								<a href="#" class="btn btn-success"><i class="fa fa-heart"></i> button icon heart</a>
-								<a href="#" class="btn btn-warning"><i class="fa fa-cog"></i> button icon camera</a>
-								<pre class="prettyprint linenums">
-&lt;a href="your link" class="btn |button type|"&gt;&lt;i class="icon-|icon name|"&gt;&lt;/i&gt; Your button text&lt;/a&gt;
-						</pre>
-							</div>
-							<div class="col-lg-6">
-								<h4>More variations</h4>
-								<p>
-									Wrap a series of buttons with <code>.btn</code> in <code>.btn-group</code>
-								</p>
-								<div class="bs-docs-example">
-									<div class="btn-group">
-										<button class="btn btn-primary">primary</button>
-										<button class="btn btn-success">success</button>
-										<button class="btn btn-warning">warning</button>
-									</div>
-								</div>
-								<pre class="prettyprint linenums">
-&lt;div class="btn-group"&gt; &lt;button class="btn btn-primary"&gt;primary&lt;/button&gt; &lt;button class="btn btn-success"&gt;success&lt;/button&gt; &lt;button class="btn btn-inverse"&gt;warning&lt;/button&gt; &lt;/div&gt;
-						</pre>
-							</div>
-						</div>
-						<!-- divider -->
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="solidline">
-								</div>
-							</div>
-						</div>
-						<!-- end divider -->
-						<div class="row">
-							<div class="col-lg-6">
-								<h4>Button sizes</h4>
-								<p>
-									There are 5 button sizes: mini, small, normal, medium and large
-								</p>
-								<a href="#" class="btn btn-mini btn-primary">mini size</a>
-								<a href="#" class="btn btn-small btn-warning">small size</a>
-								<a href="#" class="btn btn-danger">normal size</a>
-								<a href="#" class="btn btn-medium btn-danger">Medium size</a>
-								<a href="#" class="btn btn-large btn-info">Large size</a>
-							</div>
-							<div class="col-lg-6">
-								<h4>Button edge</h4>
-								<p>
-									There are 3 button edge variations: normal, rounded and flat. Simply adding <code>btn-rounded</code> or <code>btn-flat</code> class and you'll get different button edge
-								</p>
-								<a href="#" class="btn btn-primary">normal primary</a>
-								<a href="#" class="btn btn-warning btn-rounded">rounded button</a>
-								<a href="#" class="btn btn-danger btn-flat">flat button</a>
-								<a href="#" class="btn btn-primary btn-large btn-rounded">normal button</a>
-								<a href="#" class="btn btn-warning btn-mini btn-rounded">rounded button</a>
-								<a href="#" class="btn btn-danger btn-medium btn-rounded">flat button</a>
-							</div>
-						</div>
-						<!-- divider -->
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="solidline">
-								</div>
-							</div>
-						</div>
-						<!-- end divider -->
-						<div class="row">
-							<div class="col-lg-6">
-								<h4>Tab</h4>
-								<ul class="nav nav-tabs">
-									<li class="active"><a href="#one" data-toggle="tab"><i class="icon-briefcase"></i> One</a></li>
-									<li><a href="#two" data-toggle="tab">Two</a></li>
-									<li><a href="#three" data-toggle="tab">Three</a></li>
-								</ul>
-								<div class="tab-content">
-									<div class="tab-pane active" id="one">
-										<p>
-											<strong>Augue iriure</strong> dolorum per ex, ne iisque ornatus veritus duo. Ex nobis integre lucilius sit, pri ea falli ludus appareat. Eum quodsi fuisset id, nostro patrioque qui id. Nominati eloquentiam in mea.
-										</p>
-										<p>
-											No eum sanctus vituperata reformidans, dicant abhorreant ut pro. Duo id enim iisque praesent, amet intellegat per et, solet referrentur eum et.
-										</p>
-									</div>
-									<div class="tab-pane" id="two">
-										<p>
-											Tale dolor mea ex, te enim assum suscipit cum, vix aliquid omittantur in. Duo eu cibo dolorum menandri, nam sumo dicit admodum ei. Ne mazim commune honestatis cum, mentitum phaedrum sit et.
-										</p>
-									</div>
-									<div class="tab-pane" id="three">
-										<p>
-											Cu cum commodo regione definiebas. Cum ea eros laboramus, audire deseruisse his at, munere aeterno ut quo. Et ius doming causae philosophia, vitae bonorum intellegat usu cu.
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6">
-								<h4>Alerts</h4>
-								<div class="alert alert-success">
-									<strong>Success!</strong> Best check yo self, you're not looking too good.
-								</div>
-								<div class="alert alert-danger">
-									<strong>Danger!</strong> Best check yo self, you're not looking too good.
-								</div>
-								<div class="alert alert-warning">
-									<strong>Warning!</strong> Change a few things up and try submitting again.
-								</div>
-								<div class="alert alert-info">
-									<strong>Info!</strong> Change a few things up and try submitting again.
-								</div>
-							</div>
-
-						</div>
-						<!-- divider -->
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="solidline">
-								</div>
-							</div>
-						</div>
-						<!-- end divider -->
-
-						<div class="row">
-							<div class="col-lg-6">
-								<h4>Progress bars</h4>
-								<div class="progress">
-									<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-										<span class="sr-only">60% Complete</span>
-									</div>
-								</div>
-
-								<div class="progress progress-striped">
-									<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-										<span class="sr-only">40% Complete</span>
-									</div>
-								</div>
-								<div class="progress progress-striped active">
-									<div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
-										<span class="sr-only">45% Complete</span>
-									</div>
-								</div>
-								<div class="progress">
-									<div class="progress-bar progress-bar-success" style="width: 35%">
-										<span class="sr-only">35% Complete (success)</span>
-									</div>
-									<div class="progress-bar progress-bar-warning" style="width: 20%">
-										<span class="sr-only">20% Complete (warning)</span>
-									</div>
-									<div class="progress-bar progress-bar-danger" style="width: 10%">
-										<span class="sr-only">10% Complete (danger)</span>
-									</div>
-								</div>
-
-							</div>
-							<div class="col-lg-6">
-								<h4>Pagination</h4>
-								<p>
-									Links are customizable for different circumstances. Use <code>.disabled</code> for unclickable links and <code>.active</code> to indicate the current page.
-								</p>
-								<ul class="pagination">
-									<li><a href="#">&laquo;</a></li>
-									<li><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#">&raquo;</a></li>
-								</ul>
-
-								<pre class="prettyprint linenums">
-&lt;div class="pagination"&gt; &lt;ul&gt; &lt;li class="disabled"&gt;&lt;a href="#"&gt;Prev&lt;/a&gt;&lt;/li&gt; &lt;li class="active"&gt;&lt;a href="#"&gt;1&lt;/a&gt;&lt;/li&gt; &lt;li&gt;&lt;a href="#"&gt;2&lt;/a&gt;&lt;/li&gt; &lt;li&gt;&lt;a href="#"&gt;3&lt;/a&gt;&lt;/li&gt; &lt;li&gt;&lt;a href="#"&gt;Next&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt; &lt;/div&gt;
-						</pre>
-							</div>
+						<div class="solidline">
 						</div>
 					</div>
-					<!-- end col-lg-12 -->
+				</div>
+				<!-- end divider -->
+				<!-- Descriptions -->
+				<div class="row">
+					<div class="col-lg-6">
+						<!-- Description -->
+						<h4>Description</h4>
+						<dl>
+							<dt>Description lists</dt>
+							<dd>A description list is perfect for defining terms.</dd>
+							<dt>Euismod</dt>
+							<dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
+							<dd>Donec id elit non mi porta gravida at eget metus.</dd>
+							<dt>Malesuada porta</dt>
+							<dd>Etiam porta sem malesuada magna mollis euismod.</dd>
+						</dl>
+					</div>
+					<!-- Horizontal Description -->
+					<div class="col-lg-6">
+						<h4>Horizontal Description</h4>
+						<dl class="dl-horizontal">
+							<dt>Description lists</dt>
+							<dd>A description list is perfect for defining terms.</dd>
+							<dt>Euismod</dt>
+							<dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
+							<dd>Donec id elit non mi porta gravida at eget metus.</dd>
+							<dt>Malesuada porta</dt>
+							<dd>Etiam porta sem malesuada magna mollis euismod.</dd>
+							<dt>Felis euismod semper eget lacinia</dt>
+							<dd>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</dd>
+						</dl>
+					</div>
+				</div>
+				<!-- divider -->
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="solidline">
+						</div>
+					</div>
+				</div>
+				<!-- end divider -->
+				<!-- Lists -->
+				<div class="row">
+					<!-- Unordered Lists -->
+					<div class="col-lg-3">
+						<h4>Unordered Lists</h4>
+						<ul>
+							<li>Lorem ipsum dolor sit amet</li>
+							<li>Consectetur adipiscing elit</li>
+							<li>Integer molestie lorem at massa</li>
+							<li>Facilisis in pretium nisl aliquet</li>
+							<li>Nulla volutpat aliquam velit
+								<ul>
+									<li>Phasellus iaculis neque</li>
+									<li>Purus sodales ultricies</li>
+									<li>Vestibulum laoreet porttitor sem</li>
+									<li>Ac tristique libero volutpat at</li>
+								</ul>
+							</li>
+							<li>Faucibus porta lacus fringilla vel</li>
+							<li>Aenean sit amet erat nunc</li>
+							<li>Eget porttitor lorem</li>
+						</ul>
+					</div>
+					<!-- Unstyled Lists -->
+					<div class="col-lg-3">
+						<h4>Unstyled Lists</h4>
+						<ul class="unstyled">
+							<li>Lorem ipsum dolor sit amet</li>
+							<li>Consectetur adipiscing elit</li>
+							<li>Integer molestie lorem at massa</li>
+							<li>Facilisis in pretium nisl aliquet</li>
+							<li>Nulla volutpat aliquam velit
+								<ul>
+									<li>Phasellus iaculis neque</li>
+									<li>Purus sodales ultricies</li>
+									<li>Vestibulum laoreet porttitor sem</li>
+									<li>Ac tristique libero volutpat at</li>
+								</ul>
+							</li>
+							<li>Faucibus porta lacus fringilla vel</li>
+							<li>Aenean sit amet erat nunc</li>
+							<li>Eget porttitor lorem</li>
+						</ul>
+					</div>
+					<!-- Ordered Lists -->
+					<div class="col-lg-3">
+						<h4>Ordered Lists</h4>
+						<ol>
+							<li>Lorem ipsum dolor sit amet</li>
+							<li>Consectetur adipiscing elit</li>
+							<li>Integer molestie lorem at massa</li>
+							<li>Facilisis in pretium nisl aliquet</li>
+							<li>Nulla volutpat aliquam velit
+								<ol>
+									<li>Phasellus iaculis neque</li>
+									<li>Purus sodales ultricies</li>
+									<li>Vestibulum laoreet porttitor sem</li>
+									<li>Ac tristique libero volutpat at</li>
+								</ol>
+							</li>
+							<li>Faucibus porta lacus fringilla vel</li>
+							<li>Aenean sit amet erat nunc</li>
+							<li>Eget porttitor lorem</li>
+						</ol>
+					</div>
+					<!-- Unstyled Lists -->
+					<div class="col-lg-3">
+						<h4>Unstyled Lists</h4>
+						<ol class="unstyled">
+							<li>Lorem ipsum dolor sit amet</li>
+							<li>Consectetur adipiscing elit</li>
+							<li>Integer molestie lorem at massa</li>
+							<li>Facilisis in pretium nisl aliquet</li>
+							<li>Nulla volutpat aliquam velit
+								<ol>
+									<li>Phasellus iaculis neque</li>
+									<li>Purus sodales ultricies</li>
+									<li>Vestibulum laoreet porttitor sem</li>
+									<li>Ac tristique libero volutpat at</li>
+								</ol>
+							</li>
+							<li>Faucibus porta lacus fringilla vel</li>
+							<li>Aenean sit amet erat nunc</li>
+							<li>Eget porttitor lorem</li>
+						</ol>
+					</div>
+				</div>
+				<!-- divider -->
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="solidline">
+						</div>
+					</div>
+				</div>
+				<!-- end divider -->
+				<div class="row">
+					<div class="col-lg-4">
+						<h4>Blockquote</h4>
+						<blockquote>
+							<i class="icon-quote-left icon-2x"></i> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam non mod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+						</blockquote>
+					</div>
+					<div class="col-lg-4">
+						<h4>Blockquote and cite</h4>
+						<blockquote>
+							<i class="icon-quote-left icon-2x"></i> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam non mod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. <cite>John doe, Awesome Inc.</cite>
+						</blockquote>
+					</div>
+					<div class="col-lg-4">
+						<h4>Pullquote left and right</h4>
+						<span class="pullquote-left">
+				Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam non mod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. </span>
+						<span class="pullquote-right margintop10">
+				Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam non mod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. </span>
+					</div>
+				</div>
+				<!-- divider -->
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="solidline">
+						</div>
+					</div>
+				</div>
+				<!-- end divider -->
+				<div class="row">
+					<div class="col-lg-12">
+						<h4>Preformatted text</h4>
+						<pre class="prettyprint linenums">
+					 &lt;div class="col-lg-12"&gt;<br />
+					 &nbsp;&nbsp;&lt;p&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr..&lt;/p&gt;<br />
+					 &nbsp;&nbsp;&lt;p&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr..&lt;/p&gt;<br />
+					 &nbsp;&nbsp;&lt;p&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr..&lt;/p&gt;<br />
+					 &lt;/div&gt;
+				</pre>
+					</div>
 				</div>
 			</div>
 		</section>
@@ -436,6 +451,7 @@
 	<script src="js/google-code-prettify/prettify.js"></script>
 	<script src="js/animate.js"></script>
 	<script src="js/custom.js"></script>
+
 
 </body>
 
