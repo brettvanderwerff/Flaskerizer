@@ -8,14 +8,19 @@ Bootstrap templates from websites like https://bootstrapmade.com/ are a fast way
 
 The Flaskerizer automates the necessary directory building and link creation needed to make Bootstrap templates work "out of the box" with Flask. The Flaskerizer also automatically creates a python script with the appropriate routes needed to serve the Bootstrap template as a Flask app.
 
-##Dependencies
+## Dependencies
 
 Flask: 0.12.2 or higher
 
-##Setup and Operation
+## Setup and Operation
 
 1. Clone the repo to your computer
-2. Install dependencies by opening terminal in top level directory and entering `pip install -r requirements.txt` 
+2. Install dependencies by opening terminal in top level directory and entering `$ pip install -r requirements.txt` 
 3. Download your favorite bootstrap template from https://bootstrapmade.com/ (note that there are two example templates in the repo (Folio_example and Sailor_example) from https://bootstrapmade.com/ that you can use if you don't want to download one. 
 4. Open flaskerizer.py and edit the 'directory' argument of the 'structure_directory_object' to include the full path of the bootstrap template you downloaded.
 5. Run the program by opening a terminal in the top level directory of the repo and entering `$ python app.py` (this may vary slightly by environment)
+6. View your website by opening the browser to your local address port 5000 (i.e. http://127.0.0.1:5000)
+
+## How it works
+
+
