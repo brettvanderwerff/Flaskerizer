@@ -11,7 +11,7 @@ class TestWriteApp(unittest.TestCase):
         template 'Folio' is given as an argument for testing purposes. The object 'test' is also instantiated from the
         WhiteApp class.
         '''
-        structure_directory_object = StructureDirectory(directroy=os.path.join(os.getcwd(), os.path.basename('Folio')))
+        structure_directory_object = StructureDirectory(directroy=os.path.join(os.getcwd(), os.path.basename('Folio_example')))
         structure_directory_object.migrate_static()
         structure_directory_object.parse_html()
         self.test = WriteApp()
