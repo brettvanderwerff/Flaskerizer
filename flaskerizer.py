@@ -2,7 +2,7 @@ import os
 from structure_directory import StructureDirectory
 from write_app import WriteApp
 
-structure_directory_object = StructureDirectory(directroy=os.path.join(os.getcwd(), os.path.basename('Folio')))
+structure_directory_object = StructureDirectory(directroy=os.path.join(os.getcwd(), os.path.basename('Folio_example')))
 write_app_object = WriteApp()
 
 if __name__ == '__main__':
