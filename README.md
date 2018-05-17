@@ -75,6 +75,7 @@ I am aware that test_structure_directory.py is not currently passing, please see
 ## The Example Templates
 
 Folio_example - A small one page bootstrap template
+
 Sailor_example - The largest boostrap template I could find, would be a pain to set up manually but works great with the Flaskerizer automated setup
 
 # Contribution Guidelines
