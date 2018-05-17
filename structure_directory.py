@@ -52,7 +52,7 @@ class StructureDirectory():
                 print('generating content for {} and migrating content to templates folder'.format(file_name))
                 source_directory = os.path.join(self.directory, os.path.basename(file_name))
                 with open(source_directory) as html_content:
-                    self.migrate_templates(html_content, file_name) # <link href="css/style.css" rel="stylesheet"> makes an error
+                    self.migrate_templates(html_content, file_name)
 
 if __name__ == "__main__":
     my_object = StructureDirectory(directroy=os.path.join(os.getcwd(), os.path.basename('Folio')))
