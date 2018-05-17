@@ -8,11 +8,11 @@ The Flaskerizer automates the necessary directory building and link creation nee
 
 The Flaskerizer takes a bootstrap template that looks like this "out of the box" with Flask:
 
-![picture alt](https://imgur.com/29TAqYj)
+![picture alt](/readme_images/not_working_example.png)
 
 and converts it to something that looks like this "out of the box" with Flask:
 
-![picture alt](https://imgur.com/iiIUC1r)
+![picture alt](/readme_images/working_example.png)
 
 ## Dependencies
 
