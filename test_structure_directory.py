@@ -23,7 +23,7 @@ class TestStructureDirectory(unittest.TestCase):
         '''Tests that migrate_static migrates the correct number of folders from the bootstrap template directory to
         the static directory of the Flask app.
         '''
-        source_directory = os.path.join(os.getcwd(), os.path.basename('Folio'))
+        source_directory = os.path.join(os.getcwd(), os.path.basename('Folio_example'))
         write_directory = os.path.join(os.getcwd(), os.path.basename('static'))
         self.test.migrate_static()
         source_dir_list = []
