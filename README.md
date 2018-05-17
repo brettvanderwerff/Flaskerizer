@@ -26,7 +26,7 @@ Flask: 0.12.1 or higher
 4. Open flaskerizer.py and edit the 'directory' argument of the 'structure_directory_object' to include the full path to the bootstrap template you downloaded (or the example one in the repo).
 5. Run the program by opening a terminal in the top level directory of the repo and entering `$ python flaskerizer.py` (this may vary slightly by environment)
 6. After running flaskerizer.py, enter `$ python app.py` in the terminal to launch the newly made Flask app from the app.py file.
-7. View your website by opening the browser to your local address on port 5000 (i.e. http://127.0.0.1:5000) , Note: may have to enter http://127.0.0.1:5000/index.html to route to  website homepage.
+7. View your website by opening the browser to your local address on port 5000 (i.e. http://127.0.0.1:5000) , Note: may have to enter http://127.0.0.1:5000/index.html to route the  website homepage.
 8. You may need to clear your browser's cache to view the website properly (I'm not sure why this happens sometimes)
 
 ## How it works
