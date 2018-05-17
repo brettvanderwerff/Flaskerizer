@@ -24,9 +24,10 @@ Flask: 0.12.1 or higher
 2. Install dependencies by opening a terminal in top level directory of the repo and entering `$ pip install -r requirements.txt` 
 3. Download your favorite bootstrap template from https://bootstrapmade.com/ .Note that there are two example templates in the repo (Folio_example and Sailor_example) from https://bootstrapmade.com/ that you can use if you don't want to download one. This program was designed only with templates from https://bootstrapmade.com/ in mind, but I would love to extend the flexibility of the program to work well with other bootstrap template sources (see issues) 
 4. Open flaskerizer.py and edit the 'directory' argument of the 'structure_directory_object' to include the full path to the bootstrap template you downloaded (or the example one in the repo).
-5. Run the program by opening a terminal in the top level directory of the repo and entering `$ python app.py` (this may vary slightly by environment)
-6. View your website by opening the browser to your local address on port 5000 (i.e. http://127.0.0.1:5000) , Note: may have to enter http://127.0.0.1:5000/index.html to route to  website homepage.
-7. You may need to clear your browser's cache to view the website properly (I'm not sure why this happens sometimes)
+5. Run the program by opening a terminal in the top level directory of the repo and entering `$ python flaskerizer.py` (this may vary slightly by environment)
+6. After running flaskerizer.py, enter `$ python app.py` in the terminal to launch the newly made Flask app from the app.py file.
+7. View your website by opening the browser to your local address on port 5000 (i.e. http://127.0.0.1:5000) , Note: may have to enter http://127.0.0.1:5000/index.html to route to  website homepage.
+8. You may need to clear your browser's cache to view the website properly (I'm not sure why this happens sometimes)
 
 ## How it works
 
@@ -78,7 +79,7 @@ Folio_example - A small one page bootstrap template
 
 Sailor_example - The largest boostrap template I could find, would be a pain to set up manually but works great with the Flaskerizer automated setup
 
-# Contribution Guidelines
+## Contribution Guidelines
 
 1. Comment on an issue you would like assigned to you. 
 2. Fork the Flaskerizer repo onto your github.
