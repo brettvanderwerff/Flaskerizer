@@ -61,7 +61,7 @@ The write_app method automatically writes a python script 'app.py' with the nece
 
 ## Running the tests
 
-Tests have been written for the StructureDirectory and WriteApp classes. 
+Tests have been written for StructureDirectory and WriteApp classes and status_code_to_word function: 
 
 **To run the tests for StructureDirectory:** 
 
@@ -70,6 +70,10 @@ open a terminal in the top level directory of the repo and enter `$ python test_
 **To run the tests for test_write_app.py:** 
 
 open a terminal in the top level directory of the repo and enter `$ python test_write_app.py` (this may vary slightly by environment)
+
+**To run the tests for test_status_code_to_word.py:** 
+
+open a terminal in the top level directory of the repo and enter `$ python test_status_code_to_word.py` (this may vary slightly by environment)
 
 I am aware that test_structure_directory.py is not currently passing, please see issues. 
 
