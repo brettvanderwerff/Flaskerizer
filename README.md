@@ -30,9 +30,11 @@ Flask: 0.12.1 or higher
 8. You may need to clear your browser's cache to view the website properly (I'm not sure why this happens sometimes)
 
 ## For a Docker Version
+Docker using alpine 3.7, Python 3.6, uwsgi and Nginx
+
 1. Run steps 1 to 5 above
 2. Run `docker build -t SOMETAG .`
-3. Run `docker run -d -p 5000:5000 SOMETAG`
+3. Run `docker run -d -p 8787:80 --name TESTDOCKER SOMETAG`
 4. Run steps 7 to 8 above
 
 ## How it works
