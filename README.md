@@ -88,6 +88,14 @@ Sailor_example - The largest boostrap template I could find, would be a pain to 
 5. Make a pull request right away by pushing your branch to github and trying to merge your fork with my master branch. It's okay if you have not made any progress, just title the pull request whatever you titled the branch and add 'Work in progress" to the title so that I know you are working on it. 
 6. Let me know when you are done with your branch and we can review the code together before finalizing the contribution :)
 
+## Contributors:
+
+A list of people that have contributed to Flaskerizer:
+
+@ makkoncept  
+
+@ jmbriody
+
 
 
 
