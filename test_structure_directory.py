@@ -40,6 +40,7 @@ class TestStructureDirectory(unittest.TestCase):
         ''' Tests that parse_html creates a file 'blog-grid.html' in a templates folder that matches a "gold standard"
          version of 'blog-grid.html' called 'blog-grid_test_file.html'.
         '''
+        self.test.migrate_static()         # to make all the tests independent. Tests are sun in random order
         self.test.parse_html()
         html_dir = os.path.join(os.getcwd(), os.path.basename('templates'), os.path.basename('blog-grid.html'))
         with open(html_dir, 'r') as test_obj:
