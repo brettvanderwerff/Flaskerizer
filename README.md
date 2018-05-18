@@ -26,8 +26,14 @@ Flask: 0.12.1 or higher
 4. Open flaskerizer.py and edit the 'directory' argument of the 'structure_directory_object' to include the full path to the bootstrap template you downloaded (or the example one in the repo).
 5. Run the program by opening a terminal in the top level directory of the repo and entering `$ python flaskerizer.py` (this may vary slightly by environment)
 6. After running flaskerizer.py, enter `$ python app.py` in the terminal to launch the newly made Flask app from the app.py file.
-7. View your website by opening the browser to your local address on port 5000 (i.e. http://127.0.0.1:5000) , Note: may have to enter http://127.0.0.1:5000/index.html to route the  website homepage.
+7. View your website by opening the browser to your local address on port 5000 (i.e. http://127.0.0.1:5000 / http://0.0.0.0:5000) , Note: may have to enter http://127.0.0.1:5000/index.html / http://0.0.0.0:5000/index.html to route the  website homepage.
 8. You may need to clear your browser's cache to view the website properly (I'm not sure why this happens sometimes)
+
+## For a Docker Version
+1. Run steps 1 to 5 above
+2. Run `docker build -t SOMETAG .`
+3. Run `docker run -d -p 5000:5000 SOMETAG`
+4. Run steps 7 to 8 above
 
 ## How it works
 
@@ -61,7 +67,7 @@ The write_app method automatically writes a python script 'app.py' with the nece
 
 ## Running the tests
 
-Tests have been written for the StructureDirectory and WriteApp classes. 
+Tests have been written for StructureDirectory and WriteApp classes and status_code_to_word function: 
 
 **To run the tests for StructureDirectory:** 
 
@@ -70,6 +76,10 @@ open a terminal in the top level directory of the repo and enter `$ python test_
 **To run the tests for test_write_app.py:** 
 
 open a terminal in the top level directory of the repo and enter `$ python test_write_app.py` (this may vary slightly by environment)
+
+**To run the tests for test_status_code_to_word.py:** 
+
+open a terminal in the top level directory of the repo and enter `$ python test_status_code_to_word.py` (this may vary slightly by environment)
 
 I am aware that test_structure_directory.py is not currently passing, please see issues. 
 
@@ -87,6 +97,14 @@ Sailor_example - The largest boostrap template I could find, would be a pain to 
 4. Use git to make a new branch on your local machine by opening a terminal and typing `$ git checkout -b XXXX-SHORT_TITLE_OF_ISSUE` where XXX is the zero padded issue number, such as 0001. For example: `$ git checkout -b 0001-HTTP_STATUS_CODE_ISSUE` would be good for the first issue in the repo. 
 5. Make a pull request right away by pushing your branch to github and trying to merge your fork with my master branch. It's okay if you have not made any progress, just title the pull request whatever you titled the branch and add 'Work in progress" to the title so that I know you are working on it. 
 6. Let me know when you are done with your branch and we can review the code together before finalizing the contribution :)
+
+## Contributors:
+
+A list of people that have contributed to Flaskerizer:
+
+@ makkoncept  
+
+@ jmbriody
 
 
 
