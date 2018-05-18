@@ -29,6 +29,11 @@ Flask: 0.12.1 or higher
 7. View your website by opening the browser to your local address on port 5000 (i.e. http://127.0.0.1:5000) , Note: may have to enter http://127.0.0.1:5000/index.html to route the  website homepage.
 8. You may need to clear your browser's cache to view the website properly (I'm not sure why this happens sometimes)
 
+## For a Docker Version
+1. Run steps 1 to 5 above
+2. Run `docker build -t SOMETAG .`
+3. Run `docker run -d -p 5000:5000 SOMETAG`
+
 ## How it works
 
 The Flasker has two main classes:
