@@ -55,7 +55,7 @@ class StructureDirectory():
                     self.migrate_templates(html_content, file_name)
 
 if __name__ == "__main__":
-    my_object = StructureDirectory(directroy=os.path.join(os.getcwd(), os.path.basename('Folio')))
+    my_object = StructureDirectory(directroy=os.path.join(os.getcwd(), os.path.basename('Folio_example')))
     my_object.migrate_static()
     my_object.parse_html()
 
