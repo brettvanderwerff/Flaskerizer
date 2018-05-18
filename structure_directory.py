@@ -1,12 +1,16 @@
 import os
+import config
 import shutil
 
+directory = config.CONFIGURATION['directory_path']
+
+
 class StructureDirectory():
-    def __init__(self, directroy):
-        self.directory = directroy
+    def __init__(self, directory):
+        self.directory = directory
 
     def mkdir(self, dir):
-        '''Makes folder of dir name in the working direectory.
+        '''Makes folder of dir name in the working directory.
         '''
         dir_path = os.path.join(os.getcwd(), os.path.basename(dir))
         if not os.path.exists(dir_path):
@@ -54,8 +58,9 @@ class StructureDirectory():
                 with open(source_directory) as html_content:
                     self.migrate_templates(html_content, file_name)
 
+
 if __name__ == "__main__":
-    my_object = StructureDirectory(directroy=os.path.join(os.getcwd(), os.path.basename('Folio_example')))
+    my_object = StructureDirectory(directory)
     my_object.migrate_static()
     my_object.parse_html()
 

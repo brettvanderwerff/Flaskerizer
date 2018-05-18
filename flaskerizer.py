@@ -1,8 +1,10 @@
 import os
 from structure_directory import StructureDirectory
 from write_app import WriteApp
+import config
 
-structure_directory_object = StructureDirectory(directroy=os.path.join(os.getcwd(), os.path.basename('Folio_example')))
+directory = config.CONFIGURATION['directory_path']
+structure_directory_object = StructureDirectory(directory)
 write_app_object = WriteApp()
 
 if __name__ == '__main__':
