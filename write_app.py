@@ -30,7 +30,6 @@ class WriteApp():
             if template_name.strip('.html') in HTTP_status_dict.keys():
                 self.write_error_handler(template_name, write_obj)
                 continue
-            print(template_name)
             write_obj.write("@app.route('/{}')\n".format(template_name))
             if template_name == "index.html":
                 write_obj.write("@app.route('/')\n")
