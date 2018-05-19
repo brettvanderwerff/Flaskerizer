@@ -4,33 +4,38 @@ import shutil
 from zipfile import ZipFile
 
 class StructureDirectory():
-    def __init__(self, directroy):
+    def __init__(self, directory):
         '''__init__ method defines the 'directory' attribute of the StructureDirectory class, which is a path to a
         Bootstrap template given by the 'directory' argument. If the 'directory' argument is a path to an unzipped
         Bootstrap template folder, the unzip method of the StructureDirectory class unzips the Bootstrap template to
         the top level directory of the repository and defines the 'directory' attribute as a path that points to the
         newly unzipped Bootstrap template folder in the top level directory of the repository.
         '''
-        if self.is_zip(directroy) == True:
-            self.unzip(directroy)
-            self.directory = os.path.join(os.getcwd(), ntpath.basename(directroy)) #need to remove zip from basename
-        else:
-            self.directory = directroy
+        if self.is_zip(directory) == True:
+            self.unzip(directory)
+            self.directory = os.path.join(os.getcwd(), ntpath.basename(directory).strip('.zip'))
+        elif self.is_zip(directory) == False:
+            self.directory = directory
 
     def is_zip(self, directory):
-        '''Returns True if directory argument is the path of a '.zip' file. If the directory argument is a file other
-         than a '.zip' file, the function will print an informative error statement before exiting the program.
+        '''Returns True if the directory argument is the path of a '.zip' file. If the directory argument is a file
+        other than a '.zip' file, the function will print an informative error statement before exiting the program.
+        If the directory argument is the path of a folder, the is_zip method will return False.
          '''
+        print('checking if bootstrap template is a zipped file')
         if os.path.isfile(directory) and (directory[-4:]) == '.zip':
             return True
-        else:
+        elif os.path.isfile(directory):
             print('file type not recognized, please verify that it is either an unzipped Bootstrap template folder'
-                  'or a zipped Bootstrap template folder before trying again.')
+                  ' or a zipped Bootstrap template folder before trying again.')
             exit()
+        elif os.path.isdir(directory):
+            return False
 
     def unzip(self, directory):
         '''Unzips a file at path 'directory'
         '''
+        print('unzipping {}'.format(ntpath.basename(directory)))
         with ZipFile(directory, 'r') as zip_obj:
             zip_obj.extractall(os.getcwd())
 
@@ -84,7 +89,7 @@ class StructureDirectory():
                     self.migrate_templates(html_content, file_name)
 
 if __name__ == "__main__":
-    my_object = StructureDirectory(directroy=os.path.join(os.getcwd(), os.path.basename('Folio_example')))
+    my_object = StructureDirectory(os.path.join(os.getcwd(), os.path.basename('Folio_example')))
     my_object.migrate_static()
     my_object.parse_html()
 
