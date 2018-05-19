@@ -69,19 +69,9 @@ The write_app method automatically writes a python script 'app.py' with the nece
 
 Tests have been written for StructureDirectory and WriteApp classes and status_code_to_word function: 
 
-**To run the tests for StructureDirectory:** 
+This app uses unittest and [nose](https://nose.readthedocs.io/en/latest/) for testing.
 
-open a terminal in the top level directory of the repo and enter `$ python test_structure_directory.py` (this may vary slightly by environment)
-
-**To run the tests for test_write_app.py:** 
-
-open a terminal in the top level directory of the repo and enter `$ python test_write_app.py` (this may vary slightly by environment)
-
-**To run the tests for test_status_code_to_word.py:** 
-
-open a terminal in the top level directory of the repo and enter `$ python test_status_code_to_word.py` (this may vary slightly by environment)
-
-I am aware that test_structure_directory.py is not currently passing, please see issues. 
+To run the tests open the terminal in the top level directory and enter `$ nosetests`, this will find and run all the test automatically. Make sure that you have `$ pip install -r requirements.txt`, as nose is an external dependency. 
 
 ## The Example Templates
 
