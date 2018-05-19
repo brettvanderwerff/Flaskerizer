@@ -1,3 +1,4 @@
 static/
 templates/
 app.py
+venv/
