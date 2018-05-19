@@ -11,8 +11,9 @@ def blog_single():
     return render_template('blog-single.html')
 
 @app.route('/index.html')
+@app.route('/')
 def index():
     return render_template('index.html')
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')

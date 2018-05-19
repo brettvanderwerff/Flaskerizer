@@ -31,8 +31,13 @@ class WriteApp():
                 self.write_error_handler(template_name, write_obj)
                 continue
             write_obj.write("@app.route('/{}')\n".format(template_name))
+            if template_name == "index.html":
+                write_obj.write("@app.route('/')\n")
             write_obj.write('def {}():\n'.format(template_name.strip('.html').replace('-','_')))
             write_obj.write("    return render_template('{}')\n\n".format(template_name))
+
+        # Add default route
+        
 
     def write_app(self):
         '''Writes the 'skeleton' of a Flask app in a file 'app.py'. Writes import statements for Flask and
@@ -45,7 +50,7 @@ class WriteApp():
             write_obj.write('app = Flask(__name__)\n\n')
             self.write_routes(write_obj)
             write_obj.write("if __name__ == '__main__':\n")
-            write_obj.write("    app.run()")
+            write_obj.write("    app.run(host='0.0.0.0')")
 
 
 
