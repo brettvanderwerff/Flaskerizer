@@ -1,7 +1,7 @@
-import os
+import config
 from structure_directory import StructureDirectory
 from write_app import WriteApp
-import config
+
 
 directory = config.CONFIGURATION['directory_path']
 structure_directory_object = StructureDirectory(directory)
