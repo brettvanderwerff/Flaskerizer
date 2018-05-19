@@ -3,6 +3,7 @@ import os
 from structure_directory import StructureDirectory
 from write_app import WriteApp
 
+
 class TestWriteApp(unittest.TestCase):
     maxDiff = None # reveals difference between test strings and "gold standard" strings
 
@@ -11,7 +12,7 @@ class TestWriteApp(unittest.TestCase):
         template 'Folio' is given as an argument for testing purposes. The object 'test' is also instantiated from the
         WhiteApp class.
         '''
-        structure_directory_object = StructureDirectory(directroy=os.path.join(os.getcwd(), os.path.basename('Folio_example')))
+        structure_directory_object = StructureDirectory(directory=os.path.join(os.getcwd(), os.path.basename('Folio_example')))
         structure_directory_object.migrate_static()
         structure_directory_object.parse_html()
         self.test = WriteApp()
@@ -33,6 +34,7 @@ class TestWriteApp(unittest.TestCase):
         with open(test_dir) as gold_obj:
             gold_string = gold_obj.read()
         self.assertMultiLineEqual(test_string, gold_string)
+
 
 if __name__ == '__main__':
     unittest.main()

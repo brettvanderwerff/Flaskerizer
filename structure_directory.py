@@ -1,7 +1,11 @@
 import ntpath
 import os
+import config
 import shutil
 from zipfile import ZipFile
+
+directory = config.CONFIGURATION['directory_path']
+
 
 class StructureDirectory():
     def __init__(self, directory):
@@ -38,7 +42,7 @@ class StructureDirectory():
         print('unzipping {}'.format(ntpath.basename(directory)))
         with ZipFile(directory, 'r') as zip_obj:
             zip_obj.extractall(os.getcwd())
-
+            
     def mkdir(self, dir):
         '''Makes folder of dir name in the working directory.
         '''
@@ -88,8 +92,9 @@ class StructureDirectory():
                 with open(source_directory) as html_content:
                     self.migrate_templates(html_content, file_name)
 
+
 if __name__ == "__main__":
-    my_object = StructureDirectory(os.path.join(os.getcwd(), os.path.basename('Folio_example')))
+    my_object = StructureDirectory(directory)
     my_object.migrate_static()
     my_object.parse_html()
 
