@@ -104,7 +104,7 @@ Sailor_example - The largest boostrap template I could find, would be a pain to 
 
 A list of people that have contributed to Flaskerizer:
 
-- [@makkoncept](https://github.com/makkoncept)  
+- [Mayank Nader](https://github.com/makkoncept)
 
 - [@jmbriody](https://github.com/jmbriody)
 
