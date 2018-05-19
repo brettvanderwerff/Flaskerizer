@@ -102,6 +102,8 @@ A list of people that have contributed to Flaskerizer:
 
 - [@PvtHaggard](https://github.com/PvtHaggard)
 
+- [@WeepingJarl012](https://github.com/WeepingJarl012)
+
 
 
 
