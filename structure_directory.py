@@ -1,12 +1,41 @@
+import ntpath
 import os
 import shutil
+from zipfile import ZipFile
 
 class StructureDirectory():
     def __init__(self, directroy):
-        self.directory = directroy
+        '''__init__ method defines the 'directory' attribute of the StructureDirectory class, which is a path to a
+        Bootstrap template given by the 'directory' argument. If the 'directory' argument is a path to an unzipped
+        Bootstrap template folder, the unzip method of the StructureDirectory class unzips the Bootstrap template to
+        the top level directory of the repository and defines the 'directory' attribute as a path that points to the
+        newly unzipped Bootstrap template folder in the top level directory of the repository.
+        '''
+        if self.is_zip(directroy) == True:
+            self.unzip(directroy)
+            self.directory = os.path.join(os.getcwd(), ntpath.basename(directroy)) #need to remove zip from basename
+        else:
+            self.directory = directroy
+
+    def is_zip(self, directory):
+        '''Returns True if directory argument is the path of a '.zip' file. If the directory argument is a file other
+         than a '.zip' file, the function will print an informative error statement before exiting the program.
+         '''
+        if os.path.isfile(directory) and (directory[-4:]) == '.zip':
+            return True
+        else:
+            print('file type not recognized, please verify that it is either an unzipped Bootstrap template folder'
+                  'or a zipped Bootstrap template folder before trying again.')
+            exit()
+
+    def unzip(self, directory):
+        '''Unzips a file at path 'directory'
+        '''
+        with ZipFile(directory, 'r') as zip_obj:
+            zip_obj.extractall(os.getcwd())
 
     def mkdir(self, dir):
-        '''Makes folder of dir name in the working direectory.
+        '''Makes folder of dir name in the working directory.
         '''
         dir_path = os.path.join(os.getcwd(), os.path.basename(dir))
         if not os.path.exists(dir_path):
