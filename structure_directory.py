@@ -2,8 +2,8 @@ import os
 import shutil
 
 class StructureDirectory():
-    def __init__(self, directroy):
-        self.directory = directroy
+    def __init__(self, directory):
+        self.directory = directory
 
     def mkdir(self, dir):
         '''Makes folder of dir name in the working direectory.
@@ -55,7 +55,7 @@ class StructureDirectory():
                     self.migrate_templates(html_content, file_name)
 
 if __name__ == "__main__":
-    my_object = StructureDirectory(directroy=os.path.join(os.getcwd(), os.path.basename('Folio_example')))
+    my_object = StructureDirectory(directory=os.path.join(os.getcwd(), os.path.basename('Folio_example')))
     my_object.migrate_static()
     my_object.parse_html()
 
