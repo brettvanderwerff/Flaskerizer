@@ -110,6 +110,8 @@ A list of people that have contributed to Flaskerizer:
 
 - [@jmbriody](https://github.com/jmbriody)
 
+- [@PvtHaggard](https://github.com/PvtHaggard)
+
 
 
 
