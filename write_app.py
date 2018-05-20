@@ -50,7 +50,7 @@ class WriteApp():
             write_obj.write('app = Flask(__name__)\n\n')
             self.write_routes(write_obj)
             write_obj.write("if __name__ == '__main__':\n")
-            write_obj.write("    app.run(host='0.0.0.0')")
+            write_obj.write("    app.run()")
 
 
 

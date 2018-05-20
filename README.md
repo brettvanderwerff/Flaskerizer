@@ -23,16 +23,20 @@ Flask: 0.12.1 or higher
 1. Clone the repo to your computer
 2. Install dependencies by opening a terminal in top level directory of the repo and entering `$ pip install -r requirements.txt` 
 3. Download your favorite bootstrap template from https://bootstrapmade.com/ .Note that there are two example templates in the repo (Folio_example and Sailor_example) from https://bootstrapmade.com/ that you can use if you don't want to download one. This program was designed only with templates from https://bootstrapmade.com/ in mind, but I would love to extend the flexibility of the program to work well with other bootstrap template sources (see issues) 
-4. Open flaskerizer.py and edit the 'directory' argument of the 'structure_directory_object' to include the full path to the bootstrap template you downloaded (or the example one in the repo).
+4. Open the Configuration file(`config.py`) and set value of key *directory_path* to the full path of the bootstrap template you downloaded (or use the example template in the repo).
 5. Run the program by opening a terminal in the top level directory of the repo and entering `$ python flaskerizer.py` (this may vary slightly by environment)
 6. After running flaskerizer.py, enter `$ python app.py` in the terminal to launch the newly made Flask app from the app.py file.
 7. View your website by opening the browser to your local address on port 5000 (i.e. http://127.0.0.1:5000 / http://0.0.0.0:5000) , Note: may have to enter http://127.0.0.1:5000/index.html / http://0.0.0.0:5000/index.html to route the  website homepage.
 8. You may need to clear your browser's cache to view the website properly (I'm not sure why this happens sometimes)
 
+- **NOTE :** Do not delete the *Folio_example* template example from the directory. It is used to run tests.
+
 ## For a Docker Version
+Docker using alpine 3.7, Python 3.6, uwsgi and Nginx
+
 1. Run steps 1 to 5 above
 2. Run `docker build -t SOMETAG .`
-3. Run `docker run -d -p 5000:5000 SOMETAG`
+3. Run `docker run -d -p 5000:80 --name TESTDOCKER SOMETAG`
 4. Run steps 7 to 8 above
 
 ## How it works
@@ -69,19 +73,9 @@ The write_app method automatically writes a python script 'app.py' with the nece
 
 Tests have been written for StructureDirectory and WriteApp classes and status_code_to_word function: 
 
-**To run the tests for StructureDirectory:** 
+This app uses unittest and [nose](https://nose.readthedocs.io/en/latest/) for testing.
 
-open a terminal in the top level directory of the repo and enter `$ python test_structure_directory.py` (this may vary slightly by environment)
-
-**To run the tests for test_write_app.py:** 
-
-open a terminal in the top level directory of the repo and enter `$ python test_write_app.py` (this may vary slightly by environment)
-
-**To run the tests for test_status_code_to_word.py:** 
-
-open a terminal in the top level directory of the repo and enter `$ python test_status_code_to_word.py` (this may vary slightly by environment)
-
-I am aware that test_structure_directory.py is not currently passing, please see issues. 
+To run the tests open the terminal in the top level directory and enter `$ nosetests`, this will find and run all the test automatically. Make sure that you have `$ pip install -r requirements.txt`, as nose is an external dependency. 
 
 ## The Example Templates
 
@@ -102,9 +96,13 @@ Sailor_example - The largest boostrap template I could find, would be a pain to 
 
 A list of people that have contributed to Flaskerizer:
 
-@ makkoncept  
+- [Mayank Nader](https://github.com/makkoncept)
 
-@ jmbriody
+- [@jmbriody](https://github.com/jmbriody)
+
+- [@PvtHaggard](https://github.com/PvtHaggard)
+
+- [@WeepingJarl012](https://github.com/WeepingJarl012)
 
 
 
