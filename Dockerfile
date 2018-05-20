@@ -1,12 +1,8 @@
-FROM python:3
-RUN mkdir /flaskerize
-#COPY . /flaskerize
-COPY requirements.txt /flaskerize
-COPY app.py /flaskerize
-COPY static /flaskerize/static
-COPY templates /flaskerize/templates
-WORKDIR /flaskerize
+FROM tiangolo/uwsgi-nginx-flask:python3.6-alpine3.7
+RUN rm /app/*
+COPY requirements.txt /app
+COPY app.py /app
+COPY uwsgi.ini /app
+COPY static /app/static
+COPY templates /app/templates
 RUN pip install -r requirements.txt
-EXPOSE 5000
-ENTRYPOINT ["python3"]
-CMD ["app.py"]
