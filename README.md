@@ -69,13 +69,6 @@ The WriteApp class has one main method:
 
 The write_app method automatically writes a python script 'app.py' with the necessary instructions to launch a Flask app of the bootstrap template. This method writes the import statements, instantiates the 'app' object from the Flask class, and writes a main loop to run the app. This method also detects the HTML files in the 'templates' folder and writes the corresponding routes to these HTML files. If any of the HTML files are named for an HTTP status code, the write_app method generates an error handling route for that file. This assumes that any HTML file with an HTTP status code in it's name reflects an error, which I think is usually true. 
 
-## Running the tests
-
-Tests have been written for StructureDirectory and WriteApp classes and status_code_to_word function: 
-
-This app uses unittest and [nose](https://nose.readthedocs.io/en/latest/) for testing.
-
-To run the tests open the terminal in the top level directory and enter `$ nosetests`, this will find and run all the test automatically. Make sure that you have `$ pip install -r requirements.txt`, as nose is an external dependency. 
 
 ## The Example Templates
 
@@ -91,6 +84,14 @@ Sailor_example - The largest boostrap template I could find, would be a pain to 
 4. Use git to make a new branch on your local machine by opening a terminal and typing `$ git checkout -b XXXX-SHORT_TITLE_OF_ISSUE` where XXX is the zero padded issue number, such as 0001. For example: `$ git checkout -b 0001-HTTP_STATUS_CODE_ISSUE` would be good for the first issue in the repo. 
 5. Make a pull request right away by pushing your branch to github and trying to merge your fork with my master branch. It's okay if you have not made any progress, just title the pull request whatever you titled the branch and add 'Work in progress" to the title so that I know you are working on it. 
 6. Let me know when you are done with your branch and we can review the code together before finalizing the contribution :)
+
+### Running the tests
+
+Tests have been written for StructureDirectory and WriteApp classes and status_code_to_word function: 
+
+This app uses unittest for unit testing.
+
+You can also use [nose2](https://nose2.readthedocs.io/en/latest/) for running all the tests at once. Run `pip install nose2`  and then in the main directory run `nose2` to run the tests.
 
 ## Contributors:
 
