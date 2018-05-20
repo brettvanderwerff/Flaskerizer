@@ -2,7 +2,7 @@
 
 ## What is the Flaskerizer and what problem does it solve?
 
-Bootstrap templates from websites like https://bootstrapmade.com/ are a fast way to get very dynamic website up and running, but bootstap templates typically don't work "out of the box" with the python web framework Flask and require some tedious directory building and broken link fixing before being functional with Flask. This is especially true if the bootstrap templates are for large multi-page websites. 
+Bootstrap templates from websites like https://bootstrapmade.com/ and https://startbootstrap.com/ are a fast way to get very dynamic website up and running, but bootstap templates typically don't work "out of the box" with the python web framework Flask and require some tedious directory building and broken link fixing before being functional with Flask. This is especially true if the bootstrap templates are for large multi-page websites. 
 
 The Flaskerizer automates the necessary directory building and link creation needed to make Bootstrap templates work "out of the box" with Flask. The Flaskerizer also automatically creates a python script with the appropriate routes and basic error handling needed to serve the bootstrap template as a Flask app.
 
@@ -22,7 +22,7 @@ Flask: 0.12.1 or higher
 
 1. Clone the repo to your computer
 2. Install dependencies by opening a terminal in top level directory of the repo and entering `$ pip install -r requirements.txt` 
-3. Download your favorite bootstrap template from https://bootstrapmade.com/ .Note that there are two example templates in the repo (Folio_example and Sailor_example) from https://bootstrapmade.com/ that you can use if you don't want to download one. This program was designed only with templates from https://bootstrapmade.com/ in mind, but I would love to extend the flexibility of the program to work well with other bootstrap template sources (see issues) 
+3. Download your favorite bootstrap template from https://bootstrapmade.com/ and https://startbootstrap.com/. Note that there are two example templates in the repo (Folio_example and startbootstrap-freelancer-template) from https://bootstrapmade.com/ and https://startbootstrap.com/ respectively that you can use if you don't want to download one. This program was designed only with templates from https://bootstrapmade.com/ in mind and though it also works with many templates from https://startbootstrap.com/, I would love to extend the flexibility of the program to work well with other bootstrap template sources (see issues) 
 4. Open the Configuration file(`config.py`) and set value of key *directory_path* to the full path of the bootstrap template you downloaded (or use the example template in the repo).
 5. Run the program by opening a terminal in the top level directory of the repo and entering `$ python flaskerizer.py` (this may vary slightly by environment)
 6. After running flaskerizer.py, enter `$ python app.py` in the terminal to launch the newly made Flask app from the app.py file.
@@ -79,9 +79,9 @@ To run the tests open the terminal in the top level directory and enter `$ noset
 
 ## The Example Templates
 
-Folio_example - A small one page bootstrap template
+Folio_example - A small one page bootstrap template from https://bootstrapmade.com/
 
-Sailor_example - The largest boostrap template I could find, would be a pain to set up manually but works great with the Flaskerizer automated setup
+startbootstrap-freelancer-template - A very popular bootsrap template with over 2000 forks and 1500 stars on github. It is downloaded from https://startbootstrap.com/
 
 ## Contribution Guidelines
 
