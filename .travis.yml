@@ -2,7 +2,6 @@ language: python
 
 python:
   - "2.7"
-  - "3.2"
   - "3.3"
   - "3.4"
   - "3.5"
@@ -13,8 +12,7 @@ python:
 
 install:
   - pip install -r requirements.txt
+  - pip install nose
 
 script:
-  - python test_status_code_to_word.py
-  - python test_structure_directory.py
-  - python test_write_app.py
+  - nosetests -v
