@@ -4,11 +4,10 @@ import shutil
 
 class StructureDirectory():
     def __init__(self, templates_path, static_path):
-        '''Instantiates the StructureDirectory object with the templates_path attribute that is a path to the HTML
-        files in the Bootstrap template source folder that will be migrated to the Flask 'templates' folder. Also
-        instantiates the StructureDirectory object with the static_path attribute that is a path to the css,
-        javascript, images, fonts, etc. content of the Bootstrap template source folder that will be migrated to
-        the Flask 'static' folder.
+        ''' The templates_path attribute of the StructureDirectory class is a path to the HTML
+        files in the Bootstrap template source folder that will be migrated to the Flask 'templates' folder. The
+        static_path attribute of the StructureDirectory class is a path to the css, javascript, images, fonts, etc.
+        content of the Bootstrap template source folder that will be migrated to the Flask 'static' folder.
         '''
         self.templates_path = templates_path
         self.static_path = static_path
@@ -40,14 +39,14 @@ class StructureDirectory():
     def migrate_templates(self, html_content, file_name):
         '''Iterates through every line in the html_content of an HTML document with the filename 'file_name' and
         adds /static/ to any line that should point to contents of the static folder of the flask app (i.e. lines that
-        reference content of the css or js folder etc.).
+        reference content of the css or javascript folder etc.).
         '''
         write_directory = os.path.join(os.getcwd(), os.path.basename('templates'), os.path.basename(file_name))
         for line in html_content:
             with open(write_directory, 'a') as write_obj:
                 for folder in os.listdir(os.path.join(os.getcwd(), os.path.basename('static'))):
-                    if ('=\"' + str(folder) + "/") in line:
-                        split_line = line.split("\"" + str(folder) + "/")
+                    if ('=\"' + str(folder) + "/") in line or ('=\"../' + str(folder) + "/") in line:
+                        split_line = line.replace('../', '').split("\"" + str(folder) + "/")
                         line = ("\"" + '/static/' + (str(folder) + "/")).join(split_line)
                 write_obj.write(line)
 
@@ -61,7 +60,6 @@ class StructureDirectory():
                 source_directory = os.path.join(self.templates_path, os.path.basename(file_name))
                 with open(source_directory) as html_content:
                     self.migrate_templates(html_content, file_name)
-
 
 if __name__ == "__main__":
     my_object = StructureDirectory(templates_path=CONFIGURATION['templates_path'],
