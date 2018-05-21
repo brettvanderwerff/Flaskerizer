@@ -1,3 +1,4 @@
+from config import CONFIGURATION
 import unittest
 from structure_directory import StructureDirectory
 import os
@@ -9,7 +10,8 @@ class TestStructureDirectory(unittest.TestCase):
         '''Instantiates an object 'test' from the StructureDirectory class. The path to the Bootstrap
         template 'Folio' is given as an argument for testing purposes.
         '''
-        self.test = StructureDirectory(directory=os.path.join(os.getcwd(), os.path.basename('Folio_example')))
+        self.test = StructureDirectory(templates_path=CONFIGURATION['templates_path'],
+                                       static_path=CONFIGURATION['static_path'])
 
     def test_mkdir(self):
         '''Tests that mkdir creates a folder named static and a folder named templates.

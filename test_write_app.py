@@ -1,3 +1,4 @@
+from config import CONFIGURATION
 import unittest
 import os
 from structure_directory import StructureDirectory
@@ -12,7 +13,8 @@ class TestWriteApp(unittest.TestCase):
         template 'Folio' is given as an argument for testing purposes. The object 'test' is also instantiated from the
         WhiteApp class.
         '''
-        structure_directory_object = StructureDirectory(directory=os.path.join(os.getcwd(), os.path.basename('Folio_example')))
+        structure_directory_object = StructureDirectory(templates_path=CONFIGURATION['templates_path'],
+                                                        static_path=CONFIGURATION['static_path'])
         structure_directory_object.migrate_static()
         structure_directory_object.parse_html()
         self.test = WriteApp()

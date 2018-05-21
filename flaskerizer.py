@@ -1,10 +1,9 @@
-import config
+from config import CONFIGURATION
 from structure_directory import StructureDirectory
 from write_app import WriteApp
 
-
-directory = config.CONFIGURATION['directory_path']
-structure_directory_object = StructureDirectory(directory)
+structure_directory_object = StructureDirectory(templates_path=CONFIGURATION['templates_path'],
+                                                static_path=CONFIGURATION['static_path'])
 write_app_object = WriteApp()
 
 if __name__ == '__main__':
