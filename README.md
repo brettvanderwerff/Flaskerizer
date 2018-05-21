@@ -2,11 +2,11 @@
 
 ## What is the Flaskerizer and what problem does it solve?
 
-Bootstrap templates from websites like https://bootstrapmade.com/ and https://startbootstrap.com are a fast way to get very dynamic website up and running, but bootstap templates typically don't work "out of the box" with the python web framework Flask and require some tedious directory building and broken link fixing before being functional with Flask. This is especially true if the bootstrap templates are for large multi-page websites. 
+Bootstrap templates from websites like https://Bootstrapmade.com/ and https://startBootstrap.com are a fast way to get very dynamic website up and running, but bootstap templates typically don't work "out of the box" with the python web framework Flask and require some tedious directory building and broken link fixing before being functional with Flask. This is especially true if the Bootstrap templates are for large multi-page websites. 
 
-The Flaskerizer automates the necessary directory building and link creation needed to make Bootstrap templates work "out of the box" with Flask. The Flaskerizer also automatically creates a python script with the appropriate routes and basic error handling needed to serve the bootstrap template as a Flask app.
+The Flaskerizer automates the necessary directory building and link creation needed to make Bootstrap templates work "out of the box" with Flask. The Flaskerizer also automatically creates a python script with the appropriate routes and basic error handling needed to serve the Bootstrap template as a Flask app.
 
-The Flaskerizer takes a bootstrap template that looks like this "out of the box" with Flask:
+The Flaskerizer takes a Bootstrap template that looks like this "out of the box" with Flask:
 
 ![picture alt](/readme_images/not_working_example.png)
 
@@ -22,13 +22,13 @@ Flask: 0.12.1 or higher
 
 1. Clone the repo to your computer
 2. Install dependencies by opening a terminal in top level directory of the repo and entering `$ pip install -r requirements.txt` 
-3. Download your favorite bootstrap template from https://bootstrapmade.com/ .Note that there are two example templates in the repo (Folio_example and Sailor_example) from https://bootstrapmade.com/ that you can use if you don't want to download one. This program was designed only with templates from https://bootstrapmade.com/ in mind, but I would love to extend the flexibility of the program to work well with other bootstrap template sources (see issues) 
+3. Download your favorite Bootstrap template from https://Bootstrapmade.com/ .Note that there are two example templates in the repo (Folio_example and Sailor_example) from https://Bootstrapmade.com/ that you can use if you don't want to download one. This program was designed only with templates from https://Bootstrapmade.com/ in mind, but I would love to extend the flexibility of the program to work well with other Bootstrap template sources (see issues) 
 4. If the Bootstrap template is downloaded as a zipped file you will need to unzip the Bootstrap template
 5. Open the Configuration file(`config.py`) and:
 
-* set value of key *templates_path* to the full path of the folder containing the HTML files of the bootstrap template you downloaded. Note that there may be multiple folders that contain HTML files, generally you want to set the 'templates_path' value equal to the path of the folder with the *most* HTML files in it (see config.py for example).
+* set value of key *templates_path* to the full path of the folder containing the HTML files of the Bootstrap template you downloaded. Note that there may be multiple folders that contain HTML files, generally you want to set the 'templates_path' value equal to the path of the folder with the *most* HTML files in it (see config.py for example).
 
-* set value of key *static_path* to the full path of the folder containing the css, javascript, images, etc. folders of the bootstrap template you downloaded (see config.py for example).
+* set value of key *static_path* to the full path of the folder containing the css, javascript, images, etc. folders of the Bootstrap template you downloaded (see config.py for example).
 
  
 6. Run the program by opening a terminal in the top level directory of the repo and entering `$ python flaskerizer.py` (this may vary slightly by environment)
@@ -56,17 +56,17 @@ The Flasker has two main classes:
 
 **The StructureDirectory class**
 
-The StructureDirectory class makes the typical Flask project folder structure in the top level directory of the repo. This includes making a 'static' folder that will contain all the front end files from the bootstrap template (css, javascript, etc.) and a 'templates' folder that will contain all the HTML files from the bootstrap template. The StructureDirectory class takes the directory of the bootstrap template as an argument. 
+The StructureDirectory class makes the typical Flask project folder structure in the top level directory of the repo. This includes making a 'static' folder that will contain all the front end files from the Bootstrap template (css, javascript, etc.) and a 'templates' folder that will contain all the HTML files from the Bootstrap template. The StructureDirectory class takes both the full path to Bootstrap template HTML files (templates_path) and the full path to the css, javascript, images, etc. folders of the Bootstrap template (static_path) as arguments.  
 
 The StructureDirectory class has two main methods:
 
 `migrate_static`:
 
-The migrate_static method creates a 'static' folder in the top level directory of the repo. All the folders from the bootstrap template directory will be copied to the newly made 'static' folder in the top level directory of the repo. The assumption is made that all folders in the bootstrap template contain the front end information that belongs in the 'static' folder like css, javascript, images, etc. This may not always be the case, but I think often it is. 
+The migrate_static method creates a 'static' folder in the top level directory of the repo. All the folders from the Bootstrap template directory will be copied to the newly made 'static' folder in the top level directory of the repo. The assumption is made that all folders in the Bootstrap template contain the front end information that belongs in the 'static' folder like css, javascript, images, etc. This may not always be the case, but I think often it is. 
 
 `parse_html`:
 
-The parse_html method creates a 'templates' folder in the top level directory of the repo. The string content of all the HTML files in the top level directory of the bootstrap template then parsed for any links that references the content placed in the 'static' folder by the migrate_static method. If any links are found, they are modified to reflect the correct structure of the Flask application. This avoids broken links that would otherwise incorrectly reference files in the 'static' folder. Once the HTML files are parsed and corrected, they are written to the newly made 'templates' folder in the top level directory of the repo. 
+The parse_html method creates a 'templates' folder in the top level directory of the repo. The string content of all the HTML files in the top level directory of the Bootstrap template then parsed for any links that references the content placed in the 'static' folder by the migrate_static method. If any links are found, they are modified to reflect the correct structure of the Flask application. This avoids broken links that would otherwise incorrectly reference files in the 'static' folder. Once the HTML files are parsed and corrected, they are written to the newly made 'templates' folder in the top level directory of the repo. 
 
 **The WriteApp class**
 
@@ -75,12 +75,12 @@ The WriteApp class has one main method:
 
 `write_app`:
 
-The write_app method automatically writes a python script 'app.py' with the necessary instructions to launch a Flask app of the bootstrap template. This method writes the import statements, instantiates the 'app' object from the Flask class, and writes a main loop to run the app. This method also detects the HTML files in the 'templates' folder and writes the corresponding routes to these HTML files. If any of the HTML files are named for an HTTP status code, the write_app method generates an error handling route for that file. This assumes that any HTML file with an HTTP status code in it's name reflects an error, which I think is usually true. 
+The write_app method automatically writes a python script 'app.py' with the necessary instructions to launch a Flask app of the Bootstrap template. This method writes the import statements, instantiates the 'app' object from the Flask class, and writes a main loop to run the app. This method also detects the HTML files in the 'templates' folder and writes the corresponding routes to these HTML files. If any of the HTML files are named for an HTTP status code, the write_app method generates an error handling route for that file. This assumes that any HTML file with an HTTP status code in it's name reflects an error, which I think is usually true. 
 
 
 ## The Example Templates
 
-Folio_example - A small one page bootstrap template
+Folio_example - A small one page Bootstrap template
 
 Sailor_example - The largest boostrap template I could find, would be a pain to set up manually but works great with the Flaskerizer automated setup
 
