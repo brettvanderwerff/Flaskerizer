@@ -1,5 +1,7 @@
 # Flaskerizer
 
+[![Build Status](https://travis-ci.org/brettvanderwerff/Flaskerizer.svg?branch=master)](https://travis-ci.org/brettvanderwerff/Flaskerizer)
+
 ## What is the Flaskerizer and what problem does it solve?
 
 Bootstrap templates from websites like https://Bootstrapmade.com/ and https://startBootstrap.com are a fast way to get very dynamic website up and running, but bootstap templates typically don't work "out of the box" with the python web framework Flask and require some tedious directory building and broken link fixing before being functional with Flask. This is especially true if the Bootstrap templates are for large multi-page websites. 
