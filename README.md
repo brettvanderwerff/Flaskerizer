@@ -22,7 +22,7 @@ Flask: 0.12.1 or higher
 
 1. Clone the repo to your computer
 2. Install dependencies by opening a terminal in top level directory of the repo and entering `$ pip install -r requirements.txt` 
-3. Download your favorite Bootstrap template from https://Bootstrapmade.com/ .Note that there are two example templates in the repo (Folio_example and Sailor_example) from https://Bootstrapmade.com/ that you can use if you don't want to download one. This program was designed only with templates from https://Bootstrapmade.com/ in mind, but I would love to extend the flexibility of the program to work well with other Bootstrap template sources (see issues) 
+3. Download your favorite Bootstrap template from https://Bootstrapmade.com/ .Note that there are two example templates in the repo (Folio_example and Sailor_example) from https://Bootstrapmade.com/ that you can use if you don't want to download one. This program was designed only with templates from https://Bootstrapmade.com/ in mind, , but does seem to work with other Bootstrap template sources like https://startbootstrap.com/ (see issues)  
 4. If the Bootstrap template is downloaded as a zipped file you will need to unzip the Bootstrap template
 5. Open the Configuration file(`config.py`) and:
 
