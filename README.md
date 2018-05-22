@@ -39,7 +39,7 @@ Flask: 0.12.1 or higher
  
 6. Run the program by opening a terminal in the top level directory of the repo and entering `$ python flaskerizer.py` (this may vary slightly by environment)
 
-7. After running flaskerizer.py, enter `$ python app.py` in the terminal to launch the newly made Flask app from the app.py file.
+7. After running flaskerizer.py, clear your browser's cache and enter `$ python app.py` in the terminal to launch the newly made Flask app from the app.py file.
 
 8. View your website by opening the browser to your local address on port 5000 (i.e. http://127.0.0.1:5000 / http://0.0.0.0:5000) , Note: may have to enter http://127.0.0.1:5000/index.html / http://0.0.0.0:5000/index.html to route the  website homepage.
 
