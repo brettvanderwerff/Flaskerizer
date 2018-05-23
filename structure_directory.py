@@ -3,7 +3,7 @@ from config import CONFIGURATION
 import shutil
 
 class StructureDirectory():
-    def __init__(self, templates_path, static_path):
+    def __init__(self, templates_path, static_path, javascript_path):
         ''' The templates_path attribute of the StructureDirectory class is a path to the HTML
         files in the Bootstrap template source folder that will be migrated to the Flask 'templates' folder. The
         static_path attribute of the StructureDirectory class is a path to the css, javascript, images, fonts, etc.
@@ -11,6 +11,7 @@ class StructureDirectory():
         '''
         self.templates_path = templates_path
         self.static_path = static_path
+        self.javascript_path = javascript_path
 
     def mkdir(self, dir):
         '''Makes folder of dir name in the working directory.
@@ -23,6 +24,26 @@ class StructureDirectory():
             print('overwriting old {} folder'.format(dir))
             shutil.rmtree(os.path.join(os.getcwd(), os.path.basename(dir)))
             os.makedirs(dir_path)
+
+    def migrate_javascript(self, javascript_obj):
+        '''Iterates through every line in the javascript files of the source Bootstrap template and
+        adds /static/ to any line that should point to contents of the static folder of the flask app (i.e. lines that
+        reference images in the 'static' folder)
+        '''
+        for line in javascript_obj.readlines():
+            for folder in os.listdir(os.path.join(os.getcwd(), os.path.basename('static'))):
+                if ('\"' + str(folder) + "/") in line:
+                    print(line)
+
+    def parse_javascript(self):
+        '''Locates all the javascript files in the Bootstrap template directory.
+        '''
+        for file in os.listdir(self.javascript_path):
+            if '.js' in file:
+                print('generating content for {} and migrating content to templates folder'.format(file))
+                source_directory = os.path.join(self.javascript_path, os.path.basename(file))
+                with open(source_directory) as javascript_obj:
+                    self.migrate_javascript(javascript_obj)
 
     def migrate_static(self):
         '''Makes a static folder then migrates all the folders from the bootstrap template directory that belong in
@@ -63,8 +84,10 @@ class StructureDirectory():
 
 if __name__ == "__main__":
     my_object = StructureDirectory(templates_path=CONFIGURATION['templates_path'],
-                                   static_path=CONFIGURATION['static_path'])
+                                   static_path=CONFIGURATION['static_path'],
+                                   javascript_path=CONFIGURATION['javascript_path'])
     my_object.migrate_static()
     my_object.parse_html()
+    my_object.parse_javascript()
 
 

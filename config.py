@@ -16,13 +16,17 @@ eventually be migrated to the Flask 'static' folder by Flaskerizer.
 
 Note that this 'static_path' may also simply be the top level directory of the Bootstrap template as it is in the 
 'Folio_example'
+
+Finally, find the folder within the Bootstrap template that specifically contains the javascript and copy the full path 
+to this folder to the 'javascript_path' key value in the CONFIGURATION dictionary below.  
   
-Currently the default 'templates_path' and 'static_path' key values are set to reflect paths
+Currently the default 'templates_path', 'static_path', and 'javascript_path' key values are set to reflect paths
 that are correct for the 'Folio_example', you should replace these values with the paths to your unzipped 
 Bootstrap template of choice. 
 '''
 
 CONFIGURATION = {
-       'templates_path': os.path.join(os.getcwd(), os.path.basename('Folio_example')),
-       'static_path' : os.path.join(os.getcwd(), os.path.basename('Folio_example'))
+       'templates_path': os.path.join(os.getcwd(), os.path.basename('Alstar_example')),
+       'static_path' : os.path.join(os.getcwd(), os.path.basename('Alstar_example')),
+       'javascript_path' : os.path.join(os.getcwd(), os.path.basename('Alstar_example'), os.path.basename('js'))
 }
