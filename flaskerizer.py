@@ -10,4 +10,5 @@ write_app_object = WriteApp()
 if __name__ == '__main__':
     structure_directory_object.migrate_static()
     structure_directory_object.parse_html()
+    structure_directory_object.parse_javascript()
     write_app_object.write_app()
