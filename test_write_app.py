@@ -14,7 +14,8 @@ class TestWriteApp(unittest.TestCase):
         WhiteApp class.
         '''
         structure_directory_object = StructureDirectory(templates_path=CONFIGURATION['templates_path'],
-                                                        static_path=CONFIGURATION['static_path'])
+                                                        static_path=CONFIGURATION['static_path'],
+                                                        javascript_path=CONFIGURATION['javascript_path'])
         structure_directory_object.migrate_static()
         structure_directory_object.parse_html()
         self.test = WriteApp()
