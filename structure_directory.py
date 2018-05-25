@@ -32,14 +32,16 @@ class StructureDirectory():
         '''
         js_folder_name = os.path.basename(self.javascript_path)
         write_directory = os.path.join(os.getcwd(), os.path.basename('static'), os.path.basename(js_folder_name))
-        with open(os.path.join(write_directory, file_name), 'w') as write_obj:
+        with open(os.path.join(write_directory, file_name), 'w', encoding='utf-8') as write_obj:
             for line in javascript_obj.readlines():
                 for folder in os.listdir(os.path.join(os.getcwd(), os.path.basename('static'))):
                     if ('\"' + str(folder) + "/") in line:
                         split_line = line.split("\"" + str(folder) + "/")
                         line = ("\"" + 'static/' + (str(folder) + "/")).join(split_line)
+                    elif ('\'' + str(folder) + "/") in line:
+                        split_line = line.split("\'" + str(folder) + "/")
+                        line = ("\'" + 'static/' + (str(folder) + "/")).join(split_line)
                 write_obj.write(line)
-
 
     def parse_javascript(self):
         '''Locates all the javascript files in the Bootstrap template directory.
@@ -48,7 +50,7 @@ class StructureDirectory():
             if '.js' in file_name:
                 print('generating content for {} and migrating content to templates folder'.format(file_name))
                 source_directory = os.path.join(self.javascript_path, os.path.basename(file_name))
-                with open(source_directory) as javascript_obj:
+                with open(source_directory, 'r', encoding='utf-8') as javascript_obj:
                     self.migrate_javascript(javascript_obj, file_name)
 
     def migrate_static(self):
@@ -75,6 +77,9 @@ class StructureDirectory():
                     if ('=\"' + str(folder) + "/") in line or ('=\"../' + str(folder) + "/") in line:
                         split_line = line.replace('../', '').split("\"" + str(folder) + "/")
                         line = ("\"" + '/static/' + (str(folder) + "/")).join(split_line)
+                    elif ('\"./' + str(folder) + "/") in line:
+                        split_line = line.split("\"./" + str(folder) + "/")
+                        line = ("\"./" + 'static/' + (str(folder) + "/")).join(split_line)
                 write_obj.write(line)
 
     def parse_html(self):
