@@ -1,3 +1,4 @@
+from config import CONFIGURATION
 import unittest
 from structure_directory import StructureDirectory
 import os
@@ -6,10 +7,11 @@ class TestStructureDirectory(unittest.TestCase):
     maxDiff = None # reveals difference between test strings and "gold standard" strings
 
     def setUp(self):
-        '''Instantiates an object 'test' from the StructureDirectory class. The path to the Bootstrap
-        template 'Folio' is given as an argument for testing purposes.
+        '''Instantiates an object 'test' from the StructureDirectory class.
         '''
-        self.test = StructureDirectory(directory=os.path.join(os.getcwd(), os.path.basename('Folio_example')))
+        self.test = StructureDirectory(templates_path=CONFIGURATION['templates_path'],
+                                       static_path=CONFIGURATION['static_path'],
+                                       javascript_path=CONFIGURATION['javascript_path'])
 
     def test_mkdir(self):
         '''Tests that mkdir creates a folder named static and a folder named templates.
@@ -23,7 +25,7 @@ class TestStructureDirectory(unittest.TestCase):
         '''Tests that migrate_static migrates the correct number of folders from the bootstrap template directory to
         the static directory of the Flask app.
         '''
-        source_directory = os.path.join(os.getcwd(), os.path.basename('Folio_example'))
+        source_directory = os.path.join(os.getcwd(), os.path.basename('Alstar_example'))
         write_directory = os.path.join(os.getcwd(), os.path.basename('static'))
         self.test.migrate_static()
         source_dir_list = []
@@ -37,15 +39,30 @@ class TestStructureDirectory(unittest.TestCase):
         self.assertEqual(len(source_dir_list), len(write_dir_list))
 
     def test_parse_html(self):
-        ''' Tests that parse_html creates a file 'blog-grid.html' in a templates folder that matches a "gold standard"
-         version of 'blog-grid.html' called 'blog-grid_test_file.html'.
+        ''' Tests that parse_html creates a file 'index.html' in a templates folder that matches a "gold standard"
+         version of 'index.html' called 'index_test_file.html'.
         '''
-        self.test.migrate_static()         # to make all the tests independent. Tests are sun in random order
+        self.test.migrate_static()         # to make all the tests independent. Tests are run in random order
         self.test.parse_html()
-        html_dir = os.path.join(os.getcwd(), os.path.basename('templates'), os.path.basename('blog-grid.html'))
+        html_dir = os.path.join(os.getcwd(), os.path.basename('templates'), os.path.basename('index.html'))
         with open(html_dir, 'r') as test_obj:
             test_string = test_obj.read()
-        test_dir = os.path.join(os.getcwd(), os.path.basename('testing_files'), os.path.basename('blog-grid_test_file.html'))
+        test_dir = os.path.join(os.getcwd(), os.path.basename('testing_files'), os.path.basename('index_test_file.html'))
+        with open(test_dir) as gold_obj:
+            gold_string = gold_obj.read()
+        self.assertMultiLineEqual(test_string, gold_string)
+
+    def test_parse_javascript(self):
+        ''' Tests that parse_javascript creates a file 'custom.js' in the static/js folder that matches a
+        "gold standard" version of 'custom.js' called 'custom_test_file.js'.
+        '''
+        self.test.migrate_static()
+        self.test.parse_javascript()
+        js_dir = os.path.join(os.getcwd(), os.path.basename('static'), os.path.basename('js'), os.path.basename('custom.js'))
+        with open(js_dir, 'r') as test_obj:
+            test_string = test_obj.read()
+        test_dir = os.path.join(os.getcwd(), os.path.basename('testing_files'),
+                                os.path.basename('custom_test_file.js'))
         with open(test_dir) as gold_obj:
             gold_string = gold_obj.read()
         self.assertMultiLineEqual(test_string, gold_string)

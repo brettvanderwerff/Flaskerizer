@@ -1,3 +1,4 @@
+from config import CONFIGURATION
 import unittest
 import os
 from structure_directory import StructureDirectory
@@ -8,11 +9,12 @@ class TestWriteApp(unittest.TestCase):
     maxDiff = None # reveals difference between test strings and "gold standard" strings
 
     def setUp(self):
-        '''Instantiates a 'structure_directory_object' from the StructureDirectory class. The path to the Bootstrap
-        template 'Folio' is given as an argument for testing purposes. The object 'test' is also instantiated from the
-        WhiteApp class.
+        '''Instantiates a 'structure_directory_object' from the StructureDirectory class.The object 'test' is also instantiated from the
+        WriteApp class.
         '''
-        structure_directory_object = StructureDirectory(directory=os.path.join(os.getcwd(), os.path.basename('Folio_example')))
+        structure_directory_object = StructureDirectory(templates_path=CONFIGURATION['templates_path'],
+                                                        static_path=CONFIGURATION['static_path'],
+                                                        javascript_path=CONFIGURATION['javascript_path'])
         structure_directory_object.migrate_static()
         structure_directory_object.parse_html()
         self.test = WriteApp()
