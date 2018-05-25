@@ -36,6 +36,8 @@ Flask: 0.12.1 or higher
 
 * set value of key *static_path* to the full path of the folder containing the css, javascript, images, etc. folders of the Bootstrap template you downloaded (see config.py for example).
 
+* set value of key *javascript_path* to the full path of the folder specifically containing the javascript files of the Bootstrap template you downloaded (see config.py for example).
+
  
 6. Run the program by opening a terminal in the top level directory of the repo and entering `$ python flaskerizer.py` (this may vary slightly by environment)
 
@@ -69,15 +71,19 @@ The Flasker has two main classes:
 
 The StructureDirectory class makes the typical Flask project folder structure in the top level directory of the repo. This includes making a 'static' folder that will contain all the front end files from the Bootstrap template (css, javascript, etc.) and a 'templates' folder that will contain all the HTML files from the Bootstrap template. The StructureDirectory class takes both the full path to Bootstrap template HTML files (templates_path) and the full path to the css, javascript, images, etc. folders of the Bootstrap template (static_path) as arguments.  
 
-The StructureDirectory class has two main methods:
+The StructureDirectory class has 3 main methods:
 
 `migrate_static`:
 
-The migrate_static method creates a 'static' folder in the top level directory of the repo. All the folders from the Bootstrap template directory will be copied to the newly made 'static' folder in the top level directory of the repo. The assumption is made that all folders in the Bootstrap template contain the front end information that belongs in the 'static' folder like css, javascript, images, etc. This may not always be the case, but I think often it is. 
+The migrate_static method creates a 'static' folder in the top level directory of the repo. All the folders from the designated 'static_path' (see config.py) of the Bootstrap template will be copied to the newly made 'static' folder in the top level directory of the repo. The assumption is made that all folders in the Bootstrap template contain the front end information that belongs in the 'static' folder like css, javascript, images, etc. This may not always be the case, but I think often it is. 
 
 `parse_html`:
 
-The parse_html method creates a 'templates' folder in the top level directory of the repo. The string content of all the HTML files in the top level directory of the Bootstrap template then parsed for any links that references the content placed in the 'static' folder by the migrate_static method. If any links are found, they are modified to reflect the correct structure of the Flask application. This avoids broken links that would otherwise incorrectly reference files in the 'static' folder. Once the HTML files are parsed and corrected, they are written to the newly made 'templates' folder in the top level directory of the repo. 
+The parse_html method creates a 'templates' folder in the top level directory of the repo. The string content of all the HTML files from the designated 'templates_path' (see config.py) of the Bootstrap template are parsed for any links that references the content placed in the 'static' folder by the migrate_static method. If any links are found, they are modified to reflect the correct structure of the Flask application. This avoids broken links that would otherwise incorrectly reference files in the 'static' folder. Once the HTML files are parsed and corrected, they are written to the newly made 'templates' folder in the top level directory of the repo.
+
+`parse_javascript`:
+
+Similar to the parse_html method, the parse_javascript method iterates through the string content of all the javascript files from the designated 'javascript_path' (see config.py) of the Bootstrap template in search of links that reference the content placed in the 'static' folder by the migrate_static method. If any links are found, they are modified to reflect the correct structure of the Flask application. Once the javascript files are parsed and corrected, they are written to the newly made 'static' folder in the appropriate subdirectory.
 
 **The WriteApp class**
 
