@@ -26,7 +26,7 @@ Flask: 0.12.1 or higher
 
 2. Install dependencies by opening a terminal in top level directory of the repo and entering `$ pip install -r requirements.txt` 
 
-3. Download your favorite Bootstrap template from https://Bootstrapmade.com/ .Note that there are two example templates in the repo (Folio_example and Sailor_example) from https://Bootstrapmade.com/ that you can use if you don't want to download one. This program was designed only with templates from https://Bootstrapmade.com/ in mind, but does seem to work with other Bootstrap template sources like https://startbootstrap.com/ (see issues)  
+3. Download your favorite Bootstrap template from https://Bootstrapmade.com/ .Note that there are three example templates in the repo (Folio_example, Alstar_example, and Sailor_example) from https://Bootstrapmade.com/ that you can use if you don't want to download one. This program was designed only with templates from https://Bootstrapmade.com/ in mind, but does seem to work with other Bootstrap template sources like https://startbootstrap.com/ (see issues)  
 
 4. If the Bootstrap template is downloaded as a zipped file you will need to unzip the Bootstrap template
 
@@ -47,7 +47,7 @@ Flask: 0.12.1 or higher
 
 - **NOTE :** You may need to clear your browser's cache to view the website properly (I'm not sure why this happens sometimes)
 
-- **WARNING :** Do not delete the *Folio_example* template example from the directory. It is used to run tests.
+- **WARNING :** Do not delete the *Alstar_example* template example from the directory. It is used to run tests.
 
 ## For a Docker Version
 Docker using alpine 3.7, Python 3.6, uwsgi and Nginx
@@ -98,6 +98,8 @@ The write_app method automatically writes a python script 'app.py' with the nece
 ## The Example Templates
 
 Folio_example - A small one page Bootstrap template
+
+Alstar_example - A small one page Bootstrap template
 
 Sailor_example - The largest boostrap template I could find, would be a pain to set up manually but works great with the Flaskerizer automated setup
 
