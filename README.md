@@ -122,7 +122,7 @@ You can also use [nose2](https://nose2.readthedocs.io/en/latest/) for running al
 
 ## Contributors:
 
-A list of people that have contributed to Flaskerizer:
+A list of people that have contributed to Flaskerizer by completing a pull request:
 
 - [Mayank Nader](https://github.com/makkoncept)
 
