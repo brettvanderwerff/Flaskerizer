@@ -7,8 +7,7 @@ class TestStructureDirectory(unittest.TestCase):
     maxDiff = None # reveals difference between test strings and "gold standard" strings
 
     def setUp(self):
-        '''Instantiates an object 'test' from the StructureDirectory class. The path to the Bootstrap
-        template 'Folio' is given as an argument for testing purposes.
+        '''Instantiates an object 'test' from the StructureDirectory class.
         '''
         self.test = StructureDirectory(templates_path=CONFIGURATION['templates_path'],
                                        static_path=CONFIGURATION['static_path'],
