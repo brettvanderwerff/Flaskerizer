@@ -1,3 +1,4 @@
+import io #needed to backport some open statements to python 2.7
 import os
 from config import CONFIGURATION
 import shutil
@@ -32,7 +33,7 @@ class StructureDirectory():
         '''
         js_folder_name = os.path.basename(self.javascript_path)
         write_directory = os.path.join(os.getcwd(), os.path.basename('static'), os.path.basename(js_folder_name))
-        with open(os.path.join(write_directory, file_name), 'w', encoding='utf-8') as write_obj:
+        with io.open(os.path.join(write_directory, file_name), 'w', encoding='utf-8') as write_obj:
             for line in javascript_obj.readlines():
                 for folder in os.listdir(os.path.join(os.getcwd(), os.path.basename('static'))):
                     if ('\"' + str(folder) + "/") in line:
@@ -50,7 +51,7 @@ class StructureDirectory():
             if '.js' in file_name:
                 print('generating content for {} and migrating content to templates folder'.format(file_name))
                 source_directory = os.path.join(self.javascript_path, os.path.basename(file_name))
-                with open(source_directory, 'r', encoding='utf-8') as javascript_obj:
+                with io.open(source_directory, 'r', encoding='utf-8') as javascript_obj:
                     self.migrate_javascript(javascript_obj, file_name)
 
     def migrate_static(self):
@@ -72,7 +73,7 @@ class StructureDirectory():
         '''
         write_directory = os.path.join(os.getcwd(), os.path.basename('templates'), os.path.basename(file_name))
         for line in html_content:
-            with open(write_directory, 'a') as write_obj:
+            with io.open(write_directory, 'a') as write_obj:
                 for folder in os.listdir(os.path.join(os.getcwd(), os.path.basename('static'))):
                     if ('=\"' + str(folder) + "/") in line or ('=\"../' + str(folder) + "/") in line:
                         split_line = line.replace('../', '').split("\"" + str(folder) + "/")
@@ -90,7 +91,7 @@ class StructureDirectory():
             if '.html' in file_name:
                 print('generating content for {} and migrating content to templates folder'.format(file_name))
                 source_directory = os.path.join(self.templates_path, os.path.basename(file_name))
-                with open(source_directory) as html_content:
+                with io.open(source_directory, 'r') as html_content:
                     self.migrate_templates(html_content, file_name)
 
 if __name__ == "__main__":
