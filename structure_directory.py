@@ -60,9 +60,9 @@ class StructureDirectory():
         '''
         self.mkdir('static')
         for item in os.listdir(self.static_path):
-            print('migrating {} to static folder'.format(item))
             item_path = os.path.join(self.static_path, os.path.basename(item))
             if os.path.isdir(item_path):
+                print('migrating {} to static folder'.format(item))
                 shutil.copytree(item_path,
                                 os.path.join(os.getcwd(), os.path.basename('static'), os.path.basename(item)))
 
