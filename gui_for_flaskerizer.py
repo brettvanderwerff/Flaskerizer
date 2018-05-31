@@ -18,7 +18,7 @@ class ChooseFilesGUI(object):
     """
     def __init__(self, is_test=False):
         self.root = tk.Tk()
-        self.root.title = "Flaskerizer"
+        self.root.title(Flaskerizer)
         self.html_location = tk.StringVar()
         self.static_location = tk.StringVar()
         self.js_location = tk.StringVar()
