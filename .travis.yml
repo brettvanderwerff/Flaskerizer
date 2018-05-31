@@ -15,5 +15,5 @@ install:
   - pip install nose
 
 script:
-  - nosetests -v
   - xvfb-run make test
+  - nosetests -v
