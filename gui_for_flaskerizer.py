@@ -1,11 +1,11 @@
 from structure_directory import StructureDirectory
 from write_app import WriteApp
 try:
-    import tkinter as Tk
-    from tkinter import filedialog
-except:
     from Tkinter import Tk
     import tkFileDialog as filedialog
+except:
+    import tkinter as Tk
+    from tkinter import filedialog
 """The gui for flaskerizer is a simple graphical interface for the Flaskerizer program
 
 It does the same but instead of putting the folder path on the config.py file you select inside the GUI
