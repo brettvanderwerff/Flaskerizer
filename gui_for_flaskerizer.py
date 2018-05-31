@@ -1,10 +1,10 @@
 from structure_directory import StructureDirectory
 from write_app import WriteApp
 try:
-    from Tkinter import Tk
+    from Tkinter import tk
     import tkFileDialog as filedialog
 except:
-    import tkinter as Tk
+    import tkinter as tk
     from tkinter import filedialog
 """The gui for flaskerizer is a simple graphical interface for the Flaskerizer program
 
@@ -17,11 +17,11 @@ class ChooseFilesGUI(object):
     It contains some functions for the buttons and for organization
     """
     def __init__(self, is_test=False):
-        self.root = Tk.Tk()
+        self.root = tk.Tk()
         self.root.title = "Flaskerizer"
-        self.html_location = Tk.StringVar()
-        self.static_location = Tk.StringVar()
-        self.js_location = Tk.StringVar()
+        self.html_location = tk.StringVar()
+        self.static_location = tk.StringVar()
+        self.js_location = tk.StringVar()
         self.html_location.set("The folder with .html files")
         self.static_location.set("The folder with images, .css, etc")
         self.js_location.set("The folder with the .js files")
@@ -35,45 +35,45 @@ class ChooseFilesGUI(object):
     def main_layout(self):
         """Outputs buttons, Labels and entries to the window
         """
-        self.main = Tk.Frame(self.root)
-        self.label_html = Tk.Label(self.main,
+        self.main = tk.Frame(self.root)
+        self.label_html = tk.Label(self.main,
                         text = "Html Files Location:")
         self.label_html.grid(row = 0, column=0, sticky="WENS", pady=20)
 
-        self.folder_search_html = Tk.Button(self.main,
+        self.folder_search_html = tk.Button(self.main,
                         text = "Search Files", command=self.get_html_folder)
         self.folder_search_html.grid(row=0, column=1,sticky="WENS", pady=20)
         
-        self.folder_location_html = Tk.Entry(self.main,
+        self.folder_location_html = tk.Entry(self.main,
                         textvariable = self.html_location, width = 50)
         self.folder_location_html.grid(row=0,column=2,sticky="WENS", pady = 20)
         
-        self.label_static = Tk.Label(self.main,
+        self.label_static = tk.Label(self.main,
                         text = "Static Files Location:")
         self.label_static.grid(row = 1, column = 0, sticky="WENS", pady=20)
         
-        self.folder_search_static = Tk.Button(self.main,
+        self.folder_search_static = tk.Button(self.main,
                         text = "Search Files", command=self.get_static_folder)
         self.folder_search_static.grid(row=1,column=1,sticky="WENS",pady = 20)
         
-        self.folder_location_static = Tk.Entry(self.main,
+        self.folder_location_static = tk.Entry(self.main,
                         textvariable = self.static_location, width = 50)
         self.folder_location_static.grid(row=1,column=2,sticky="WENS",pady=20)
         
-        self.label_js = Tk.Label(self.main,
+        self.label_js = tk.Label(self.main,
                         text = "Java Script Files Location:")
         self.label_js.grid(row = 2, column = 0, sticky="WENS", pady = 20)
         
-        self.folder_search_js = Tk.Button(self.main,
+        self.folder_search_js =tk.Button(self.main,
                         text = "Search Files", command=self.get_js_folder)
         self.folder_search_js.grid(row=2, column=1, sticky="WENS", pady=20)
         
-        self.folder_location_js = Tk.Entry(self.main,
+        self.folder_location_js = tk.Entry(self.main,
                         textvariable = self.js_location, width = 50)
         self.folder_location_js.grid(row=2, column=2, sticky="WENS", pady = 20)
         
         self.main.pack()
-        self.ok_button = Tk.Button(self.root,
+        self.ok_button = tk.Button(self.root,
                                     text = "OK", command=self.get_values).pack()
     def get_html_folder(self):
         """Opens A file dialog for selecting the html folder
