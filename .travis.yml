@@ -2,7 +2,7 @@ language: python
 addons:
   apt:
     packages:
-      - python-tkinter
+      - python-tk
 python:
   - "2.7"
   - "3.3"
