@@ -1,4 +1,5 @@
 from config import CONFIGURATION
+import flaskerizer
 import unittest
 import os
 from structure_directory import StructureDirectory
@@ -31,7 +32,10 @@ class TestWriteApp(unittest.TestCase):
         self.test.write_app()
         with open('app.py', 'r') as test_obj:
             test_string = test_obj.read()
-        test_dir = os.path.join(os.getcwd(), os.path.basename('testing_files'), os.path.basename('app_test_file.py'))
+        test_dir = os.path.join(os.path.dirname(flaskerizer.__file__),
+                                os.path.basename('Tests'),
+                                os.path.basename('testing_files'),
+                                os.path.basename('app_test_file.py'))
         with open(test_dir) as gold_obj:
             gold_string = gold_obj.read()
         self.assertMultiLineEqual(test_string, gold_string)

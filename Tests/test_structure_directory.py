@@ -47,10 +47,15 @@ class TestStructureDirectory(unittest.TestCase):
         '''
         self.test.migrate_static()         # to make all the tests independent. Tests are run in random order
         self.test.parse_html()
-        html_dir = os.path.join(os.getcwd(), os.path.basename('templates'), os.path.basename('index.html'))
+        html_dir = os.path.join(os.path.dirname(flaskerizer.__file__),
+                                        os.path.basename('templates'),
+                                        os.path.basename('index.html'))
         with open(html_dir, 'r') as test_obj:
             test_string = test_obj.read()
-        test_dir = os.path.join(os.getcwd(), os.path.basename('testing_files'), os.path.basename('index_test_file.html'))
+        test_dir = os.path.join(os.path.dirname(flaskerizer.__file__),
+                                        os.path.basename('Tests'),
+                                        os.path.basename('testing_files'),
+                                        os.path.basename('index_test_file.html'))
         with open(test_dir) as gold_obj:
             gold_string = gold_obj.read()
         self.assertMultiLineEqual(test_string, gold_string)
@@ -61,11 +66,16 @@ class TestStructureDirectory(unittest.TestCase):
         '''
         self.test.migrate_static()
         self.test.parse_javascript()
-        js_dir = os.path.join(os.getcwd(), os.path.basename('static'), os.path.basename('js'), os.path.basename('custom.js'))
+        js_dir = os.path.join(os.path.dirname(flaskerizer.__file__),
+                                        os.path.basename('static'),
+                                        os.path.basename('js'),
+                                        os.path.basename('custom.js'))
         with open(js_dir, 'r') as test_obj:
             test_string = test_obj.read()
-        test_dir = os.path.join(os.getcwd(), os.path.basename('testing_files'),
-                                os.path.basename('custom_test_file.js'))
+        test_dir = os.path.join(os.path.dirname(flaskerizer.__file__),
+                                        os.path.basename('Tests'),
+                                        os.path.basename('testing_files'),
+                                        os.path.basename('custom_test_file.js'))
         with open(test_dir) as gold_obj:
             gold_string = gold_obj.read()
         self.assertMultiLineEqual(test_string, gold_string)
