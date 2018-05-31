@@ -3,7 +3,7 @@ from gui_for_flaskerizer import ChooseFilesGUI
 
 class TestGUI(unittest.TestCase):
     def test_get_functions(self):
-        '''Test the function against some dummy values and also test that the function returns a string
+        '''Test to get the default values, change and get again.
         '''
         self.testclass = ChooseFilesGUI(True)
         self.assertEqual(self.testclass.get_values(),

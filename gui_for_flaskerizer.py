@@ -18,24 +18,24 @@ class ChooseFilesGUI(object):
     It contains some functions for the buttons and for organization
     """
     def __init__(self, is_test=False):
+        self.is_test = is_test
+        if not self.is_test:
+            self.root = tk.Tk()
+            self.root.title("Flaskerizer")
+            self.main_layout()
+            self.root.mainloop()
         self.root = tk.Tk()
-        self.root.title("Flaskerizer")
         self.html_location = tk.StringVar()
         self.static_location = tk.StringVar()
         self.js_location = tk.StringVar()
         self.html_location.set("The folder with .html files")
         self.static_location.set("The folder with images, .css, etc")
         self.js_location.set("The folder with the .js files")
-        self.main_layout()
-        self.is_test = is_test
-        if not self.is_test:
-            self.root.mainloop()
-        else:
-            pass
- 
+
     def main_layout(self):
         """Outputs buttons, Labels and entries to the window
         """
+
         self.main = tk.Frame(self.root)
         self.label_html = tk.Label(self.main,
                         text = "Html Files Location:")
