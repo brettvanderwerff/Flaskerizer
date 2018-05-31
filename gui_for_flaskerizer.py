@@ -1,7 +1,7 @@
 from structure_directory import StructureDirectory
 from write_app import WriteApp
 try:
-    from Tkinter import tk
+    import Tkinter as tk
     import tkFileDialog as filedialog
 except:
     import tkinter as tk
