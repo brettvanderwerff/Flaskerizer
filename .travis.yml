@@ -16,3 +16,4 @@ install:
 
 script:
   - nosetests -v
+  - xvfb-run make test
