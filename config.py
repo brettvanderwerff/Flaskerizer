@@ -26,7 +26,14 @@ Bootstrap template of choice.
 '''
 
 CONFIGURATION = {
-       'templates_path': os.path.join(os.getcwd(), os.path.basename('Alstar_example')),
-       'static_path' : os.path.join(os.getcwd(), os.path.basename('Alstar_example')),
-       'javascript_path' : os.path.join(os.getcwd(), os.path.basename('Alstar_example'), os.path.basename('js'))
+       'templates_path': os.path.join(os.path.dirname(__file__),
+                                      os.path.basename('Examples'),
+                                      os.path.basename('Alstar_example')),
+       'static_path' : os.path.join(os.path.dirname(__file__),
+                                    os.path.basename('Examples'),
+                                    os.path.basename('Alstar_example')),
+       'javascript_path' : os.path.join(os.path.dirname(__file__),
+                                        os.path.basename('Examples'),
+                                        os.path.basename('Alstar_example'),
+                                        os.path.basename('js'))
 }
