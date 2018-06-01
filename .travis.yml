@@ -3,8 +3,9 @@ addons:
   apt:
     packages:
       - python-tk
-env:
-  - DISPLAY=localhost:0.0
+      - xorg
+      - openbox
+
 python:
   - "2.7"
   - "3.3"
