@@ -6,7 +6,7 @@ addons:
       - xorg
       - openbox
 env:
-  - DISPLAY=:0.0
+  - DISPLAY=127.0.0.1:0.0
 python:
   - "2.7"
   - "3.3"
