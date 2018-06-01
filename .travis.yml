@@ -1,8 +1,9 @@
 language: python
 
-before_install:
-  - sudo apt-get install --no-install-recommends -y libgl1-mesa-dev libgl1-mesa-dri libglu1-mesa x11-xserver-utils x11vnc xinit xserver-xorg-video-dummy xserver-xorg-input-void
-  - startx
+addons:
+  apt:
+    packages:
+    - xvfb
 python:
   - "2.7"
   - "3.3"
@@ -15,6 +16,8 @@ python:
 
 
 install:
+  - export DISPLAY=':99.0'
+  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &  
   - pip install -r requirements.txt
   - pip install nose
 
