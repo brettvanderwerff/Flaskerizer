@@ -132,6 +132,7 @@ A list of people that have contributed to Flaskerizer by completing a pull reque
 
 - [@WeepingJarl012](https://github.com/WeepingJarl012)
 
+- [@etiontdn](https://github.com/etiontdn)
 
 
 
