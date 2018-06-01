@@ -2,7 +2,7 @@ language: python
 
 before_install:
   - sudo apt-get install --no-install-recommends -y libgl1-mesa-dev libgl1-mesa-dri libglu1-mesa x11-xserver-utils x11vnc xinit xserver-xorg-video-dummy xserver-xorg-input-void
-  - Xorginit
+  - startx
 python:
   - "2.7"
   - "3.3"
