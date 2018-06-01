@@ -1,12 +1,7 @@
 language: python
-addons:
-  apt:
-    packages:
-      - python-tk
-      - xorg
-      - openbox
-env:
-  - DISPLAY=127.0.0.1:0.0
+
+before_install:
+  - sudo apt-get install --no-install-recommends -y libgl1-mesa-dev libgl1-mesa-dri libglu1-mesa x11-xserver-utils x11vnc xinit xserver-xorg-video-dummy xserver-xorg-input-void
 python:
   - "2.7"
   - "3.3"
