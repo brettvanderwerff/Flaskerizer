@@ -1,4 +1,5 @@
 import unittest
+import os
 from gui_for_flaskerizer import ChooseFilesGUI
 
 class TestGUI(unittest.TestCase):
@@ -16,6 +17,13 @@ class TestGUI(unittest.TestCase):
         self.assertEqual(self.testclass.get_values(),
          ['Html Location', "Static Location",
          "JS Location"])
+
+    def test_path(self):
+        self.this_directory = os.path.dirname(os.path.abspath(__file__))
+        self.test_class = ChooseFilesGUI(True)
+        self.path_to_folder = self.test_class.path_to_folder
+        self.assertEqual(self.path_to_folder(self.this_directory + "/gui_for_flaskerizer.py"), (self.this_directory))
+        self.assertEqual(self.path_to_folder(self.this_directory + "/flaskerizer.py"), (self.this_directory))
 
 
 if __name__ == '__main__':

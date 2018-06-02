@@ -89,7 +89,7 @@ class ChooseFilesGUI(object):
         """
         path = filedialog.askopenfilename(title= "Select the man html file normally index.html",
         filetypes=(("Html Files", "*.html"), ("all files", "*.*")))
-        path = os.path.split(path)[0]
+        path = self.path_to_folder(path)
         self.html_location.set(path)
 
     def get_static_folder(self):
@@ -103,8 +103,13 @@ class ChooseFilesGUI(object):
         """
         path = filedialog.askopenfilename(title = "Select a .js file, normally inside the js folder",
         filetypes=(("Javascript Files", "*.js"), ("all files", "*.*")))
-        path = os.path.split(path)[0]
+        path = self.path_to_folder(path)
         self.js_location.set(path)
+
+    def path_to_folder(self, path):
+        """Transforms a File path into a folder path
+        """
+        return os.path.split(path)[0]
 
     def get_values(self):
         """Gets the path on the html, static and js entries
