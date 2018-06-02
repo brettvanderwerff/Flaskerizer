@@ -8,7 +8,9 @@ class WriteApp():
     def get_routes(self):
         '''Gets the name of every HTML template in the templates folder.
         '''
-        return [template for template in os.listdir(os.path.join(os.path.dirname(flaskerizer.__file__), os.path.basename('templates')))]
+        return [template for template in os.listdir(os.path.join(os.path.dirname(flaskerizer.__file__),
+                                                                 os.path.basename('Flaskerized_app'),
+                                                                 os.path.basename('templates')))]
 
     def write_error_handler(self, template_name, write_obj):#ToDo eliminate non-error status codes from dictionary
         '''If the write_routes function detects a template name as containing a status code, the template name will
@@ -46,7 +48,9 @@ class WriteApp():
         'if __name__ == '__main__':' to run the Flask app.
          URL routes are added to the 'skeleton' by calling the write_routes method.
          '''
-        with open('app.py', 'w') as write_obj:
+        with open(os.path.join(os.path.dirname(flaskerizer.__file__),
+                               os.path.basename('Flaskerized_app'),
+                               os.path.basename('app.py')), 'w') as write_obj:
             write_obj.write('from flask import Flask, render_template\n\n')
             write_obj.write('app = Flask(__name__)\n\n')
             self.write_routes(write_obj)

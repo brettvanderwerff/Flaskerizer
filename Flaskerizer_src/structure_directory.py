@@ -16,15 +16,19 @@ class StructureDirectory():
         self.javascript_path = javascript_path
 
     def mkdir(self, dir):
-        '''Makes folder of dir name in the working directory.
+        '''Makes folder of dir name in the Flaskerized_app directory.
         '''
-        dir_path = os.path.join(os.path.dirname(flaskerizer.__file__), os.path.basename(dir))
+        dir_path = os.path.join(os.path.dirname(flaskerizer.__file__),
+                                os.path.basename('Flaskerized_app'),
+                                os.path.basename(dir))
         if not os.path.exists(dir_path):
             print('generating {} folder'.format(dir))
             os.makedirs(dir_path)
         else:
             print('overwriting old {} folder'.format(dir))
-            shutil.rmtree(os.path.join(os.path.dirname(flaskerizer.__file__), os.path.basename(dir)))
+            shutil.rmtree(os.path.join(os.path.dirname(flaskerizer.__file__),
+                                       os.path.basename('Flaskerized_app'),
+                                       os.path.basename(dir)))
             os.makedirs(dir_path)
 
     def migrate_javascript(self, javascript_obj, file_name):
@@ -33,10 +37,15 @@ class StructureDirectory():
         reference images in the 'static' folder)
         '''
         js_folder_name = os.path.basename(self.javascript_path)
-        write_directory = os.path.join(os.path.dirname(flaskerizer.__file__), os.path.basename('static'), os.path.basename(js_folder_name))
+        write_directory = os.path.join(os.path.dirname(flaskerizer.__file__),
+                                       os.path.basename('Flaskerized_app'),
+                                       os.path.basename('static'),
+                                       os.path.basename(js_folder_name))
         with io.open(os.path.join(write_directory, file_name), 'w', encoding='utf-8') as write_obj:
             for line in javascript_obj.readlines():
-                for folder in os.listdir(os.path.join(os.path.dirname(flaskerizer.__file__), os.path.basename('static'))):
+                for folder in os.listdir(os.path.join(os.path.dirname(flaskerizer.__file__),
+                                                      os.path.basename('Flaskerized_app'),
+                                                      os.path.basename('static'))):
                     if ('\"' + str(folder) + "/") in line:
                         split_line = line.split("\"" + str(folder) + "/")
                         line = ("\"" + 'static/' + (str(folder) + "/")).join(split_line)
@@ -65,17 +74,25 @@ class StructureDirectory():
             if os.path.isdir(item_path):
                 print('migrating {} to static folder'.format(item))
                 shutil.copytree(item_path,
-                                os.path.join(os.path.dirname(flaskerizer.__file__), os.path.basename('static'), os.path.basename(item)))
+                                os.path.join(os.path.dirname(flaskerizer.__file__),
+                                             os.path.basename('Flaskerized_app'),
+                                             os.path.basename('static'),
+                                             os.path.basename(item)))
 
     def migrate_templates(self, html_content, file_name):
         '''Iterates through every line in the html_content of an HTML document with the filename 'file_name' and
         adds /static/ to any line that should point to contents of the static folder of the flask app (i.e. lines that
         reference content of the css or javascript folder etc.).
         '''
-        write_directory = os.path.join(os.path.dirname(flaskerizer.__file__), os.path.basename('templates'), os.path.basename(file_name))
+        write_directory = os.path.join(os.path.dirname(flaskerizer.__file__),
+                                       os.path.basename('Flaskerized_app'),
+                                       os.path.basename('templates'),
+                                       os.path.basename(file_name))
         for line in html_content:
             with io.open(write_directory, 'a') as write_obj:
-                for folder in os.listdir(os.path.join(os.path.dirname(flaskerizer.__file__), os.path.basename('static'))):
+                for folder in os.listdir(os.path.join(os.path.dirname(flaskerizer.__file__),
+                                                      os.path.basename('Flaskerized_app'),
+                                                      os.path.basename('static'))):
                     if ('=\"' + str(folder) + "/") in line or ('=\"../' + str(folder) + "/") in line:
                         split_line = line.replace('../', '').split("\"" + str(folder) + "/")
                         line = ("\"" + '/static/' + (str(folder) + "/")).join(split_line)

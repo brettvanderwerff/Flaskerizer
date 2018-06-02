@@ -21,15 +21,21 @@ class TestStructureDirectory(unittest.TestCase):
         '''
         self.test.mkdir('static')
         self.test.mkdir('templates')
-        self.assertTrue(os.path.exists(os.path.join(os.path.dirname(flaskerizer.__file__), os.path.basename('static'))))
-        self.assertTrue(os.path.exists(os.path.join(os.path.dirname(flaskerizer.__file__), os.path.basename('templates'))))
+        self.assertTrue(os.path.exists(os.path.join(os.path.dirname(flaskerizer.__file__),
+                                                    os.path.basename('Flaskerized_app'),
+                                                    os.path.basename('static'))))
+        self.assertTrue(os.path.exists(os.path.join(os.path.dirname(flaskerizer.__file__),
+                                                    os.path.basename('Flaskerized_app'),
+                                                    os.path.basename('templates'))))
 
     def test_migrate_static(self):
         '''Tests that migrate_static migrates the correct number of folders from the bootstrap template directory to
         the static directory of the Flask app.
         '''
         source_directory = os.path.dirname(Example.__file__)
-        write_directory = os.path.join(os.path.dirname(flaskerizer.__file__), os.path.basename('static'))
+        write_directory = os.path.join(os.path.dirname(flaskerizer.__file__),
+                                       os.path.basename('Flaskerized_app'),
+                                       os.path.basename('static'))
         self.test.migrate_static()
         source_dir_list = []
         write_dir_list = []
@@ -48,8 +54,9 @@ class TestStructureDirectory(unittest.TestCase):
         self.test.migrate_static()         # to make all the tests independent. Tests are run in random order
         self.test.parse_html()
         html_dir = os.path.join(os.path.dirname(flaskerizer.__file__),
-                                        os.path.basename('templates'),
-                                        os.path.basename('index.html'))
+                                os.path.basename('Flaskerized_app'),
+                                os.path.basename('templates'),
+                                os.path.basename('index.html'))
         with open(html_dir, 'r') as test_obj:
             test_string = test_obj.read()
         test_dir = os.path.join(os.path.dirname(Tests.__file__),
@@ -66,9 +73,10 @@ class TestStructureDirectory(unittest.TestCase):
         self.test.migrate_static()
         self.test.parse_javascript()
         js_dir = os.path.join(os.path.dirname(flaskerizer.__file__),
-                                        os.path.basename('static'),
-                                        os.path.basename('js'),
-                                        os.path.basename('custom.js'))
+                              os.path.basename('Flaskerized_app'),
+                              os.path.basename('static'),
+                              os.path.basename('js'),
+                              os.path.basename('custom.js'))
         with open(js_dir, 'r') as test_obj:
             test_string = test_obj.read()
         test_dir = os.path.join(os.path.dirname(Tests.__file__),

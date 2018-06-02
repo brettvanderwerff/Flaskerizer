@@ -42,7 +42,7 @@ Flask: 0.12.1 or higher
  
 6. Run the program by opening a terminal in the top level directory of the repo and entering `$ python flaskerizer.py` (this may vary slightly by environment)
 
-7. After running flaskerizer.py, clear your browser's cache and enter `$ python app.py` in the terminal to launch the newly made Flask app from the app.py file.
+7. After running flaskerizer.py, clear your browser's cache and enter `$ python Flaskerized_app/app.py` in the terminal to launch the newly made Flask app.
 
 8. View your website by opening the browser to your local address on port 5000 (i.e. http://127.0.0.1:5000 / http://0.0.0.0:5000) , Note: may have to enter http://127.0.0.1:5000/index.html / http://0.0.0.0:5000/index.html to route the  website homepage.
 
@@ -53,13 +53,15 @@ Flask: 0.12.1 or higher
 ## For a Docker Version
 Docker using alpine 3.7, Python 3.6, uwsgi and Nginx
 
-1. Run steps 1 to 5 above
+1. Run steps 1 to 6 above
+
+3. Navigate to the Flaskerized_app directory
 
 2. Run `docker build -t SOMETAG .`
 
 3. Run `docker run -d -p 5000:80 --name TESTDOCKER SOMETAG`
 
-4. Run steps 7 to 8 above
+4. Run step 8 above
 
 ## How it works
 
@@ -70,17 +72,17 @@ The Flasker has two main classes:
 
 **The StructureDirectory class**
 
-The StructureDirectory class makes the typical Flask project folder structure in the top level directory of the repo. This includes making a 'static' folder that will contain all the front end files from the Bootstrap template (css, javascript, etc.) and a 'templates' folder that will contain all the HTML files from the Bootstrap template. The StructureDirectory class takes both the full path to Bootstrap template HTML files (templates_path) and the full path to the css, javascript, images, etc. folders of the Bootstrap template (static_path) as arguments.  
+The StructureDirectory class makes the typical Flask project folder structure in the Flaskerized_app directory. This includes making a 'static' folder that will contain all the front end files from the Bootstrap template (css, javascript, etc.) and a 'templates' folder that will contain all the HTML files from the Bootstrap template. The StructureDirectory class takes both the full path to Bootstrap template HTML files (templates_path) and the full path to the css, javascript, images, etc. folders of the Bootstrap template (static_path) as arguments.  
 
 The StructureDirectory class has 3 main methods:
 
 `migrate_static`:
 
-The migrate_static method creates a 'static' folder in the top level directory of the repo. All the folders from the designated 'static_path' (see config.py) of the Bootstrap template will be copied to the newly made 'static' folder in the top level directory of the repo. The assumption is made that all folders in the Bootstrap template contain the front end information that belongs in the 'static' folder like css, javascript, images, etc. This may not always be the case, but I think often it is. 
+The migrate_static method creates a 'static' folder in the Flaskerized_app directory. All the folders from the designated 'static_path' (see config.py) of the Bootstrap template will be copied to the newly made 'static' folder in the Flaskerized_app directory. The assumption is made that all folders in the Bootstrap template contain the front end information that belongs in the 'static' folder like css, javascript, images, etc. This may not always be the case, but I think often it is. 
 
 `parse_html`:
 
-The parse_html method creates a 'templates' folder in the top level directory of the repo. The string content of all the HTML files from the designated 'templates_path' (see config.py) of the Bootstrap template are parsed for any links that references the content placed in the 'static' folder by the migrate_static method. If any links are found, they are modified to reflect the correct structure of the Flask application. This avoids broken links that would otherwise incorrectly reference files in the 'static' folder. Once the HTML files are parsed and corrected, they are written to the newly made 'templates' folder in the top level directory of the repo.
+The parse_html method creates a 'templates' folder in the Flaskerized_app directory. The string content of all the HTML files from the designated 'templates_path' (see config.py) of the Bootstrap template are parsed for any links that references the content placed in the 'static' folder by the migrate_static method. If any links are found, they are modified to reflect the correct structure of the Flask application. This avoids broken links that would otherwise incorrectly reference files in the 'static' folder. Once the HTML files are parsed and corrected, they are written to the newly made 'templates' folder in the Flaskerized_app directory.
 
 `parse_javascript`:
 
