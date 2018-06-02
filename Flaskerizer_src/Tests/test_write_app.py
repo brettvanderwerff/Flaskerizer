@@ -1,7 +1,7 @@
 from Flaskerizer_src.config import CONFIGURATION
 from Flaskerizer_src.structure_directory import StructureDirectory
 from Flaskerizer_src.write_app import WriteApp
-import flaskerizer
+import Flaskerizer_src.Tests as Tests
 import unittest
 import os
 
@@ -32,8 +32,7 @@ class TestWriteApp(unittest.TestCase):
         self.test.write_app()
         with open('app.py', 'r') as test_obj:
             test_string = test_obj.read()
-        test_dir = os.path.join(os.path.dirname(flaskerizer.__file__),
-                                os.path.basename('Tests'),
+        test_dir = os.path.join(os.path.dirname(Tests.__file__),
                                 os.path.basename('testing_files'),
                                 os.path.basename('app_test_file.py'))
         with open(test_dir) as gold_obj:

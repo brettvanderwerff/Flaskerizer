@@ -1,4 +1,5 @@
 import os
+import flaskerizer
 from Flaskerizer_src.HTTP_status_dict import HTTP_status_dict
 from Flaskerizer_src import status_code_to_word
 
@@ -7,7 +8,7 @@ class WriteApp():
     def get_routes(self):
         '''Gets the name of every HTML template in the templates folder.
         '''
-        return [template for template in os.listdir(os.path.join(os.getcwd(), os.path.basename('templates')))]
+        return [template for template in os.listdir(os.path.join(os.path.dirname(flaskerizer.__file__), os.path.basename('templates')))]
 
     def write_error_handler(self, template_name, write_obj):#ToDo eliminate non-error status codes from dictionary
         '''If the write_routes function detects a template name as containing a status code, the template name will

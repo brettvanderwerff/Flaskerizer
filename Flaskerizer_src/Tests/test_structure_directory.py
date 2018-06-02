@@ -1,5 +1,7 @@
 from Flaskerizer_src.config import CONFIGURATION
 from Flaskerizer_src.structure_directory import StructureDirectory
+import Flaskerizer_src.Examples.Alstar_example as Example
+import Flaskerizer_src.Tests as Tests
 import flaskerizer
 import unittest
 import os
@@ -19,16 +21,14 @@ class TestStructureDirectory(unittest.TestCase):
         '''
         self.test.mkdir('static')
         self.test.mkdir('templates')
-        self.assertTrue(os.path.exists(os.path.join(os.getcwd(), os.path.basename('static'))))
-        self.assertTrue(os.path.exists(os.path.join(os.getcwd(), os.path.basename('templates'))))
+        self.assertTrue(os.path.exists(os.path.join(os.path.dirname(flaskerizer.__file__), os.path.basename('static'))))
+        self.assertTrue(os.path.exists(os.path.join(os.path.dirname(flaskerizer.__file__), os.path.basename('templates'))))
 
     def test_migrate_static(self):
         '''Tests that migrate_static migrates the correct number of folders from the bootstrap template directory to
         the static directory of the Flask app.
         '''
-        source_directory = os.path.join(os.path.dirname(flaskerizer.__file__),
-                                        os.path.basename('Examples'),
-                                        os.path.basename('Alstar_example'))
+        source_directory = os.path.dirname(Example.__file__)
         write_directory = os.path.join(os.path.dirname(flaskerizer.__file__), os.path.basename('static'))
         self.test.migrate_static()
         source_dir_list = []
@@ -52,8 +52,7 @@ class TestStructureDirectory(unittest.TestCase):
                                         os.path.basename('index.html'))
         with open(html_dir, 'r') as test_obj:
             test_string = test_obj.read()
-        test_dir = os.path.join(os.path.dirname(flaskerizer.__file__),
-                                        os.path.basename('Tests'),
+        test_dir = os.path.join(os.path.dirname(Tests.__file__),
                                         os.path.basename('testing_files'),
                                         os.path.basename('index_test_file.html'))
         with open(test_dir) as gold_obj:
@@ -72,8 +71,7 @@ class TestStructureDirectory(unittest.TestCase):
                                         os.path.basename('custom.js'))
         with open(js_dir, 'r') as test_obj:
             test_string = test_obj.read()
-        test_dir = os.path.join(os.path.dirname(flaskerizer.__file__),
-                                        os.path.basename('Tests'),
+        test_dir = os.path.join(os.path.dirname(Tests.__file__),
                                         os.path.basename('testing_files'),
                                         os.path.basename('custom_test_file.js'))
         with open(test_dir) as gold_obj:
