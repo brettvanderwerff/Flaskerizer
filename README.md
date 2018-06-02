@@ -1,10 +1,11 @@
 # Flaskerizer
 
+
 [![Build Status](https://travis-ci.org/brettvanderwerff/Flaskerizer.svg?branch=master)](https://travis-ci.org/brettvanderwerff/Flaskerizer)
 
 ## What is the Flaskerizer and what problem does it solve?
 
-Bootstrap templates from websites like https://Bootstrapmade.com/ and https://startBootstrap.com are a fast way to get very dynamic website up and running, but bootstap templates typically don't work "out of the box" with the python web framework Flask and require some tedious directory building and broken link fixing before being functional with Flask. This is especially true if the Bootstrap templates are for large multi-page websites. 
+Bootstrap templates from websites like https://Bootstrapmade.com/ and https://startBootstrap.com are a fast way to get very dynamic website up and running, but Bootstap templates typically don't work "out of the box" with the python web framework Flask and require some tedious directory building and broken link fixing before being functional with Flask. This is especially true if the Bootstrap templates are for large multi-page websites. 
 
 The Flaskerizer automates the necessary directory building and link creation needed to make Bootstrap templates work "out of the box" with Flask. The Flaskerizer also automatically creates a python script with the appropriate routes and basic error handling needed to serve the Bootstrap template as a Flask app.
 
@@ -26,7 +27,7 @@ Flask: 0.12.1 or higher
 
 2. Install dependencies by opening a terminal in top level directory of the repo and entering `$ pip install -r requirements.txt` 
 
-3. Download your favorite Bootstrap template from https://Bootstrapmade.com/ .Note that there are three example templates in the repo (Folio_example, Alstar_example, and Sailor_example) from https://Bootstrapmade.com/ that you can use if you don't want to download one. This program was designed only with templates from https://Bootstrapmade.com/ in mind, but does seem to work with other Bootstrap template sources like https://startbootstrap.com/ (see issues)  
+3. Download your favorite Bootstrap template from https://Bootstrapmade.com/ .Note that there is an example template (Alstar_example) that you can use if you don't want to download one. 
 
 4. If the Bootstrap template is downloaded as a zipped file you will need to unzip the Bootstrap template
 
@@ -94,14 +95,6 @@ The WriteApp class has one main method:
 
 The write_app method automatically writes a python script 'app.py' with the necessary instructions to launch a Flask app of the Bootstrap template. This method writes the import statements, instantiates the 'app' object from the Flask class, and writes a main loop to run the app. This method also detects the HTML files in the 'templates' folder and writes the corresponding routes to these HTML files. If any of the HTML files are named for an HTTP status code, the write_app method generates an error handling route for that file. This assumes that any HTML file with an HTTP status code in it's name reflects an error, which I think is usually true. 
 
-
-## The Example Templates
-
-Folio_example - A small one page Bootstrap template
-
-Alstar_example - A small one page Bootstrap template
-
-Sailor_example - The largest boostrap template I could find, would be a pain to set up manually but works great with the Flaskerizer automated setup
 
 ## Contribution Guidelines
 
