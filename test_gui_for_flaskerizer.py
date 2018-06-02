@@ -2,13 +2,14 @@ import unittest
 from gui_for_flaskerizer import ChooseFilesGUI
 
 class TestGUI(unittest.TestCase):
-    def test_get_functions(self):
-        '''Test to get the default values, change and get again.
+    def test_values(self):
+        '''Test to get the default values, change and get again other values.
         '''
         self.testclass = ChooseFilesGUI(True)
         self.assertEqual(self.testclass.get_values(),
-         ['The folder with .html files', "The folder with images, .css, etc",
-         "The folder with the .js files"])
+         ["Select the main html file, usually a index.html file",
+          "The folder with images, .css, etc. If separated select the main folder",
+         "Select the a .js file, one in the js folder if there is one"])
         self.testclass.html_location.set("Html Location")
         self.testclass.static_location.set("Static Location")
         self.testclass.js_location.set("JS Location")
