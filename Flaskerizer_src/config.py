@@ -1,4 +1,4 @@
-import circular
+import flaskerizer
 import os
 
 ''' 
@@ -27,13 +27,13 @@ Bootstrap template of choice.
 '''
 
 CONFIGURATION = {
-       'templates_path': os.path.join(os.path.dirname(circular.__file__),
+       'templates_path': os.path.join(os.path.dirname(flaskerizer.__file__),
                                         os.path.basename('Examples'),
                                         os.path.basename('Alstar_example')),
-       'static_path' : os.path.join(os.path.dirname(circular.__file__),
+       'static_path' : os.path.join(os.path.dirname(flaskerizer.__file__),
                                         os.path.basename('Examples'),
                                         os.path.basename('Alstar_example')),
-       'javascript_path' : os.path.join(os.path.dirname(circular.__file__),
+       'javascript_path' : os.path.join(os.path.dirname(flaskerizer.__file__),
                                         os.path.basename('Examples'),
                                         os.path.basename('Alstar_example'),
                                         os.path.basename('js'))
