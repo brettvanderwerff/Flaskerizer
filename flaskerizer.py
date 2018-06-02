@@ -1,6 +1,6 @@
-from config import CONFIGURATION
-from structure_directory import StructureDirectory
-from write_app import WriteApp
+from Flaskerizer_src.config import CONFIGURATION
+from Flaskerizer_src.structure_directory import StructureDirectory
+from Flaskerizer_src.write_app import WriteApp
 
 structure_directory_object = StructureDirectory(templates_path=CONFIGURATION['templates_path'],
                                                 static_path=CONFIGURATION['static_path'],

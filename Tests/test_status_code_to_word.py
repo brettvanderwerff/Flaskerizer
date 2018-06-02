@@ -1,5 +1,5 @@
 import unittest
-from status_code_to_word import status_code_to_word
+from Flaskerizer_src.status_code_to_word import status_code_to_word
 
 
 class TestStatusCode(unittest.TestCase):

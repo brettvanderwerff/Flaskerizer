@@ -1,7 +1,7 @@
-from config import CONFIGURATION
+from Flaskerizer_src.config import CONFIGURATION
 import flaskerizer
 import unittest
-from structure_directory import StructureDirectory
+from Flaskerizer_src.structure_directory import StructureDirectory
 import os
 
 class TestStructureDirectory(unittest.TestCase):

@@ -1,9 +1,9 @@
-from config import CONFIGURATION
+from Flaskerizer_src.config import CONFIGURATION
 import flaskerizer
 import unittest
 import os
-from structure_directory import StructureDirectory
-from write_app import WriteApp
+from Flaskerizer_src.structure_directory import StructureDirectory
+from Flaskerizer_src.write_app import WriteApp
 
 class TestWriteApp(unittest.TestCase):
     maxDiff = None # reveals difference between test strings and "gold standard" strings
