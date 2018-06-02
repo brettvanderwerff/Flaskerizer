@@ -1,10 +1,11 @@
 # Flaskerizer
 
+
 [![Build Status](https://travis-ci.org/brettvanderwerff/Flaskerizer.svg?branch=master)](https://travis-ci.org/brettvanderwerff/Flaskerizer)
 
 ## What is the Flaskerizer and what problem does it solve?
 
-Bootstrap templates from websites like https://Bootstrapmade.com/ and https://startBootstrap.com are a fast way to get very dynamic website up and running, but bootstap templates typically don't work "out of the box" with the python web framework Flask and require some tedious directory building and broken link fixing before being functional with Flask. This is especially true if the Bootstrap templates are for large multi-page websites. 
+Bootstrap templates from websites like https://Bootstrapmade.com/ and https://startBootstrap.com are a fast way to get very dynamic website up and running, but Bootstap templates typically don't work "out of the box" with the python web framework Flask and require some tedious directory building and broken link fixing before being functional with Flask. This is especially true if the Bootstrap templates are for large multi-page websites. 
 
 The Flaskerizer automates the necessary directory building and link creation needed to make Bootstrap templates work "out of the box" with Flask. The Flaskerizer also automatically creates a python script with the appropriate routes and basic error handling needed to serve the Bootstrap template as a Flask app.
 
@@ -26,7 +27,7 @@ Flask: 0.12.1 or higher
 
 2. Install dependencies by opening a terminal in top level directory of the repo and entering `$ pip install -r requirements.txt` 
 
-3. Download your favorite Bootstrap template from https://Bootstrapmade.com/ .Note that there is an example template (Alstar_example) from https://Bootstrapmade.com/ that you can use if you don't want to download one. 
+3. Download your favorite Bootstrap template from https://Bootstrapmade.com/ .Note that there is an example template (Alstar_example) that you can use if you don't want to download one. 
 
 4. If the Bootstrap template is downloaded as a zipped file you will need to unzip the Bootstrap template
 
