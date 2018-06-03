@@ -4,8 +4,11 @@ from gui_for_flaskerizer import ChooseFilesGUI
 
 class TestGUI(unittest.TestCase):
     def test_values(self):
-        '''Test to get the default values, change and get again other values.
-        '''
+        """Get the default values from the html,
+        static and js string variables in the ChooseFilesGUI
+        sets new ones and tests to see if they are fully
+        functional.
+        """
         self.testclass = ChooseFilesGUI(True)
         self.assertEqual(self.testclass.get_values(),
          ["Select the main html file, usually a index.html file",
@@ -19,6 +22,10 @@ class TestGUI(unittest.TestCase):
          "JS Location"])
 
     def test_path(self):
+        """Tests the path_to_folder function from ChooseFilesGUI
+        gives it two files path uses the function
+        and compares it to this directory path.
+        """
         self.this_directory = os.path.dirname(os.path.abspath(__file__))
         self.test_class = ChooseFilesGUI(True)
         self.path_to_folder = self.test_class.path_to_folder
