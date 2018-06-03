@@ -78,7 +78,7 @@ The StructureDirectory class has 3 main methods:
 
 `migrate_static`:
 
-The migrate_static method creates a 'static' folder in the Flaskerized_app directory. All the folders from the designated 'static_path' (see config.py) of the Bootstrap template will be copied to the newly made 'static' folder in the Flaskerized_app directory. The assumption is made that all folders in the Bootstrap template contain the front end information that belongs in the 'static' folder like css, javascript, images, etc. This may not always be the case, but I think often it is. 
+The migrate_static method creates a 'static' folder in the Flaskerized_app directory. All the folders from the designated 'static_path' (see config.py) of the Bootstrap template will be copied to the newly made 'static' folder in the Flaskerized_app directory. The assumption is made that all folders in the Bootstrap template contain the front end information that belongs in the 'static' folder like css, javascript, images, etc. This may not always be the case, but often it is. 
 
 `parse_html`:
 
@@ -86,7 +86,7 @@ The parse_html method creates a 'templates' folder in the Flaskerized_app direct
 
 `parse_javascript`:
 
-Similar to the parse_html method, the parse_javascript method iterates through the string content of all the javascript files from the designated 'javascript_path' (see config.py) of the Bootstrap template in search of links that reference the content placed in the 'static' folder by the migrate_static method. If any links are found, they are modified to reflect the correct structure of the Flask application. Once the javascript files are parsed and corrected, they are written to the newly made 'static' folder in the appropriate subdirectory.
+Similar to the parse_html method, the parse_javascript method iterates through the string content of all the javascript files from the designated 'javascript_path' (see config.py) of the Bootstrap template in search of links that reference the content placed in the 'static' folder by the migrate_static method. If any links are found, they are modified to reflect the correct structure of the Flask application. Once the javascript files are parsed and corrected, they are written to the newly made 'static' folder in the appropriate subdirectory of the Flaskerized_app folder.
 
 **The WriteApp class**
 
@@ -95,7 +95,7 @@ The WriteApp class has one main method:
 
 `write_app`:
 
-The write_app method automatically writes a python script 'app.py' with the necessary instructions to launch a Flask app of the Bootstrap template. This method writes the import statements, instantiates the 'app' object from the Flask class, and writes a main loop to run the app. This method also detects the HTML files in the 'templates' folder and writes the corresponding routes to these HTML files. If any of the HTML files are named for an HTTP status code, the write_app method generates an error handling route for that file. This assumes that any HTML file with an HTTP status code in it's name reflects an error, which I think is usually true. 
+The write_app method automatically writes a python script 'app.py' with the necessary instructions to launch a Flask app of the Bootstrap template. This method writes the import statements, instantiates the 'app' object from the Flask class, and writes a main loop to run the app. This method also detects the HTML files in the 'templates' folder and writes the corresponding routes to these HTML files. If any of the HTML files are named for an HTTP status code, the write_app method generates an error handling route for that file. This assumes that any HTML file with an HTTP status code in it's name reflects an error, which is usually true. 
 
 
 ## Contribution Guidelines
