@@ -129,6 +129,8 @@ A list of people that have contributed to Flaskerizer by completing a pull reque
 
 - [@etiontdn](https://github.com/etiontdn)
 
+- [@heberfabiano](https://github.com/eberfabiano)
+
 
 
 
