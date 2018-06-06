@@ -11,9 +11,9 @@ class TestGUI(unittest.TestCase):
         """
         self.testclass = ChooseFilesGUI(True)
         self.assertEqual(self.testclass.get_values(),
-         ["Select the main html file, usually a index.html file",
-          "The folder with images, .css, etc. If separated select the main folder",
-         "Select the a .js file, one in the js folder if there is one"])
+         ["Select the main HTML file, usually a index.html file",
+         "Select the folder that contains the css and img folders or the one with CSS and images files",
+         "Select one JavaScript (.js) file from the template JavaScript folder"])
         self.testclass.html_location.set("Html Location")
         self.testclass.static_location.set("Static Location")
         self.testclass.js_location.set("JS Location")

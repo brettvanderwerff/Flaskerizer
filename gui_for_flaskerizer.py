@@ -35,7 +35,7 @@ class ChooseFilesGUI(object):
         self.html_location.set(
             "Select the main HTML file, usually a index.html file")
         self.static_location.set(
-            "The folder with images, .css, etc. If separated select the main folder")
+            "Select the folder that contains the css and img folders or the one with CSS and images files")
         self.js_location.set(
             "Select one JavaScript (.js) file from the template JavaScript folder")
         self.main_layout()
