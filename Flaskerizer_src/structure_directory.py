@@ -99,6 +99,9 @@ class StructureDirectory():
                     elif ('\"./' + str(folder) + "/") in line:
                         split_line = line.split("\"./" + str(folder) + "/")
                         line = ("\"./" + 'static/' + (str(folder) + "/")).join(split_line)
+                    elif ('url(' + str(folder) + "/") in line:
+                        split_line = line.split('url(' + str(folder) + "/")
+                        line = ('url(' + 'static/' + (str(folder) + "/")).join(split_line)
                 write_obj.write(line)
 
     def parse_html(self):
@@ -119,5 +122,4 @@ if __name__ == "__main__":
     my_object.migrate_static()
     my_object.parse_html()
     my_object.parse_javascript()
-
 
