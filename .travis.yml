@@ -1,5 +1,4 @@
 language: python
-
 addons:
   apt:
     packages:
@@ -13,7 +12,6 @@ python:
   - "3.6"
   - "3.6-dev" # 3.6 development branch
   - "3.7-dev" # 3.7 development branch
-
 
 install:
   - export DISPLAY=':99.0'
