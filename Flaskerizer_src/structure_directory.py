@@ -99,6 +99,9 @@ class StructureDirectory():
                     elif ('\"./' + str(folder) + "/") in line:
                         split_line = line.split("\"./" + str(folder) + "/")
                         line = ("\"./" + 'static/' + (str(folder) + "/")).join(split_line)
+                    elif ('url(' + str(folder) + "/") in line:
+                        split_line = line.split('url(' + str(folder) + "/")
+                        line = ('url(' + 'static/' + (str(folder) + "/")).join(split_line)
                 write_obj.write(line)
 
     def parse_html(self):
