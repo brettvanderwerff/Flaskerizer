@@ -1,5 +1,8 @@
 language: python
-
+addons:
+  apt:
+    packages:
+    - xvfb
 python:
   - "2.7"
   - "3.3"
@@ -11,6 +14,8 @@ python:
   - "3.7-dev" # 3.7 development branch
 
 install:
+  - export DISPLAY=':99.0'
+  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &  
   - pip install -r requirements.txt
   - pip install nose
 
