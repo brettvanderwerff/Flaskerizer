@@ -4,8 +4,8 @@ from Flaskerizer_src.gui_for_flaskerizer import ChooseFilesGUI
 
 class TestGUI(unittest.TestCase):
     def test_values(self):
-        """Get the default values from the html,
-        static and js string variables in the ChooseFilesGUI
+        """Gets the default values from the html,
+        static and js string variables in the ChooseFilesGUI. Then
         sets new ones and tests to see if they are fully
         functional.
         """
