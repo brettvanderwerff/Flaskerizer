@@ -9,14 +9,6 @@ except ImportError:
     import tkinter as tk
     from tkinter import filedialog
 
-"""The GUI for Flaskerizer is a simple graphical interface for the Flaskerizer program
-
-Instead of putting path values in the config.py file
-it generates a popup Graphical User Interface (GUI) window
-prompting the user to select the paths from the bootstrap theme
-that he wants to flaskerize.
-"""
-
 
 class ChooseFilesGUI(object):
     """The ChooseFilesGUI class generates a popup graphical user interface (GUI)
@@ -34,9 +26,9 @@ class ChooseFilesGUI(object):
         self.static_location = tk.StringVar()
         self.js_location = tk.StringVar()
         self.html_location.set(
-            "Select the main HTML file, usually a index.html file")
+            "Select one HTML file from the template")
         self.static_location.set(
-            "Select the folder that contains the css and img folders or the one with CSS and images files")
+            "Select the template folder containing all the css, img, js folders")
         self.js_location.set(
             "Select one JavaScript (.js) file from the template JavaScript folder")
         self.main_layout()
@@ -47,8 +39,8 @@ class ChooseFilesGUI(object):
             pass
 
     def main_layout(self):
-        """The program layout, it outputs all the buttons,
-        Labels and Entries seen on the window.
+        """The GUI layout, defines all the buttons,
+        labels, and entries seen on the window.
         """
 
         self.main = tk.Frame(self.root)
@@ -90,7 +82,7 @@ class ChooseFilesGUI(object):
                                    text="OK", command=self.get_values).pack()
 
     def get_html_folder(self):
-        """Opens a file dialog prompting the user to select the main HTML file.
+        """Opens a file dialog prompting the user to select an HTML file.
         Gets the directory path with the path_to_folder function
         and sets the html_location variable with the returned path value.
         """
@@ -109,7 +101,7 @@ class ChooseFilesGUI(object):
         self.static_location.set(path)
 
     def get_js_folder(self):
-        """Opens a file dialog prompting the user to select the JavaScript file.
+        """Opens a file dialog prompting the user to select a JavaScript file.
         Gets the directory path with the path_to_folder function
         and sets the js_location variable with the returned path value.
         """
