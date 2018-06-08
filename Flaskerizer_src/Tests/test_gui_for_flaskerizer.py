@@ -11,8 +11,8 @@ class TestGUI(unittest.TestCase):
         """
         self.testclass = ChooseFilesGUI(True)
         self.assertEqual(self.testclass.get_values(),
-         ["Select the main HTML file, usually a index.html file",
-         "Select the folder that contains the css and img folders or the one with CSS and images files",
+         ["Select one HTML file from the template",
+         "Select the template folder containing all the css, img, js folders",
          "Select one JavaScript (.js) file from the template JavaScript folder"])
         self.testclass.html_location.set("Html Location")
         self.testclass.static_location.set("Static Location")
@@ -23,7 +23,7 @@ class TestGUI(unittest.TestCase):
 
     def test_path(self):
         """Tests the path_to_folder function from ChooseFilesGUI
-        gives it two files path uses the function
+        gives it two files paths uses the function
         and compares it to this directory path.
         """
         self.this_directory = os.path.dirname(os.path.abspath(__file__))
