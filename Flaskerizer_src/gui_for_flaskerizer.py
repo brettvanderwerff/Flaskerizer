@@ -165,19 +165,21 @@ class ChooseFilesGUI(object):
         values and sets them to new variables then uses them
         for running Flaskerizer.
         """
-        if self.validate_entries():
-            self.html = self.path_to_folder(self.html_location.get())
-            self.static = self.static_location.get()
-            self.js = self.path_to_folder(self.js_location.get())
-            if not self.is_test:        #For testing purposes making the program unable to make new folders.
+        self.html = self.html_location.get()
+        self.static = self.static_location.get()
+        self.js = self.js_location.get()
+        if not self.is_test:        #For testing purposes making the program unable to make new folders.
+            if self.validate_entries():
+                self.html = self.path_to_folder(self.html)
+                self.js = self.path_to_folder(self.js)
                 self.root.quit()
                 self.structure_directory_object = StructureDirectory(templates_path=self.html,
-                                                                static_path=self.static,
-                                                                javascript_path=self.js)
+                                                                    static_path=self.static,
+                                                                    javascript_path=self.js)
                 self.write_app_object = WriteApp()
                 self.structure_directory_object.migrate_static()
                 self.structure_directory_object.parse_html()
                 self.structure_directory_object.parse_javascript()
                 self.write_app_object.write_app()
-            return [self.html, self.static, self.js]        #For testing purposes returns values
+        print( [self.html, self.static, self.js] )        #For testing purposes returns values
 
