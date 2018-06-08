@@ -5,16 +5,19 @@ import os
 try:
     import Tkinter as tk
     import tkFileDialog as filedialog
+    import tkMessageBox as messagebox
+
 except ImportError:
     import tkinter as tk
     from tkinter import filedialog
+    from tkinter import messagebox
 
 
 class ChooseFilesGUI(object):
-    """The ChooseFilesGUI class generates a popup graphical user interface (GUI)
+    """The ChooseFilesGUI class generates a Pop-up graphical user interface (GUI)
     prompting the user to select paths pointing to folder content from the
     Bootstrap template that will be migrated to the 'templates',
-    'static', and javascript folders of the Flask app.
+    'static', and JavaScript folders of the Flask APP.
     This GUI functions as an alternative to requiring the user
     to manually enter these paths in the config.py file.
     """
@@ -45,7 +48,7 @@ class ChooseFilesGUI(object):
 
         self.main = tk.Frame(self.root)
         self.label_html = tk.Label(self.main,
-                                   text="HTML Files Location:")
+                                   text="HTML File Location:")
         self.label_html.grid(row=0, column=0, sticky="WENS", pady=20)
         self.folder_search_html = tk.Button(self.main,
                                             text="Search Files", command=self.get_html_folder)
@@ -56,7 +59,7 @@ class ChooseFilesGUI(object):
 
 
         self.label_static = tk.Label(self.main,
-                                     text="Static Files Location:")
+                                     text="Static Folder Location:")
         self.label_static.grid(row=1, column=0, sticky="WENS", pady=20)
         self.folder_search_static = tk.Button(self.main,
                                               text="Search Files", command=self.get_static_folder)
@@ -67,7 +70,7 @@ class ChooseFilesGUI(object):
 
 
         self.label_js = tk.Label(self.main,
-                                 text="Java Script Files Location:")
+                                 text="JavaScript File Location:")
         self.label_js.grid(row=2, column=0, sticky="WENS", pady=20)
         self.folder_search_js = tk.Button(self.main,
                                           text="Search Files", command=self.get_js_folder)
@@ -89,8 +92,11 @@ class ChooseFilesGUI(object):
 
         path = filedialog.askopenfilename(title= "Select the main html file normally index.html",
         filetypes=(("Html Files", "*.html"), ("all files", "*.*")))
-        path = self.path_to_folder(path)
         self.html_location.set(path)
+        if self.validate_path(path):
+            self.html_location.set(path)
+        else:
+            self.html_location.set("Please select a valid html file")
 
     def get_static_folder(self):
         """Opens a file dialog prompting the user to select the static folder.
@@ -98,7 +104,10 @@ class ChooseFilesGUI(object):
         """
 
         path = filedialog.askdirectory(title="Select the main static folder")
-        self.static_location.set(path)
+        if self.validate_path(path):
+            self.static_location.set(path)
+        else:
+            self.static_location.set("Please select a valid static folder")
 
     def get_js_folder(self):
         """Opens a file dialog prompting the user to select a JavaScript file.
@@ -107,9 +116,11 @@ class ChooseFilesGUI(object):
         """
 
         path = filedialog.askopenfilename(title = "Select a .js file, normally inside the js folder",
-        filetypes=(("Javascript Files", "*.js"), ("all files", "*.*")))
-        path = self.path_to_folder(path)
-        self.js_location.set(path)
+        filetypes=(("JavaScript Files", "*.js"), ("all files", "*.*")))
+        if self.validate_path(path):
+            self.js_location.set(path)
+        else:
+            self.js_location.set("Please select a valid js file")
 
     def path_to_folder(self, path):
         """Transforms a File path into a folder path
@@ -118,24 +129,55 @@ class ChooseFilesGUI(object):
         """
 
         return os.path.split(path)[0]
+    def validate_path(self, path):
+        """Validates the path making sure it exists
+        """
+        if os.path.exists(path):
+            return True
+        else:
+            return False
+
+    def validate_entries(self):
+        """Validates all entries and if
+        there is errors a error pop-up window appears
+        """
+        self.error_entries = []
+        html = self.validate_path(self.html_location.get())
+        static = self.validate_path(self.static_location.get())
+        js = self.validate_path(self.js_location.get())
+        if not html:
+            self.error_entries.append("'Html File location' ")
+        if not static:
+            self.error_entries.append("'Static Files location' ")
+        if not js:
+            self.error_entries.append("'JavaScript File location' ")
+        if not html or not static or not js:
+            self.error_message = "There is errors in the entries: "
+            for x in self.error_entries:
+                self.error_message = self.error_message + x 
+            messagebox.showerror("Entries Error", self.error_message)
+            return False
+        else:
+            return True
 
     def get_values(self):
         """Gets the html_location, static_location and js_location
         values and sets them to new variables then uses them
-        for running flaskerizer.
+        for running Flaskerizer.
         """
-        self.html = self.html_location.get()
-        self.static = self.static_location.get()
-        self.js = self.js_location.get()
-        if not self.is_test:        #For testing purposes making the program unable to make new folders.
-            self.root.quit()
-            self.structure_directory_object = StructureDirectory(templates_path=self.html,
-                                                            static_path=self.static,
-                                                            javascript_path=self.js)
-            self.write_app_object = WriteApp()
-            self.structure_directory_object.migrate_static()
-            self.structure_directory_object.parse_html()
-            self.structure_directory_object.parse_javascript()
-            self.write_app_object.write_app()
-        return [self.html, self.static, self.js]        #For testing purposes returns values
+        if self.validate_entries():
+            self.html = self.path_to_folder(self.html_location.get())
+            self.static = self.static_location.get()
+            self.js = self.path_to_folder(self.js_location.get())
+            if not self.is_test:        #For testing purposes making the program unable to make new folders.
+                self.root.quit()
+                self.structure_directory_object = StructureDirectory(templates_path=self.html,
+                                                                static_path=self.static,
+                                                                javascript_path=self.js)
+                self.write_app_object = WriteApp()
+                self.structure_directory_object.migrate_static()
+                self.structure_directory_object.parse_html()
+                self.structure_directory_object.parse_javascript()
+                self.write_app_object.write_app()
+            return [self.html, self.static, self.js]        #For testing purposes returns values
 
