@@ -181,5 +181,5 @@ class ChooseFilesGUI(object):
                 self.structure_directory_object.parse_html()
                 self.structure_directory_object.parse_javascript()
                 self.write_app_object.write_app()
-        print( [self.html, self.static, self.js] )        #For testing purposes returns values
+        return [self.html, self.static, self.js]        #For testing purposes returns values
 
