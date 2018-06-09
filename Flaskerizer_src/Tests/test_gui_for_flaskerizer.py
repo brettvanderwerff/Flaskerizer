@@ -27,9 +27,8 @@ class TestGUI(unittest.TestCase):
          "JS Location"])
 
     def test_path(self):
-        """Tests the path_to_folder function from ChooseFilesGUI
-        gives it two files paths uses the function
-        and compares it to this directory path.
+        """Gives 2 files paths to the path_to_folder function in ChooseFilesGUI
+        and checks if it returns the folder path.
         """
         self.this_directory = os.path.dirname(os.path.abspath(__file__))
         self.path_to_folder = self.test.path_to_folder

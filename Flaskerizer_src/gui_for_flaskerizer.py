@@ -90,24 +90,25 @@ class ChooseFilesGUI(object):
         and sets the html_location variable with the returned path value.
         """
 
-        path = filedialog.askopenfilename(title= "Select the main html file normally index.html",
+        path = filedialog.askopenfilename(title= "Select one HTML file from the template",
         filetypes=(("Html Files", "*.html"), ("all files", "*.*")))
-        self.html_location.set(path)
-        if self.validate_path(path):
+        if self.validate_path(path) and path.endswith(".html"):
             self.html_location.set(path)
-        else:
-            self.html_location.set("Please select a valid html file")
+        elif path == "":
+            self.html_location.set("Select one HTML file from the template")
+        elif not path.endswith(".html"):
+            messagebox.showinfo("Info", "Please select a html file.")
 
     def get_static_folder(self):
         """Opens a file dialog prompting the user to select the static folder.
         Gets the path, and sets the static_location to the path value.
         """
 
-        path = filedialog.askdirectory(title="Select the main static folder")
+        path = filedialog.askdirectory(title="Select the template folder containing all the css, img, js folders")
         if self.validate_path(path):
             self.static_location.set(path)
         else:
-            self.static_location.set("Please select a valid static folder")
+            self.static_location.set("Select the template folder containing all the css, img, js folders")
 
     def get_js_folder(self):
         """Opens a file dialog prompting the user to select a JavaScript file.
@@ -115,12 +116,15 @@ class ChooseFilesGUI(object):
         and sets the js_location variable with the returned path value.
         """
 
-        path = filedialog.askopenfilename(title = "Select a .js file, normally inside the js folder",
+        path = filedialog.askopenfilename(title = "Select one JavaScript (.js) file from the template JavaScript folder",
         filetypes=(("JavaScript Files", "*.js"), ("all files", "*.*")))
-        if self.validate_path(path):
+        if self.validate_path(path) and path.endswith(".js"):
             self.js_location.set(path)
-        else:
-            self.js_location.set("Please select a valid js file")
+        elif path == "":
+            self.js_location.set("Select one JavaScript (.js) file from the template JavaScript folder")
+        elif not path.endswith(".js"):
+            messagebox.showinfo("Info", "Please select a JavaScript file.")
+
 
     def path_to_folder(self, path):
         """Transforms a File path into a folder path
@@ -129,9 +133,11 @@ class ChooseFilesGUI(object):
         """
 
         return os.path.split(path)[0]
+
     def validate_path(self, path):
         """Validates the path making sure it exists
         """
+
         if os.path.exists(path):
             return True
         else:
@@ -141,6 +147,7 @@ class ChooseFilesGUI(object):
         """Validates all entries and if
         there is errors a error pop-up window appears
         """
+
         self.error_entries = []
         html = self.validate_path(self.html_location.get())
         static = self.validate_path(self.static_location.get())
@@ -152,7 +159,7 @@ class ChooseFilesGUI(object):
         if not js:
             self.error_entries.append("'JavaScript File location' ")
         if not html or not static or not js:
-            self.error_message = "There is errors in the entries: "
+            self.error_message = "There are errors in the following entries: "
             for x in self.error_entries:
                 self.error_message = self.error_message + x 
             messagebox.showerror("Entries Error", self.error_message)
@@ -162,13 +169,13 @@ class ChooseFilesGUI(object):
 
     def get_values(self):
         """Gets the html_location, static_location and js_location
-        values and sets them to new variables then uses them
-        for running Flaskerizer.
+        values for paths to the HTML files, 'static' folder content, and Javascript files of the Bootstrap
+        template. These paths are passed to the StructureDirectory class for flaskerization.
         """
         self.html = self.html_location.get()
         self.static = self.static_location.get()
         self.js = self.js_location.get()
-        if not self.is_test:        #For testing purposes making the program unable to make new folders.
+        if not self.is_test:        #For testing purposes making the program unable to make new folders or windows.
             if self.validate_entries():
                 self.html = self.path_to_folder(self.html)
                 self.js = self.path_to_folder(self.js)
