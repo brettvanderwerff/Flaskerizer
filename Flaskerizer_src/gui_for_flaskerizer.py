@@ -90,7 +90,7 @@ class ChooseFilesGUI(object):
         and sets the html_location variable with the returned path value.
         """
 
-        path = filedialog.askopenfilename(title= "Select one HTML file from the template",
+        path = filedialog.askopenfilename(title= "Select one HTML (.html) file from the template",
         filetypes=(("Html Files", "*.html"), ("all files", "*.*")))
         if self.validate_path(path) and path.endswith(".html"):
             self.html_location.set(path)
