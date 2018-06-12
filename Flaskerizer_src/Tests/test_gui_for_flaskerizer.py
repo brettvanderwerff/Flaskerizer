@@ -16,7 +16,7 @@ class TestGUI(unittest.TestCase):
         functional.
         """
         self.assertEqual(self.test.get_values(),
-                         ["Select one HTML file from the template",
+                         ["Select one HTML (.html) file from the template",
          "Select the template folder containing all the css, img, js folders",
          "Select one JavaScript (.js) file from the template JavaScript folder"])
         self.test.html_location.set("Html Location")
