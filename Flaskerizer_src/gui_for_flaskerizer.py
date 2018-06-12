@@ -97,7 +97,7 @@ class ChooseFilesGUI(object):
         elif path == "":
             self.html_location.set("Select one HTML file from the template")
         elif not path.endswith(".html"):
-            messagebox.showinfo("Info", "Please select a html file.")
+            messagebox.showinfo("Info", "Please select an HTML (.html) file type.")
 
     def get_static_folder(self):
         """Opens a file dialog prompting the user to select the static folder.
@@ -123,7 +123,7 @@ class ChooseFilesGUI(object):
         elif path == "":
             self.js_location.set("Select one JavaScript (.js) file from the template JavaScript folder")
         elif not path.endswith(".js"):
-            messagebox.showinfo("Info", "Please select a JavaScript file.")
+            messagebox.showinfo("Info", "Please select a JavaScript (.js) file type.")
 
 
     def path_to_folder(self, path):
