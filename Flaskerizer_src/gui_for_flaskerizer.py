@@ -29,7 +29,7 @@ class ChooseFilesGUI(object):
         self.static_location = tk.StringVar()
         self.js_location = tk.StringVar()
         self.html_location.set(
-            "Select one HTML file from the template")
+            "Select one HTML (.html) file from the template")
         self.static_location.set(
             "Select the template folder containing all the css, img, js folders")
         self.js_location.set(
