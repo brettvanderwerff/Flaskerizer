@@ -1,7 +1,7 @@
 import os
 import flaskerizer
 from Flaskerizer_src.HTTP_status_dict import HTTP_status_dict
-from Flaskerizer_src import status_code_to_word
+from Flaskerizer_src.status_code_to_word import status_code_to_word
 
 class WriteApp():
 
