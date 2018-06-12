@@ -145,7 +145,7 @@ class ChooseFilesGUI(object):
 
     def validate_entries(self):
         """Validates all entries and if
-        there is errors a error pop-up window appears
+        there are errors an error pop-up window appears
         """
 
         self.error_entries = []
