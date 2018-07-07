@@ -27,7 +27,5 @@ Bootstrap template of choice.
 '''
 
 CONFIGURATION = {
-       'templates_path': os.path.dirname(Example.__file__),
-       'static_path' : os.path.dirname(Example.__file__),
-       'javascript_path' : os.path.join(os.path.dirname(Example.__file__), os.path.basename('js'))
+       'templates_path': r'#'
 }
