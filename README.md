@@ -27,7 +27,7 @@ Flask: 0.12.1 or higher
 
 2. Install dependencies by opening a terminal in top level directory of the repo and entering `$ pip install -r requirements.txt` 
 
-3. Download your favorite Bootstrap template from https://Bootstrapmade.com/ .Note that there is an example template (Alstar_example) that you can use if you don't want to download one. 
+3. Download your favorite Bootstrap template. Note that there is an example template (Alstar_example) that you can use if you don't want to download one. 
 
 4. If the Bootstrap template is downloaded as a zipped file you will need to unzip the Bootstrap template
 
@@ -69,7 +69,7 @@ The Flasker has two main classes:
 
 **The StructureDirectory class**
 
-The StructureDirectory class makes the typical Flask project folder structure in the Flaskerized_app directory. This includes making a 'static' folder that will contain all the front end files from the Bootstrap template (css, javascript, etc.) and a 'templates' folder that will contain all the HTML files from the Bootstrap template. The StructureDirectory class takes both the full path to Bootstrap template HTML files (templates_path) and the full path to the top level directory of the Bootstrap template as arguments. HTML files are copied from the Bootstrap template to the Flask project folder from explicitly stated templates_path. Methods of the StructureDirectory class search the entire Bootstrap template directory tree for any files that belong in the 'static' folder based on their extensions (.js, .css, .img, etc). Any files that belong in the 'static' folder of the Flask project are thenn migrated there. The StructureDirectory class also has methods that parse all migrated files for links that refer to original folder structure of the Bootstrap template and fixes them to reflect the new structure of the Flask project. 
+The StructureDirectory class makes the typical Flask project folder structure in the Flaskerized_app directory. This includes making a 'static' folder that will contain all the front end files from the Bootstrap template (css, javascript, etc.) and a 'templates' folder that will contain all the HTML files from the Bootstrap template. The StructureDirectory class takes both the full path to Bootstrap template HTML files (templates_path) and the full path to the top level directory of the Bootstrap template (top_level_path) as arguments. HTML files are copied from the Bootstrap template to the Flask project folder from explicitly stated templates_path. Methods of the StructureDirectory class search the entire Bootstrap template directory tree for any files that belong in the 'static' folder based on their extensions (.js, .css, .img, etc). Any files that belong in the 'static' folder of the Flask project are then migrated there. The StructureDirectory class also has methods that parse all migrated files for links that refer to original folder structure of the Bootstrap template and fixes them to reflect the new structure of the Flask project. 
 
 **The WriteApp class**
 
