@@ -8,8 +8,11 @@ import shutil
 
 class StructureDirectory():
     def __init__(self, templates_path, top_level_path):
-        ''' The templates_path attribute of the StructureDirectory class is a path to the HTML
-        files in the Bootstrap template source folder that will be migrated to the Flask 'templates' folder.
+        '''
+        The top_level_path attribute of the StructureDirectory class is a path to the top level folder
+         of the Bootstrap template source folder. The templates_path attribute of the StructureDirectory class is a
+         path to the HTML files in the Bootstrap template source folder that will be migrated to the Flask 'templates'
+        folder.
         '''
         self.top_level_path = top_level_path
         self.templates_path = templates_path
@@ -68,7 +71,8 @@ class StructureDirectory():
                     if name.endswith(extension):
                         migrate_dict[name] = {'source_dir': '', 'link' : ''}
                         migrate_dict[name]['source_dir'] = os.path.join(path, name)
-                        migrate_dict[name]['link'] = os.path.join(path, name).replace('\\', '/')[len(self.templates_path) + 1:]
+                        migrate_dict[name]['link'] = os.path.join(path, name).replace('\\',
+                                                                                      '/')[len(self.templates_path) + 1:]
         return migrate_dict
 
     def detect_and_migrate_html_files(self):
@@ -82,28 +86,31 @@ class StructureDirectory():
                                              os.path.basename('templates'),
                                              os.path.basename(file_name)))
 
-
-
-    def parse_links(self, migrate_dict):
-        '''Iterates through every line of each file (key) of the migrate_dict and
-        adds /static/ to any line that should point to contents of the static folder of the flask app (i.e. lines that
-        reference content of the css or javascript folder etc.).
+    def file_list(self):
+        '''Returns a list of JavaScript and HTML files that need to be parsed for broken links by the "parse_links method.
         '''
         file_list = []
         templates_dir = os.path.join(self.flaskerized_app_dir, os.path.basename('templates'))
         js_dir = os.path.join(self.flaskerized_app_dir, os.path.basename('static'), os.path.basename('js'))
-
         for html in os.listdir(templates_dir):
             file_list.append(os.path.join(templates_dir, os.path.basename(html)))
         for js in os.listdir(js_dir):
             file_list.append(os.path.join(js_dir, os.path.basename(js)))
+        return file_list
+
+    def parse_links(self, migrate_dict):
+        '''Iterates through every file returned by the "file_list" method and
+        adds /static/ to any line that should point to contents of the static folder of the flask app (i.e. lines that
+        reference content of the css or javascript folder etc.).
+        '''
+        file_list = self.file_list()
         for file in file_list:
             line_list = []
-            with open(file, 'r') as read_obj: #there are encoding issues here
+            with open(file, 'r', encoding='utf-8') as read_obj: #there are encoding issues here
                 for line in read_obj:
                     line_list.append(line)
             os.remove(file)
-            with open(file, 'a') as write_obj:
+            with open(file, 'a', encoding='utf-8') as write_obj:
                 for line in line_list:
                     for name in migrate_dict:
                         if migrate_dict[name]['link'] in line:

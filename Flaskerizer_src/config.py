@@ -27,8 +27,8 @@ Bootstrap template of choice.
 '''
 
 CONFIGURATION = {
-       'top_level_path' : os.path.dirname(Example.__file__),
-       'templates_path': os.path.dirname(Example.__file__)
+       'top_level_path' : r'C:\Users\vande060\Desktop\coding\projects\Flaskerizer\NiceAdmin',
+       'templates_path': r'C:\Users\vande060\Desktop\coding\projects\Flaskerizer\NiceAdmin'
 }
 
 #probably need two paths, one to top level and one to the html files
