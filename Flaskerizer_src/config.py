@@ -17,6 +17,6 @@ template as it is in the 'Alstar_example'
 '''
 
 CONFIGURATION = {
-       'top_level_path' : r'C:\Users\vande060\Desktop\coding\projects\Flaskerizer\startbootstrap-freelancer-gh-pages',
-       'templates_path': r'C:\Users\vande060\Desktop\coding\projects\Flaskerizer\startbootstrap-freelancer-gh-pages'
+       'top_level_path' : os.path.dirname(Example.__file__),
+       'templates_path': os.path.dirname(Example.__file__)
 }
