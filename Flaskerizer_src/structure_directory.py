@@ -54,7 +54,7 @@ class StructureDirectory():
         these files are saved in a dictionary.
         '''
         migrate_dict = {}
-        extensions = ['.js', '.css', '.jpg', '.png', '.ico', '.otf', '.eot', '.svg', '.ttf', '.woff', '.woff2']
+        extensions = ['.js', '.css', '.jpg', '.png', 'gif', '.ico', '.otf', '.eot', '.svg', '.ttf', '.woff', '.woff2']
         path = self.top_level_path
         for path, subdir, files in os.walk(path):
             for name in files:
@@ -95,10 +95,22 @@ class StructureDirectory():
             extension_dir = os.path.join(self.flaskerized_app_dir,
                                          os.path.basename(target_folders[extension]['folder']),
                                          os.path.basename(target_folders[extension]['subfolder']))
-        for file in os.listdir(extension_dir):
-            file_list.append(os.path.join(extension_dir, os.path.basename(file)))
+            for file in os.listdir(extension_dir):
+                file_list.append(os.path.join(extension_dir, os.path.basename(file)))
         return file_list
 
+
+    def load_file(self, file):
+        '''Iterates through each file in a file_list and loads them into memory as a list containing an item for each
+        line of the file.
+        '''
+        line_list = []
+        with io.open(file, 'r', encoding='utf-8') as read_obj:  # there are encoding issues here
+            for line in read_obj:
+                line_list.append(line)
+        os.remove(file)
+        return line_list
+    
     def parse_links(self, migrate_dict):
         '''Iterates through every file returned by the "file_list" method and
         adds /static/ to any line that should point to contents of the static folder of the flask app (i.e. lines that
@@ -106,11 +118,7 @@ class StructureDirectory():
         '''
         file_list = self.file_list()
         for file in file_list:
-            line_list = []
-            with io.open(file, 'r', encoding='utf-8') as read_obj: #there are encoding issues here
-                for line in read_obj:
-                    line_list.append(line)
-            os.remove(file)
+            line_list = self.load_file(file)
             with io.open(file, 'a', encoding='utf-8') as write_obj:
                 for line in line_list:
                     for name in migrate_dict:
@@ -123,6 +131,19 @@ class StructureDirectory():
                                         line = line.replace(migrate_dict[name]['link'],
                                                             '/'.join((target_folders[extension]['folder'],
                                                                       target_folders[extension]['subfolder'], name)))
+
+                        elif ('..' + migrate_dict[name]['link'][migrate_dict[name]['link'].find('/'):]) in line:
+                            if name.endswith('.html'):
+                                line = line.replace(migrate_dict[name]['link'][migrate_dict[name]['link'].find('/'):], name)
+                            else:
+                                for extension in target_folders:
+                                    if name.endswith(extension):
+
+                                        line = line.replace(migrate_dict[name]['link'][migrate_dict[name]['link'].find('/'):],
+                                                            '/'.join(('/' + target_folders[extension]['subfolder'], name)))
+
+
+
                     write_obj.write(line)
 
     def structure_directory(self):

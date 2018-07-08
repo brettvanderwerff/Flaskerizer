@@ -27,8 +27,8 @@ Bootstrap template of choice.
 '''
 
 CONFIGURATION = {
-       'top_level_path' : r'C:\Users\vande060\Desktop\coding\projects\Flaskerizer\NiceAdmin',
-       'templates_path': r'C:\Users\vande060\Desktop\coding\projects\Flaskerizer\NiceAdmin'
+       'top_level_path' : r'C:\Users\vande060\Desktop\coding\projects\Flaskerizer\logic-free-html5-multipurpose-business-template',
+       'templates_path': r'C:\Users\vande060\Desktop\coding\projects\Flaskerizer\logic-free-html5-multipurpose-business-template'
 }
 
 #probably need two paths, one to top level and one to the html files

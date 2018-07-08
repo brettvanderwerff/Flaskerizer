@@ -14,6 +14,9 @@ target_folders = {
             'png': {'folder': 'static',
                       'subfolder' : 'img'
                     },
+            'gif' : {'folder' : 'static',
+                     'subfolder' : 'img'},
+
             'ico': {'folder': 'static',
                       'subfolder' : 'img'
                     },
@@ -36,3 +39,5 @@ target_folders = {
                       'subfolder' : 'fonts'
                     },
         }
+
+#migrate fonts to fonts and css subfolder!
