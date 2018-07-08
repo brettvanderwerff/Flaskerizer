@@ -87,15 +87,16 @@ class StructureDirectory():
                                              os.path.basename(file_name)))
 
     def file_list(self):
-        '''Returns a list of JavaScript and HTML files that need to be parsed for broken links by the "parse_links method.
+        '''Returns a list of JavaScript, CSS, and HTML files that need to be parsed for broken links by the
+        "parse_links method.
         '''
         file_list = []
-        templates_dir = os.path.join(self.flaskerized_app_dir, os.path.basename('templates'))
-        js_dir = os.path.join(self.flaskerized_app_dir, os.path.basename('static'), os.path.basename('js'))
-        for html in os.listdir(templates_dir):
-            file_list.append(os.path.join(templates_dir, os.path.basename(html)))
-        for js in os.listdir(js_dir):
-            file_list.append(os.path.join(js_dir, os.path.basename(js)))
+        for extension in ['html', 'js', 'css']:
+            extension_dir = os.path.join(self.flaskerized_app_dir,
+                                         os.path.basename(target_folders[extension]['folder']),
+                                         os.path.basename(target_folders[extension]['subfolder']))
+        for file in os.listdir(extension_dir):
+            file_list.append(os.path.join(extension_dir, os.path.basename(file)))
         return file_list
 
     def parse_links(self, migrate_dict):
