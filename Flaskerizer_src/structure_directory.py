@@ -95,7 +95,7 @@ class StructureDirectory():
 
 
     def load_file(self, file):
-        '''Iterates through each file in a file_list returned ny the "file_list" method and loads them into memory as a
+        '''Iterates through each file in a file_list returned by the "file_list" method and loads them into memory as a
         list containing an item for each line of the file.
         '''
         line_list = []
@@ -107,7 +107,7 @@ class StructureDirectory():
 
     def parse_links(self, migrate_dict):
         '''Iterates through every file returned by the "file_list" method and
-        adds /static/ to any line that should point to contents of the static folder of the flask app (i.e. lines that
+        adds /static/ to any line that should point to contents of the static folder of the Flask app (i.e. lines that
         reference content of the css or javascript folder etc.).
         '''
         file_list = self.file_list()

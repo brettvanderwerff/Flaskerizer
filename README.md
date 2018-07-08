@@ -5,7 +5,7 @@
 
 ## What is the Flaskerizer and what problem does it solve?
 
-Bootstrap templates from websites like https://Bootstrapmade.com/ and https://startBootstrap.com are a fast way to get very dynamic website up and running, but Bootstap templates typically don't work "out of the box" with the python web framework Flask and require some tedious directory building and broken link fixing before being functional with Flask. This is especially true if the Bootstrap templates are for large multi-page websites. 
+Free Bootstrap templates from websites like https://Bootstrapmade.com/ and https://startBootstrap.com are a fast way to get very dynamic website up and running, but Bootstap templates typically don't work "out of the box" with the python web framework Flask and require some tedious directory building and broken link fixing before being functional with Flask. This is especially true if the Bootstrap templates are for large multi-page websites. 
 
 The Flaskerizer automates the necessary directory building and link creation needed to make Bootstrap templates work "out of the box" with Flask. The Flaskerizer also automatically creates a python script with the appropriate routes and basic error handling needed to serve the Bootstrap template as a Flask app.
 
@@ -34,14 +34,16 @@ Flask: 0.12.1 or higher
 5. Open the Configuration file(`config.py`) and:
 
 * set value of key *'top_level_path'* to the full path of the top level folder of the Bootstrap template (i.e. the folder that appears when you first unzip the Bootstrap template, see config.py for example).
+
+* set value of key *templates_path* to the full path of the folder containing the HTML files of the Bootstrap template you downloaded. Note that there may be multiple folders that contain HTML files, generally you want to set the 'templates_path' value equal to the path of the folder with the *most* HTML files in it (see config.py for example).
  
-6. Run the program by opening a terminal in the top level directory of the repo and entering `$ python flaskerizer.py` (this may vary slightly by environment)
+6. Run the program by opening a terminal in the top level directory of the repo and entering `$ python flaskerizer.py` (this may vary slightly by environment and may take a few minutes to run depending on the Bootstrap template size)
 
 7. After running flaskerizer.py, clear your browser's cache and enter `$ python Flaskerized_app/app.py` in the terminal to launch the newly made Flask app.
 
 8. View your website by opening the browser to your local address on port 5000 (i.e. http://127.0.0.1:5000 / http://0.0.0.0:5000) , Note: may have to enter http://127.0.0.1:5000/index.html / http://0.0.0.0:5000/index.html to route the  website homepage.
 
-9. You may get still get a few 404 errors for broken links that you might need to fix manually, the Flaskerizer is not perfect yet, but overall it seems to be doing a good job. The best things you can do if you get broken link errors is to raise an issue with us and specify the template you are using so that we can fix it. You can also email me at brett.vanderwerff@gmail.com
+9. You may get still get a few 404 errors for broken links that you might need to fix manually, the Flaskerizer is early in development and not perfect yet, but overall it seems to be doing a good job regardless of the Bootstrap template source. The best things you can do if you get broken link errors is to raise an issue with us and specify the template you are using and the error you are getting so that we can try to fix it. You can also email me at brett.vanderwerff@gmail.com
 
 - **NOTE :** You may need to clear your browser's cache to view the website properly (I'm not sure why this happens sometimes)
 
@@ -69,7 +71,7 @@ The Flasker has two main classes:
 
 **The StructureDirectory class**
 
-The StructureDirectory class makes the typical Flask project folder structure in the Flaskerized_app directory. This includes making a 'static' folder that will contain all the front end files from the Bootstrap template (css, javascript, etc.) and a 'templates' folder that will contain all the HTML files from the Bootstrap template. The StructureDirectory class takes both the full path to Bootstrap template HTML files (templates_path) and the full path to the top level directory of the Bootstrap template (top_level_path) as arguments. HTML files are copied from the Bootstrap template to the Flask project folder from explicitly stated templates_path. Methods of the StructureDirectory class search the entire Bootstrap template directory tree for any files that belong in the 'static' folder based on their extensions (.js, .css, .img, etc). Any files that belong in the 'static' folder of the Flask project are then migrated there. The StructureDirectory class also has methods that parse all migrated files for links that refer to original folder structure of the Bootstrap template and fixes them to reflect the new structure of the Flask project. 
+The StructureDirectory class makes the typical Flask project folder structure in the Flaskerized_app directory. This includes making a 'static' folder that will contain all the front end files from the Bootstrap template (css, javascript, etc.) and a 'templates' folder that will contain all the HTML files from the Bootstrap template. The StructureDirectory class takes both the full path to Bootstrap template HTML files (templates_path) and the full path to the top level directory of the Bootstrap template (top_level_path) as arguments. HTML files are copied from the Bootstrap template to the Flask project folder via the explicitly stated templates_path. Methods of the StructureDirectory class search the entire Bootstrap template directory tree for any files that belong in the 'static' folder based on their extensions (.js, .css, .img, etc). Any files that belong in the 'static' folder of the Flask project are then migrated there. The StructureDirectory class also has methods that parse all migrated files for links that refer to original folder structure of the Bootstrap template and fixes them to reflect the new structure of the Flask project. 
 
 **The WriteApp class**
 

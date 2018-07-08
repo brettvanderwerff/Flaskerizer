@@ -135,9 +135,8 @@ class ChooseFilesGUI(object):
             return True
 
     def get_values(self):
-        """Gets the html_location, static_location and js_location
-        values for paths to the HTML files, 'static' folder content, and Javascript files of the Bootstrap
-        template. These paths are passed to the StructureDirectory class for flaskerization.
+        """Gets the templates_path and top_level_path values of Bootstrap template.
+        These paths are passed to the StructureDirectory class for flaskerization.
         """
         self.templates = self.templates_path.get()
         self.top_level = self.top_level_path.get()
