@@ -59,7 +59,7 @@ class TestStructureDirectory(unittest.TestCase):
                 for extension in extensions:
                     if name.endswith(extension):
                         file_list.append(name)
-        self.assertEqual(136, len(file_list))
+        self.assertEqual(135, len(file_list))
 
 
 
