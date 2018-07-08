@@ -11,9 +11,8 @@ from Flaskerizer_src.config import CONFIGURATION
 from Flaskerizer_src.structure_directory import StructureDirectory
 from Flaskerizer_src.write_app import WriteApp
 
-structure_directory_object = StructureDirectory(templates_path=CONFIGURATION['templates_path'])
-structure_directory_object.make_folders()
-structure_directory_object.search_tree()
+structure_directory_object = StructureDirectory(templates_path=CONFIGURATION['templates_path'], top_level_path=CONFIGURATION['top_level_path'])
+structure_directory_object.structure_directory()
 write_app_object = WriteApp()
 write_app_object.write_app()
 
