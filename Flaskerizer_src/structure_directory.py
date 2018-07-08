@@ -106,11 +106,11 @@ class StructureDirectory():
         file_list = self.file_list()
         for file in file_list:
             line_list = []
-            with open(file, 'r', encoding='utf-8') as read_obj: #there are encoding issues here
+            with io.open(file, 'r', encoding='utf-8') as read_obj: #there are encoding issues here
                 for line in read_obj:
                     line_list.append(line)
             os.remove(file)
-            with open(file, 'a', encoding='utf-8') as write_obj:
+            with io.open(file, 'a', encoding='utf-8') as write_obj:
                 for line in line_list:
                     for name in migrate_dict:
                         if migrate_dict[name]['link'] in line:
