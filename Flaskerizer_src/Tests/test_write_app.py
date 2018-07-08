@@ -14,10 +14,8 @@ class TestWriteApp(unittest.TestCase):
         also instantiated from the WriteApp class.
         '''
         structure_directory_object = StructureDirectory(templates_path=CONFIGURATION['templates_path'],
-                                                        static_path=CONFIGURATION['static_path'],
-                                                        javascript_path=CONFIGURATION['javascript_path'])
-        structure_directory_object.migrate_static()
-        structure_directory_object.parse_html()
+                                                        top_level_path=CONFIGURATION['top_level_path'])
+        structure_directory_object.structure_directory()
         self.test = WriteApp()
 
     def test_get_routes(self):

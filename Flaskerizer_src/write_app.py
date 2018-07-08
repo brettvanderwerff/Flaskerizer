@@ -12,7 +12,7 @@ class WriteApp():
                                                                  os.path.basename('Flaskerized_app'),
                                                                  os.path.basename('templates')))]
 
-    def write_error_handler(self, template_name, write_obj):#ToDo eliminate non-error status codes from dictionary
+    def write_error_handler(self, template_name, write_obj):
         '''If the write_routes function detects a template name as containing a status code, the template name will
         be passed to write_error_handler along with the write_obj. The write_error_handler function will write an
         error handler for the template, which is making the assumption that the template was intended to represent
