@@ -48,6 +48,7 @@ class StructureDirectory():
                                          os.path.basename(target_folders[item_extension]['folder']),
                                          os.path.basename(target_folders[item_extension]['subfolder']),
                                          os.path.basename(name)))
+            # ToDo fonts also need to be migrated to the css subfolder of static
     def detect_static_files(self):
         '''Walks through the entire directory tree of the Bootstrap template detecting any files with extensions that
         are needed for the static content of the Flask app (i.e. .css, .js, .img, etc). The names and locations of
@@ -58,21 +59,14 @@ class StructureDirectory():
         path = self.top_level_path
         for path, subdir, files in os.walk(path):
             for name in files:
-                if name in migrate_dict:
-                    duplicate_name = str(random.randint(1,100)) + name
-                    for extension in extensions:
-                        if name.endswith(extension):
-                            migrate_dict[duplicate_name] = {'source_dir': '', 'link': ''}
-                            migrate_dict[duplicate_name]['source_dir'] = os.path.join(path, name)
-                            migrate_dict[duplicate_name]['link'] = os.path.join(path, name).replace('\\', '/')[
-                                                         len(self.top_level_path) + 1:]
-                    continue
+                duplicate_name = str(random.randint(1,100000)).zfill(6) + name # this prevents issues 2+ files have same names
                 for extension in extensions:
                     if name.endswith(extension):
-                        migrate_dict[name] = {'source_dir': '', 'link' : ''}
-                        migrate_dict[name]['source_dir'] = os.path.join(path, name)
-                        migrate_dict[name]['link'] = os.path.join(path, name).replace('\\',
-                                                                                      '/')[len(self.templates_path) + 1:]
+                        migrate_dict[duplicate_name] = {'source_dir': '', 'link': ''}
+                        migrate_dict[duplicate_name]['source_dir'] = os.path.join(path, name)
+                        migrate_dict[duplicate_name]['link'] = os.path.join(path, name).replace('\\', '/')[
+                                                     len(self.top_level_path) + 1:]
+
         return migrate_dict
 
     def detect_and_migrate_html_files(self):
@@ -101,16 +95,16 @@ class StructureDirectory():
 
 
     def load_file(self, file):
-        '''Iterates through each file in a file_list and loads them into memory as a list containing an item for each
-        line of the file.
+        '''Iterates through each file in a file_list returned ny the "file_list" method and loads them into memory as a
+        list containing an item for each line of the file.
         '''
         line_list = []
-        with io.open(file, 'r', encoding='utf-8') as read_obj:  # there are encoding issues here
+        with io.open(file, 'r', encoding='utf-8') as read_obj:
             for line in read_obj:
                 line_list.append(line)
         os.remove(file)
         return line_list
-    
+
     def parse_links(self, migrate_dict):
         '''Iterates through every file returned by the "file_list" method and
         adds /static/ to any line that should point to contents of the static folder of the flask app (i.e. lines that
@@ -122,37 +116,50 @@ class StructureDirectory():
             with io.open(file, 'a', encoding='utf-8') as write_obj:
                 for line in line_list:
                     for name in migrate_dict:
-                        if migrate_dict[name]['link'] in line:
-                            if name.endswith('.html'):
-                                line = line.replace(migrate_dict[name]['link'], name)
+                        if ("../fonts/{}".format(name[6:])) in line:
+                            line = line.replace("../fonts/{}".format(name[6:]),"../fonts/{}".format(name))
+                        elif ("@import url('{}')".format(name[6:])) in line:
+                            line = line.replace("@import url('{}')".format(name[6:]),
+                                                "@import url('{}')".format(name))
+                        elif ('../' + migrate_dict[name]['link']) in line:
+                            if file.endswith('.html'):
+                                if ('../' + migrate_dict[name]['link']) in line:
+                                    for extension in target_folders:
+                                        if name.endswith(extension):
+                                            line = line.replace(migrate_dict[name]['link'],
+                                                                '/'.join((target_folders[extension]['folder'],
+                                                                          target_folders[extension]['subfolder'], name)))
                             else:
                                 for extension in target_folders:
                                     if name.endswith(extension):
                                         line = line.replace(migrate_dict[name]['link'],
-                                                            '/'.join((target_folders[extension]['folder'],
-                                                                      target_folders[extension]['subfolder'], name)))
-
+                                                            '/'.join((target_folders[extension]['subfolder'], name)))
+                        elif migrate_dict[name]['link'] in line:
+                            for extension in target_folders:
+                                if name.endswith(extension):
+                                    line = line.replace(migrate_dict[name]['link'],
+                                                        '/'.join((target_folders[extension]['folder'],
+                                                                  target_folders[extension]['subfolder'], name)))
                         elif ('..' + migrate_dict[name]['link'][migrate_dict[name]['link'].find('/'):]) in line:
-                            if name.endswith('.html'):
-                                line = line.replace(migrate_dict[name]['link'][migrate_dict[name]['link'].find('/'):], name)
-                            else:
-                                for extension in target_folders:
-                                    if name.endswith(extension):
+                            for extension in target_folders:
+                                if name.endswith(extension):
 
-                                        line = line.replace(migrate_dict[name]['link'][migrate_dict[name]['link'].find('/'):],
-                                                            '/'.join(('/' + target_folders[extension]['subfolder'], name)))
-
-
-
+                                    line = line.replace(migrate_dict[name]['link'][migrate_dict[name]['link'].find('/'):],
+                                                        '/'.join(('/' + target_folders[extension]['subfolder'], name)))
                     write_obj.write(line)
 
     def structure_directory(self):
+        '''
+        Structures the Flask project by making the 'templates' and 'static' folders and the appropriate subfolders.
+        Migrates all static content (files with .css, .js, etc extensions) to the 'static' folder.
+        Migrates all HTML files to the 'templates' folder. Parses all migrated files for links that need to be fixed to
+        reflect the Flask project folder structure.
+        '''
         self.mkdir()
         migrate_dict = self.detect_static_files()
         self.migrate_files(migrate_dict)
         self.detect_and_migrate_html_files()
         self.parse_links(migrate_dict)
-
 
 if __name__ == "__main__":
     my_object = StructureDirectory(templates_path=CONFIGURATION['templates_path'],

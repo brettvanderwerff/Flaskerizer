@@ -40,4 +40,4 @@ target_folders = {
                     },
         }
 
-#migrate fonts to fonts and css subfolder!
+#ToDo fonts also need to be migrated to the css subfolder of static
