@@ -77,7 +77,7 @@ The StructureDirectory class makes the typical Flask project folder structure in
 
 
 
-Methods of the WriteApp class automatically write a python script 'app.py' with the necessary instructions to launch a Flask app of the Bootstrap template. The methods write the import statements, instantiate the 'app' object from the Flask class, and write a main loop to run the app. This methods also detect the HTML files in the 'templates' folder of the Flask project and write the corresponding routes to these HTML files. If any of the HTML files are named for an HTTP status code, the methods generate an error handling route for that file. This assumes that any HTML file with an HTTP status code in it's name reflects an error, which is usually true. 
+Methods of the WriteApp class automatically write a python script 'app.py' with the necessary instructions to launch a Flask app of the Bootstrap template. The methods write the import statements, instantiate the 'app' object from the Flask class, and write a main loop to run the app. These methods also detect the HTML files in the 'templates' folder of the Flask project and write the corresponding routes to these HTML files. If any of the HTML files are named for an HTTP status code, the methods generate an error handling route for that file. This assumes that any HTML file with an HTTP status code in it's name reflects an error, which is usually true. 
 
 
 ## Contribution Guidelines
