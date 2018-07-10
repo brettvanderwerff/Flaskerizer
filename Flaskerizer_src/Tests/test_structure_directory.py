@@ -103,31 +103,5 @@ class TestStructureDirectory(unittest.TestCase):
                                 gold_standard_file_list.append(name)
         self.assertEqual(len(test_file_list), len(gold_standard_file_list))
 
-    def test_parse_links(self):
-        '''
-        Tests the parse_links method by reading in the index.html file created in the Flaskerized_App/templates
-        directory from the example Bootstrap template and compares this to a "gold standard" index.html file in
-        the Flaskerized_app_test_folder/templates directory. This comparison is done line by line.
-        '''
-        self.test.mkdir()
-        migrate_dict = self.test.detect_static_files()
-        self.test.migrate_files(migrate_dict)
-        self.test.detect_and_migrate_html_files()
-        self.test.parse_links(migrate_dict)
-        test_dir = os.path.join(os.path.dirname(flaskerizer.__file__),
-                                os.path.basename('Flaskerized_app'),
-                                os.path.basename('templates'),
-                                os.path.basename('index.html'))
-        gold_standard_dir = os.path.join(os.path.dirname(Tests.__file__),
-                                         os.path.basename('testing_files'),
-                                         os.path.basename('Flaskerized_app_test_folder'),
-                                         os.path.basename('templates'),
-                                         os.path.basename('index.html'))
-        with open(test_dir, 'r') as test_obj:
-            test_string = test_obj.read()
-        with open(gold_standard_dir, 'r') as gold_obj:
-            gold_string = gold_obj.read()
-        self.assertMultiLineEqual(test_string, gold_string)
-
 if __name__ == "__main__":
     unittest.main()
