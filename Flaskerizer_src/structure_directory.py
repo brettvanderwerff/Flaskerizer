@@ -3,7 +3,6 @@ import os
 from Flaskerizer_src.config import CONFIGURATION
 from Flaskerizer_src.target_folders import target_folders
 import flaskerizer
-import random
 import shutil
 
 class StructureDirectory():
@@ -57,9 +56,11 @@ class StructureDirectory():
         migrate_dict = {}
         extensions = ['.js', '.css', '.jpg', '.png', 'gif', '.ico', '.otf', '.eot', '.svg', '.ttf', '.woff', '.woff2']
         path = self.top_level_path
+        counter=0
         for path, subdir, files in os.walk(path):
             for name in files:
-                duplicate_name = str(random.randint(1,100000)).zfill(6) + name # this prevents issues 2+ files have same names
+                counter +=1
+                duplicate_name = str(counter).zfill(6) + name # this prevents issues 2+ files have same names
                 for extension in extensions:
                     if name.endswith(extension):
                         migrate_dict[duplicate_name] = {'source_dir': '', 'link': ''}
