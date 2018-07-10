@@ -1,7 +1,6 @@
 from Flaskerizer_src.structure_directory import StructureDirectory
 import Flaskerizer_src.Examples.Alstar_example as Example
 import Flaskerizer_src.Tests as Tests
-from Flaskerizer_src.Tests.testing_files.migrate_dict_test_file import migrate_dict_test
 import flaskerizer
 import unittest
 import os
@@ -44,14 +43,7 @@ class TestStructureDirectory(unittest.TestCase):
                                                     os.path.basename('Flaskerized_app'),
                                                     os.path.basename('templates'))))
 
-    def test_detect_static_files(self):
-        '''
-        Tests that detect_static_files returns a dictionary of files to be migrated from the example Bootstrap
-          template that matches a "gold standard" dictionary "migrate_dict_test".
-        '''
-        self.test.mkdir()
-        migrate_dict = self.test.detect_static_files()
-        self.assertDictEqual(migrate_dict, migrate_dict_test)
+
 
     def test_detect_and_migrate_html_files(self):
         '''
