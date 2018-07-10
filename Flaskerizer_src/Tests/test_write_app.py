@@ -1,4 +1,4 @@
-from Flaskerizer_src.config import CONFIGURATION
+import Flaskerizer_src.Examples.Alstar_example as Example
 from Flaskerizer_src.structure_directory import StructureDirectory
 from Flaskerizer_src.write_app import WriteApp
 import Flaskerizer_src.Tests as Tests
@@ -13,8 +13,8 @@ class TestWriteApp(unittest.TestCase):
         '''Instantiates a 'structure_directory_object' from the StructureDirectory class.The object 'test' is
         also instantiated from the WriteApp class.
         '''
-        structure_directory_object = StructureDirectory(templates_path=CONFIGURATION['templates_path'],
-                                                        top_level_path=CONFIGURATION['top_level_path'])
+        structure_directory_object = StructureDirectory(templates_path=os.path.dirname(Example.__file__),
+                                                        top_level_path=os.path.dirname(Example.__file__))
         structure_directory_object.structure_directory()
         self.test = WriteApp()
 
