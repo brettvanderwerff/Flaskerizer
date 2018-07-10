@@ -5,7 +5,7 @@
 
 ## What is the Flaskerizer and what problem does it solve?
 
-Free Bootstrap templates from websites like https://Bootstrapmade.com/ and https://startBootstrap.com are a fast way to get very dynamic website up and running, but Bootstap templates typically don't work "out of the box" with the python web framework Flask and require some tedious directory building and broken link fixing before being functional with Flask. This is especially true if the Bootstrap templates are for large multi-page websites. 
+Bootstrap templates are a fast way to a get very dynamic website up and running, but these templates typically don't work "out of the box" with the python web framework Flask and require some tedious directory building and link modification before being functional with Flask. This is especially true if the Bootstrap templates are for large multi-page websites. 
 
 The Flaskerizer automates the necessary directory building and link creation needed to make Bootstrap templates work "out of the box" with Flask. The Flaskerizer also automatically creates a python script with the appropriate routes and basic error handling needed to serve the Bootstrap template as a Flask app.
 
