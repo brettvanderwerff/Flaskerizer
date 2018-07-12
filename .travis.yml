@@ -20,4 +20,4 @@ install:
   - pip install nose
 
 script:
-  - nosetests -v -I routes_test_file.py
+  - nosetests -v --exclude-dir=/home/travis/build/brettvanderwerff/Flaskerizer/Flaskerizer_src/Tests/testing_files
