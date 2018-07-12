@@ -1,6 +1,7 @@
 from Flaskerizer_src.structure_directory import StructureDirectory
 import Flaskerizer_src.Examples.Alstar_example as Example
 import Flaskerizer_src.Tests as Tests
+from Flaskerizer_src.config import CONFIGURATION
 import flaskerizer
 import unittest
 import os
@@ -13,6 +14,14 @@ class TestStructureDirectory(unittest.TestCase):
         '''
         self.test = StructureDirectory(templates_path= os.path.dirname(Example.__file__),
                                        top_level_path= os.path.dirname(Example.__file__))
+        if CONFIGURATION['large_app_structure'] == False:
+            self.flaskerized_app_dir = os.path.join(os.path.dirname(flaskerizer.__file__),
+                                                    os.path.basename('Flaskerized_app'))
+        elif CONFIGURATION['large_app_structure'] == True:
+            self.flaskerized_app_dir = os.path.join(os.path.join(os.path.dirname(flaskerizer.__file__),
+                                                                 os.path.basename('Flaskerized_app')),
+                                                                 os.path.basename('Flaskerized_app'))
+
 
 
     def test_mkdir(self):
@@ -20,27 +29,21 @@ class TestStructureDirectory(unittest.TestCase):
         of static "css, fons, img, and js" are created.
         '''
         self.test.mkdir()
-        self.assertTrue(os.path.exists(os.path.join(os.path.dirname(flaskerizer.__file__),
-                                                    os.path.basename('Flaskerized_app'),
+        self.assertTrue(os.path.exists(os.path.join(self.flaskerized_app_dir,
                                                     os.path.basename('static'))))
-        self.assertTrue(os.path.exists(os.path.join(os.path.dirname(flaskerizer.__file__),
-                                                    os.path.basename('Flaskerized_app'),
+        self.assertTrue(os.path.exists(os.path.join(self.flaskerized_app_dir,
                                                     os.path.basename('static'),
                                                     os.path.basename('css'))))
-        self.assertTrue(os.path.exists(os.path.join(os.path.dirname(flaskerizer.__file__),
-                                                    os.path.basename('Flaskerized_app'),
+        self.assertTrue(os.path.exists(os.path.join(self.flaskerized_app_dir,
                                                     os.path.basename('static'),
                                                     os.path.basename('fonts'))))
-        self.assertTrue(os.path.exists(os.path.join(os.path.dirname(flaskerizer.__file__),
-                                                    os.path.basename('Flaskerized_app'),
+        self.assertTrue(os.path.exists(os.path.join(self.flaskerized_app_dir,
                                                     os.path.basename('static'),
                                                     os.path.basename('img'))))
-        self.assertTrue(os.path.exists(os.path.join(os.path.dirname(flaskerizer.__file__),
-                                                    os.path.basename('Flaskerized_app'),
+        self.assertTrue(os.path.exists(os.path.join(self.flaskerized_app_dir,
                                                     os.path.basename('static'),
                                                     os.path.basename('js'))))
-        self.assertTrue(os.path.exists(os.path.join(os.path.dirname(flaskerizer.__file__),
-                                                    os.path.basename('Flaskerized_app'),
+        self.assertTrue(os.path.exists(os.path.join(self.flaskerized_app_dir,
                                                     os.path.basename('templates'))))
 
 
@@ -56,8 +59,7 @@ class TestStructureDirectory(unittest.TestCase):
         migrate_dict = self.test.detect_static_files()
         self.test.migrate_files(migrate_dict)
         self.test.detect_and_migrate_html_files()
-        test_dir = os.path.join(os.path.dirname(flaskerizer.__file__),
-                                        os.path.basename('Flaskerized_app'),
+        test_dir = os.path.join(self.flaskerized_app_dir,
                                         os.path.basename('templates'))
         gold_standard_dir = os.path.join(os.path.dirname(Tests.__file__),
                                          os.path.basename('testing_files'),
@@ -103,5 +105,8 @@ class TestStructureDirectory(unittest.TestCase):
                                 gold_standard_file_list.append(name)
         self.assertEqual(len(test_file_list), len(gold_standard_file_list))
 
-if __name__ == "__main__":
-    unittest.main()
+
+for state in [True, False]:
+    CONFIGURATION['large_app_structure'] = state
+    suite = unittest.TestLoader().loadTestsFromTestCase(TestStructureDirectory)
+    unittest.TextTestRunner().run(suite)

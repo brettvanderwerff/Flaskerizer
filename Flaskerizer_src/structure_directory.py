@@ -15,12 +15,21 @@ class StructureDirectory():
         '''
         self.top_level_path = top_level_path
         self.templates_path = templates_path
-        self.flaskerized_app_dir = os.path.join(os.path.dirname(flaskerizer.__file__),
-                                        os.path.basename('Flaskerized_app'))
+        self.base_app_dir = os.path.join(os.path.dirname(flaskerizer.__file__), os.path.basename('Flaskerized_app'))
+        if CONFIGURATION['large_app_structure'] == False:
+            self.flaskerized_app_dir = self.base_app_dir
+        elif CONFIGURATION['large_app_structure'] == True:
+            self.flaskerized_app_dir = os.path.join(self.base_app_dir, os.path.basename('Flaskerized_app'))
 
     def mkdir(self):
         '''Makes folder of dir name in the Flaskerized_app directory.
         '''
+        if os.path.exists(self.base_app_dir):
+            shutil.rmtree(self.base_app_dir)
+        os.mkdir(self.base_app_dir)
+        if CONFIGURATION['large_app_structure'] == True:
+            os.mkdir(self.flaskerized_app_dir)
+
         folders = {'templates': [''],
                    'static': ['js', 'css', 'img', 'fonts']
                    }
@@ -32,7 +41,7 @@ class StructureDirectory():
                 if not os.path.exists(dir_path):
                     os.makedirs(dir_path)
                 else:
-                    shutil.rmtree(dir_path)
+                    shutil.rmtree(dir_path) #
                     os.makedirs(dir_path)
 
 

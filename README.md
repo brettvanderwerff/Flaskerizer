@@ -35,7 +35,7 @@ Flask: 0.12.1 or higher
 
 * set value of key *'top_level_path'* to the full path of the top level folder of the Bootstrap template (i.e. the folder that appears when you first unzip the Bootstrap template, see config.py for example).
 
-* set value of key *templates_path* to the full path of the folder containing the HTML files of the Bootstrap template you downloaded. Note that there may be multiple folders that contain HTML files, generally you want to set the 'templates_path' value equal to the path of the folder with the *most* HTML files in it (see config.py for example).
+* set value of key *'templates_path'* to the full path of the folder containing the HTML files of the Bootstrap template you downloaded. Note that there may be multiple folders that contain HTML files, generally you want to set the 'templates_path' value equal to the path of the folder with the *most* HTML files in it (see config.py for example).
  
 6. Run the program by opening a terminal in the top level directory of the repo and entering `$ python flaskerizer.py` (this may vary slightly by environment and may take a few minutes to run depending on the Bootstrap template size)
 
