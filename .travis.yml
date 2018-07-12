@@ -20,4 +20,4 @@ install:
   - pip install nose
 
 script:
-  - nosetests -v --exclude-dir=/home/travis/build/brettvanderwerff/Flaskerizer/Flaskerizer_src/Tests/testing_files
+  - nosetests -v --ignore-files routes_test_file.py #Need to ignore import statements in this test file
