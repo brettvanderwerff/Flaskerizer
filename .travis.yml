@@ -20,4 +20,4 @@ install:
   - pip install nose
 
 script:
-  - nosetests -v
+  - nosetests -v -I routes_test_file.py
