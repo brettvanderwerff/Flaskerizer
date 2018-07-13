@@ -47,7 +47,7 @@ Flask: 0.12.1 or higher
 By default the value of *'large_app_structure'* in the configuration file (`Flaskerizer_src/config.py`) is set to `False`, which results in the creation of a small structure Flask app with the basic 'app.py' module containing both the Flask app object and all the routes:
 ```
 .
-├── app.py  # Module with the Flask app and routes
+├── app.py    # Module with the Flask app and routes
 ├──static
 │   ├── css  
 │   ├── fonts
@@ -61,9 +61,9 @@ By default the value of *'large_app_structure'* in the configuration file (`Flas
 
 ```
 .
-├──Flaskerized_app # Package folder
-│   ├── __init__.py # File containing the Flask app object
-│   ├── routes.py # File with the routes
+├──Flaskerized_app     # Package folder
+│   ├── __init__.py    # File containing the Flask app object
+│   ├── routes.py      # File with the routes
 │   ├──static
 │   │   ├── css  
 │   │   ├── fonts
