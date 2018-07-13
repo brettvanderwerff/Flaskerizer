@@ -19,5 +19,5 @@ template as it is in the 'Alstar_example'
 CONFIGURATION = {
        'top_level_path' : os.path.dirname(Example.__file__),
        'templates_path': os.path.dirname(Example.__file__),
-       'large_app_structure' : True
+       'large_app_structure' : False
 }

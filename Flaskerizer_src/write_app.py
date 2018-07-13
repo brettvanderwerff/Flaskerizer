@@ -47,6 +47,9 @@ class WriteApp():
 
 
     def write_setup(self):
+        '''
+        Writes a setup.py file for the large Flask app project structure.
+        '''
         with open(os.path.join(self.base_app_dir, os.path.basename('setup.py')), 'w') as write_obj:
             write_obj.write('from setuptools import setup\n\n'
                             'setup(\n'
@@ -58,12 +61,12 @@ class WriteApp():
                             '   ],\n'
                             ')')
 
+
     def write_small_app(self):
-        '''Writes the 'skeleton' of a Flask app in a file 'app.py'. Writes import statements for Flask and
-        render_template, instantiates an object 'app' from the 'Flask' class, and generates a conditional
-        'if __name__ == '__main__':' to run the Flask app.
-         URL routes are added to the 'skeleton' by calling the write_routes method.
-         '''
+        '''
+        Writes an instantiation of a Flask app in an 'app.py' file according to the small Flask app project structure.
+        Also writes the routes in the same 'app.py' file.
+        '''
         with open(os.path.join(self.flaskerized_app_dir, os.path.basename('app.py')), 'w') as write_obj:
             write_obj.write('from flask import Flask, render_template\n\n')
             write_obj.write('app = Flask(__name__)\n\n')
@@ -72,6 +75,12 @@ class WriteApp():
             write_obj.write("    app.run()")
 
     def write_large_app(self):
+        '''
+        Writes an instantiation of a Flask app in an '__init__.py' file according to the large Flask app project
+        structure detailed in the Flask documentation:
+        http://flask.pocoo.org/docs/1.0/patterns/packages/
+        Writes the routes in a separate routes.py file.
+        '''
         with open(os.path.join(self.flaskerized_app_dir, os.path.basename('__init__.py')), 'w') as write_obj:
             write_obj.write('from flask import Flask\n'
                             'app = Flask(__name__)\n\n'

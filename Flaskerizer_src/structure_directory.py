@@ -22,7 +22,7 @@ class StructureDirectory():
             self.flaskerized_app_dir = os.path.join(self.base_app_dir, os.path.basename('Flaskerized_app'))
 
     def mkdir(self):
-        '''Makes folder of dir name in the Flaskerized_app directory.
+        '''MAkes all the folders for the Flask application.
         '''
         if os.path.exists(self.base_app_dir):
             shutil.rmtree(self.base_app_dir)

@@ -11,7 +11,8 @@ class TestWriteApp(unittest.TestCase):
     maxDiff = None # reveals difference between test strings and "gold standard" strings
     def setUp(self):
         '''Instantiates a 'structure_directory_object' from the StructureDirectory class.The object 'test' is
-        also instantiated from the WriteApp class.
+        also instantiated from the WriteApp class. Tests are written to test both cases where the config.py
+        CONFIGURATION['large_app_structure'] is set to either True or False.
         '''
         structure_directory_object = StructureDirectory(templates_path=os.path.dirname(Example.__file__),
                                                         top_level_path=os.path.dirname(Example.__file__))
@@ -25,9 +26,11 @@ class TestWriteApp(unittest.TestCase):
         self.assertIsInstance(self.test.get_routes(), list)
 
     def test_write_app(self):
-        ''' Tests that write_app method of the WriteApp class creates a file app.py that matches a "gold standard"
-        app.py called app_test_file.py from the testing_files directory. These two files are compared line for line
-        in the test.
+        '''When CONFIGURATION['large_app_structure'] == False, Tests that write_small_app method of the WriteApp
+        class creates a file 'app.py' that matches a "gold standard" app.py called app_test_file.py from the testing_files
+        directory. These two files are compared line for line in the test. Similarly, when
+        CONFIGURATION['large_app_structure'] == False, tests if the 'routes.py' file written by write_large_app matches
+        a gold standard version.
         '''
         if CONFIGURATION['large_app_structure'] == False:
             self.test.write_small_app()
@@ -54,7 +57,7 @@ class TestWriteApp(unittest.TestCase):
 
 
 for state in [True, False]:
-    CONFIGURATION['large_app_structure'] = state
+    CONFIGURATION['large_app_structure'] = state #Tests are run under both CONFIGURATION['large_app_structure'] == True or False
     suite = unittest.TestLoader().loadTestsFromTestCase(TestWriteApp)
     unittest.TextTestRunner().run(suite)
 
