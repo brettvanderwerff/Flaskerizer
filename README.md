@@ -42,9 +42,9 @@ Flask: 0.12.1 or higher
 
 
 
-## Selection of large or small Flask application structure
+## Selection of large or small Flask application structure (optional)
 
-By default the value of *'large_app_structure'* in the configuration file (`Flaskerizer_src/config.py`) is set to `False`, which results in the creation of a small structure Flask app with the basic 'app.py' module containing both the Flask app object and all the routes:
+By default the value of *'large_app_structure'* in the configuration file (`Flaskerizer_src/config.py`) is set to `False`, which results in the creation of a small structure Flask app after running steps 1-4 under **Setup and Operation** with the basic 'app.py' module that contains both the Flask app object and all the routes:
 ```
 .
 ├── app.py    # Module with the Flask app and routes
@@ -74,7 +74,7 @@ By default the value of *'large_app_structure'* in the configuration file (`Flas
 ```
 Launching the large structure Flask app is a bit different:
 
-1. Navigate to the Flaskerized_app folder (not the package Flaskerized_app folder).
+1. After running steps 1-4 under **Setup and Operation**, open the newly created Flaskerized_app folder.
 
 2. Open the terminal and enter `$python -m venv venv` to create a new virtual environment (this may vary slightly by environment).
 
