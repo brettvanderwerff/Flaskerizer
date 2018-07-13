@@ -64,11 +64,11 @@ By default the value of *'large_app_structure'* in the configuration file (`Flas
 ├──Flaskerized_app # Package folder
 │   ├── __init__.py # File containing the Flask app object
 │   ├── routes.py # File with the routes
-│   ├──static
-│   ├── css  
-│   ├── fonts
-│   ├── img  
-│   └── js  
+│   └──static
+│	│   ├── css  
+│	│   ├── fonts
+│	│   ├── img  
+│	│   └── js  
 │   └── templates  
 └── setup.py  
 ```
