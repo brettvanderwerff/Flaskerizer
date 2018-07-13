@@ -148,6 +148,6 @@ class ChooseFilesGUI(object):
                                                                      top_level_path=self.top_level)
                 self.write_app_object = WriteApp()
                 self.structure_directory_object.structure_directory()
-                self.write_app_object.write_app()
+                self.write_app_object.write_small_app()
         return [self.templates, self.top_level]        #For testing purposes returns values
 
