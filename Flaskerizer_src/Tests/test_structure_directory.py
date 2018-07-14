@@ -14,7 +14,7 @@ class TestStructureDirectory(unittest.TestCase):
         '''Instantiates an object 'test' from the StructureDirectory class. Tests are written to test both cases where
         the config.py CONFIGURATION['large_app_structure'] is set to either True or False.
         '''
-        CONFIGURATION['app_name'] = 'Flaskerized_app'
+        CONFIGURATION['app_name'] = 'Test_application'
         self.test = StructureDirectory(templates_path= os.path.dirname(Example.__file__),
                                        top_level_path= os.path.dirname(Example.__file__))
         if CONFIGURATION['large_app_structure'] == False:
@@ -116,6 +116,8 @@ class TestStructureDirectory(unittest.TestCase):
                             if dir == gold_standard_dir:
                                 gold_standard_file_list.append(name)
         self.assertEqual(len(test_file_list), len(gold_standard_file_list))
+
+
 
 for state in [True, False]:
     CONFIGURATION['large_app_structure'] = state #Tests are run under both CONFIGURATION['large_app_structure'] == True or False

@@ -20,7 +20,7 @@ CONFIGURATION = {
        'top_level_path' : os.path.dirname(Example.__file__),
        'templates_path': os.path.dirname(Example.__file__),
        'large_app_structure' : False,
-       'app_name' : 'app' # app_name cannot be 'app'
+       'app_name' : 'Flaskerized_app' # app_name cannot be 'app'
 }
 
 if CONFIGURATION['app_name'] == 'app':

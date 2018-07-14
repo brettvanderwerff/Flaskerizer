@@ -74,4 +74,3 @@ Thumbs.db
 venv/
 static/
 templates/
-app.py
