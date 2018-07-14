@@ -14,6 +14,7 @@ class TestWriteApp(unittest.TestCase):
         also instantiated from the WriteApp class. Tests are written to test both cases where the config.py
         CONFIGURATION['large_app_structure'] is set to either True or False.
         '''
+        CONFIGURATION['app_name'] = 'Flaskerized_app'
         structure_directory_object = StructureDirectory(templates_path=os.path.dirname(Example.__file__),
                                                         top_level_path=os.path.dirname(Example.__file__))
 
@@ -36,7 +37,7 @@ class TestWriteApp(unittest.TestCase):
             self.test.write_small_app()
             test_dir = os.path.join(os.path.dirname(flaskerizer.__file__),
                                    os.path.basename('Flaskerized_app'),
-                                   os.path.basename('app.py'))
+                                   os.path.basename('Flaskerized_app.py'))
             gold_dir = os.path.join(os.path.dirname(Tests.__file__),
                                     os.path.basename('testing_files'),
                                     os.path.basename('app_test_file.py'))

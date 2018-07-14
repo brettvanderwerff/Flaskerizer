@@ -6,11 +6,11 @@ import os
 
 class WriteApp():
     def __init__(self):
-        self.base_app_dir = os.path.join(os.path.dirname(flaskerizer.__file__), os.path.basename('Flaskerized_app'))
+        self.base_app_dir = os.path.join(os.path.dirname(flaskerizer.__file__), os.path.basename(CONFIGURATION['app_name']))
         if CONFIGURATION['large_app_structure'] == False:
             self.flaskerized_app_dir = self.base_app_dir
         elif CONFIGURATION['large_app_structure'] == True:
-            self.flaskerized_app_dir = os.path.join(self.base_app_dir, os.path.basename('Flaskerized_app'))
+            self.flaskerized_app_dir = os.path.join(self.base_app_dir, os.path.basename(CONFIGURATION['app_name']))
 
     def get_routes(self):
         '''Gets the name of every HTML template in the templates folder.
@@ -53,13 +53,13 @@ class WriteApp():
         with open(os.path.join(self.base_app_dir, os.path.basename('setup.py')), 'w') as write_obj:
             write_obj.write('from setuptools import setup\n\n'
                             'setup(\n'
-                            '   name=\'Flaskerized_app\',\n'
-                            '   packages=[\'Flaskerized_app\'],\n'
+                            '   name=\'{}\',\n'
+                            '   packages=[\'{}\'],\n'
                             '   include_package_data=True,\n'
                             '   install_requires=[\n'
                             '       \'flask\',\n'
                             '   ],\n'
-                            ')')
+                            ')'.format(CONFIGURATION['app_name'], CONFIGURATION['app_name']))
 
 
     def write_small_app(self):
@@ -67,7 +67,8 @@ class WriteApp():
         Writes an instantiation of a Flask app in an 'app.py' file according to the small Flask app project structure.
         Also writes the routes in the same 'app.py' file.
         '''
-        with open(os.path.join(self.flaskerized_app_dir, os.path.basename('app.py')), 'w') as write_obj:
+        with open(os.path.join(self.flaskerized_app_dir,
+                               os.path.basename('{}.py'.format(CONFIGURATION['app_name']))),'w') as write_obj:
             write_obj.write('from flask import Flask, render_template\n\n')
             write_obj.write('app = Flask(__name__)\n\n')
             self.write_routes(write_obj)
@@ -84,10 +85,10 @@ class WriteApp():
         with open(os.path.join(self.flaskerized_app_dir, os.path.basename('__init__.py')), 'w') as write_obj:
             write_obj.write('from flask import Flask\n'
                             'app = Flask(__name__)\n\n'
-                            'import Flaskerized_app.routes')
+                            'import {}.routes'.format(CONFIGURATION['app_name']))
         with open(os.path.join(self.flaskerized_app_dir, os.path.basename('routes.py')), 'w') as write_obj:
             write_obj.write('from flask import render_template\n'
-                            'from Flaskerized_app import app\n\n')
+                            'from {} import app\n\n'.format(CONFIGURATION['app_name']))
             self.write_routes(write_obj)
         self.write_setup()
 

@@ -19,5 +19,11 @@ template as it is in the 'Alstar_example'
 CONFIGURATION = {
        'top_level_path' : os.path.dirname(Example.__file__),
        'templates_path': os.path.dirname(Example.__file__),
-       'large_app_structure' : False
+       'large_app_structure' : False,
+       'app_name' : 'app' # app_name cannot be 'app'
 }
+
+if CONFIGURATION['app_name'] == 'app':
+       print("The value of CONFIGURATION['app_name'] in Flaskerizer/src/config.py cannot be set to the string 'app'\n"
+             "Please change this configuration value to something valid like 'my_app' and restart the program")
+       exit()

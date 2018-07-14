@@ -15,11 +15,11 @@ class StructureDirectory():
         '''
         self.top_level_path = top_level_path
         self.templates_path = templates_path
-        self.base_app_dir = os.path.join(os.path.dirname(flaskerizer.__file__), os.path.basename('Flaskerized_app'))
+        self.base_app_dir = os.path.join(os.path.dirname(flaskerizer.__file__), os.path.basename(CONFIGURATION['app_name']))
         if CONFIGURATION['large_app_structure'] == False:
             self.flaskerized_app_dir = self.base_app_dir
         elif CONFIGURATION['large_app_structure'] == True:
-            self.flaskerized_app_dir = os.path.join(self.base_app_dir, os.path.basename('Flaskerized_app'))
+            self.flaskerized_app_dir = os.path.join(self.base_app_dir, os.path.basename(CONFIGURATION['app_name']))
 
     def mkdir(self):
         '''MAkes all the folders for the Flask application.
