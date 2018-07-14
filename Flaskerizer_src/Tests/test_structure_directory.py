@@ -5,7 +5,6 @@ from Flaskerizer_src.config import CONFIGURATION
 import flaskerizer
 import unittest
 import os
-import shutil
 
 class TestStructureDirectory(unittest.TestCase):
     maxDiff = None # reveals difference between test strings and "gold standard" strings
@@ -15,6 +14,7 @@ class TestStructureDirectory(unittest.TestCase):
         the config.py CONFIGURATION['large_app_structure'] is set to either True or False.
         '''
         CONFIGURATION['app_name'] = 'Test_application'
+        CONFIGURATION['app_path'] = os.path.dirname(flaskerizer.__file__)
         self.test = StructureDirectory(templates_path= os.path.dirname(Example.__file__),
                                        top_level_path= os.path.dirname(Example.__file__))
         if CONFIGURATION['large_app_structure'] == False:

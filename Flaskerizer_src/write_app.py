@@ -1,4 +1,3 @@
-import flaskerizer
 from Flaskerizer_src.config import CONFIGURATION
 from Flaskerizer_src.HTTP_status_dict import HTTP_status_dict
 from Flaskerizer_src.status_code_to_word import status_code_to_word
@@ -6,7 +5,7 @@ import os
 
 class WriteApp():
     def __init__(self):
-        self.base_app_dir = os.path.join(os.path.dirname(flaskerizer.__file__), os.path.basename(CONFIGURATION['app_name']))
+        self.base_app_dir = os.path.join(CONFIGURATION['app_path'], os.path.basename(CONFIGURATION['app_name']))
         if CONFIGURATION['large_app_structure'] == False:
             self.flaskerized_app_dir = self.base_app_dir
         elif CONFIGURATION['large_app_structure'] == True:
@@ -35,6 +34,7 @@ class WriteApp():
         URL for that template by the route() decorator. See http://flask.pocoo.org/docs/1.0/quickstart/#routing
         for more info.
         '''
+        print('Writing routes...')
         for template_name in self.get_routes():
             if template_name.strip('.html') in HTTP_status_dict.keys():
                 self.write_error_handler(template_name, write_obj)
@@ -46,10 +46,12 @@ class WriteApp():
             write_obj.write("    return render_template('{}')\n\n".format(template_name))
 
 
+
     def write_setup(self):
         '''
         Writes a setup.py file for the large Flask app project structure.
         '''
+        print('Writing setup.py...')
         with open(os.path.join(self.base_app_dir, os.path.basename('setup.py')), 'w') as write_obj:
             write_obj.write('from setuptools import setup\n\n'
                             'setup(\n'
@@ -64,9 +66,10 @@ class WriteApp():
 
     def write_small_app(self):
         '''
-        Writes an instantiation of a Flask app in an 'app.py' file according to the small Flask app project structure.
-        Also writes the routes in the same 'app.py' file.
+        Writes an instantiation of a Flask app in a Python module according to the small Flask app project structure.
+        Also writes the routes in the same file.
         '''
+        print('Writing Flask app module...')
         with open(os.path.join(self.flaskerized_app_dir,
                                os.path.basename('{}.py'.format(CONFIGURATION['app_name']))),'w') as write_obj:
             write_obj.write('from flask import Flask, render_template\n\n')
@@ -74,6 +77,7 @@ class WriteApp():
             self.write_routes(write_obj)
             write_obj.write("if __name__ == '__main__':\n")
             write_obj.write("    app.run()")
+        print('Flaskerization complete')
 
     def write_large_app(self):
         '''
@@ -82,6 +86,7 @@ class WriteApp():
         http://flask.pocoo.org/docs/1.0/patterns/packages/
         Writes the routes in a separate routes.py file.
         '''
+        print('Writing Flask app package...')
         with open(os.path.join(self.flaskerized_app_dir, os.path.basename('__init__.py')), 'w') as write_obj:
             write_obj.write('from flask import Flask\n'
                             'app = Flask(__name__)\n\n'
@@ -91,6 +96,7 @@ class WriteApp():
                             'from {} import app\n\n'.format(CONFIGURATION['app_name']))
             self.write_routes(write_obj)
         self.write_setup()
+        print('Flaskerization complete')
 
 
 if __name__ == '__main__':

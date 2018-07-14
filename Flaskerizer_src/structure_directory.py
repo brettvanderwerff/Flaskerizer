@@ -2,7 +2,6 @@ import io #needed to backport some open statements to python 2.7
 import os
 from Flaskerizer_src.config import CONFIGURATION
 from Flaskerizer_src.target_folders import target_folders
-import flaskerizer
 import shutil
 
 class StructureDirectory():
@@ -15,15 +14,16 @@ class StructureDirectory():
         '''
         self.top_level_path = top_level_path
         self.templates_path = templates_path
-        self.base_app_dir = os.path.join(os.path.dirname(flaskerizer.__file__), os.path.basename(CONFIGURATION['app_name']))
+        self.base_app_dir = os.path.join(CONFIGURATION['app_path'], os.path.basename(CONFIGURATION['app_name']))
         if CONFIGURATION['large_app_structure'] == False:
             self.flaskerized_app_dir = self.base_app_dir
         elif CONFIGURATION['large_app_structure'] == True:
             self.flaskerized_app_dir = os.path.join(self.base_app_dir, os.path.basename(CONFIGURATION['app_name']))
 
     def mkdir(self):
-        '''MAkes all the folders for the Flask application.
+        '''Makes all the folders for the Flask application.
         '''
+        print('Making Flask app folders...')
         if os.path.exists(self.base_app_dir):
             shutil.rmtree(self.base_app_dir)
         os.mkdir(self.base_app_dir)
@@ -49,6 +49,7 @@ class StructureDirectory():
         '''Migration of all files detected by the detect_files method to their appropriate destinations in the
         Flaskerized_app directory (i.e. files with .css extension migrated to the css subfolder of the static folder.)
         '''
+        print('Migrating files to Flask app folders...')
         for name in migrate_dict:
             item_extension = name.split('.')[-1]
             shutil.copyfile(migrate_dict[name]['source_dir'],
@@ -62,6 +63,7 @@ class StructureDirectory():
         are needed for the static content of the Flask app (i.e. .css, .js, .img, etc). The names and locations of
         these files are saved in a dictionary.
         '''
+        print('Finding static content...')
         migrate_dict = {}
         extensions = ['.js', '.css', '.jpg', '.png', 'gif', '.ico', '.otf', '.eot', '.svg', '.ttf', '.woff', '.woff2']
         path = self.top_level_path
@@ -83,6 +85,7 @@ class StructureDirectory():
         '''Detects files with the extension ".html" in the templates_path. These files are migrated to the "templates"
         folder of the Flaskerized_app directory.
         '''
+        print('Finding and migrating HTML files...')
         for file_name in os.listdir(self.templates_path):
             if file_name.endswith('.html'):
                 shutil.copyfile(os.path.join(self.templates_path, os.path.basename(file_name)),
@@ -120,6 +123,7 @@ class StructureDirectory():
         adds /static/ to any line that should point to contents of the static folder of the Flask app (i.e. lines that
         reference content of the css or javascript folder etc.).
         '''
+        print('Fixing links to reflect Flask app structure, this may take several minutes...')
         file_list = self.file_list()
         for file in file_list:
             line_list = self.load_file(file)

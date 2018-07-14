@@ -15,6 +15,7 @@ class TestWriteApp(unittest.TestCase):
         CONFIGURATION['large_app_structure'] is set to either True or False.
         '''
         CONFIGURATION['app_name'] = 'Test_application'
+        CONFIGURATION['app_path'] = os.path.dirname(flaskerizer.__file__)
         structure_directory_object = StructureDirectory(templates_path=os.path.dirname(Example.__file__),
                                                         top_level_path=os.path.dirname(Example.__file__))
 
