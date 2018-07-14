@@ -36,7 +36,7 @@ class TestWriteApp(unittest.TestCase):
         if CONFIGURATION['large_app_structure'] == False:
             self.test.write_small_app()
             test_dir = os.path.join(os.path.dirname(flaskerizer.__file__),
-                                   os.path.basename('Flaskerized_app'),
+                                   os.path.basename('Test_application'),
                                    os.path.basename('Test_application.py'))
             gold_dir = os.path.join(os.path.dirname(Tests.__file__),
                                     os.path.basename('testing_files'),
@@ -44,8 +44,8 @@ class TestWriteApp(unittest.TestCase):
         elif CONFIGURATION['large_app_structure'] == True:
             self.test.write_large_app()
             test_dir = os.path.join(os.path.dirname(flaskerizer.__file__),
-                                   os.path.basename('Flaskerized_app'),
-                                   os.path.basename('Flaskerized_app'),
+                                   os.path.basename('Test_application'),
+                                   os.path.basename('Test_application'),
                                    os.path.basename('routes.py'))
             gold_dir = os.path.join(os.path.dirname(Tests.__file__),
                                     os.path.basename('testing_files'),
@@ -61,6 +61,7 @@ for state in [True, False]:
     CONFIGURATION['large_app_structure'] = state #Tests are run under both CONFIGURATION['large_app_structure'] == True or False
     suite = unittest.TestLoader().loadTestsFromTestCase(TestWriteApp)
     unittest.TextTestRunner().run(suite)
+
 
 
 

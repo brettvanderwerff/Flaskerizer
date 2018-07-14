@@ -19,17 +19,17 @@ class TestStructureDirectory(unittest.TestCase):
                                        top_level_path= os.path.dirname(Example.__file__))
         if CONFIGURATION['large_app_structure'] == False:
             self.flaskerized_app_dir = os.path.join(os.path.dirname(flaskerizer.__file__),
-                                                    os.path.basename('Flaskerized_app'))
+                                                    os.path.basename('Test_application'))
             self.gold_standard_dir = os.path.join(os.path.dirname(Tests.__file__),
                                              os.path.basename('testing_files'),
-                                             os.path.basename('small_Flaskerized_app_test_folder'))
+                                             os.path.basename('small_Test_application_test_folder'))
         elif CONFIGURATION['large_app_structure'] == True:
             self.flaskerized_app_dir = os.path.join(os.path.join(os.path.dirname(flaskerizer.__file__),
-                                                                 os.path.basename('Flaskerized_app')),
-                                                                 os.path.basename('Flaskerized_app'))
+                                                                 os.path.basename('Test_application')),
+                                                                 os.path.basename('Test_application'))
             self.gold_standard_dir = os.path.join(os.path.dirname(Tests.__file__),
                                                   os.path.basename('testing_files'),
-                                                  os.path.basename('large_Flaskerized_app_test_folder'))
+                                                  os.path.basename('large_Test_application_test_folder'))
 
 
 
@@ -60,9 +60,9 @@ class TestStructureDirectory(unittest.TestCase):
     def test_detect_and_migrate_html_files(self):
         '''
         Confirms that detect_and_migrate_html_files migrates the correct number of files with extension .html
-        from the Example bootstrap template directory to the 'templates; folder of the Flaskerized_app directory
+        from the Example bootstrap template directory to the 'templates; folder of the Test_application directory
         by comparing to the number of .html files in the 'templates' folder of a "gold_standard"
-        respective Flaskerized_app_test_folder.
+        respective Test_application_test_folder.
         '''
         self.test.mkdir()
         migrate_dict = self.test.detect_static_files()
@@ -75,7 +75,7 @@ class TestStructureDirectory(unittest.TestCase):
                                              os.path.basename('templates'))
         elif CONFIGURATION['large_app_structure'] == True:
             gold_standard_dir = os.path.join(self.gold_standard_dir,
-                                             os.path.basename('Flaskerized_app'),
+                                             os.path.basename('Test_application'),
                                              os.path.basename('templates'))
 
         test_file_list = []
@@ -92,9 +92,9 @@ class TestStructureDirectory(unittest.TestCase):
 
     def test_migrate_files(self):
         '''Tests that migrate_files migrates the correct number of files from the Example bootstrap template directory
-         to the Flaskerized_app directory. This is done by walking through the Flaskerized_app directory with os.walk
+         to the Test_application directory. This is done by walking through the Test_application directory with os.walk
          and counting the number of files with a particular set of extensions (see extensions list) and comparing this
-         number to the number of files gotten from walking through a "gold_standard" respective Flaskerized_app_test_folder.
+         number to the number of files gotten from walking through a "gold_standard" respective Test_application_test_folder.
         '''
         migrate_dict = self.test.detect_static_files()
         self.test.migrate_files(migrate_dict)
@@ -103,7 +103,7 @@ class TestStructureDirectory(unittest.TestCase):
         test_dir = self.flaskerized_app_dir
         gold_standard_dir = os.path.join(os.path.dirname(Tests.__file__),
                                          os.path.basename('testing_files'),
-                                        os.path.basename('small_Flaskerized_app_test_folder'))
+                                        os.path.basename('small_Test_application_test_folder'))
         test_file_list = []
         gold_standard_file_list = []
         for dir in [test_dir, gold_standard_dir]:
