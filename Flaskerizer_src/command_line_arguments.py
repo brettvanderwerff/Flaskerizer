@@ -1,7 +1,8 @@
 import argparse
-import os
 import Flaskerizer_src.Examples.Alstar_example as Example
 import flaskerizer
+import sys
+import os
 
 
 def get_command_line_arguments():
@@ -12,11 +13,22 @@ def get_command_line_arguments():
 
     parser = argparse.ArgumentParser(description='Flaskerizer: Convert Bootstrap templates to Flask apps')
 
-    parser.add_argument('--top-level-path', type=str, nargs=1, default=[os.path.dirname(Example.__file__)], # ToDo set reuired=True
-                       help='Full path of the top level folder of the Bootstrap template')
+    if os.path.basename(sys.argv[0]) == '_jb_unittest_runner.py': # sets default '--top-level-path' and '--templates-path' values if file is being tested
 
-    parser.add_argument('--templates-path', type=str, nargs=1,  default=[os.path.dirname(Example.__file__)],
-                       help='Full path of the folder containing the HTML files of the Bootstrap template')
+        parser.add_argument('--top-level-path', type=str, nargs=1, default=[os.path.dirname(Example.__file__)],
+                           help='Full path of the top level folder of the Bootstrap template')
+
+        parser.add_argument('--templates-path', type=str, nargs=1,  default=[os.path.dirname(Example.__file__)],
+                           help='Full path of the folder containing the HTML files of the Bootstrap template')
+
+    else:
+
+        parser.add_argument('--top-level-path', type=str, nargs=1, required=True,
+                            help='Full path of the top level folder of the Bootstrap template')
+
+        parser.add_argument('--templates-path', type=str, nargs=1, required=True,
+                            help='Full path of the folder containing the HTML files of the Bootstrap template')
+
 
     parser.add_argument('--app_name', type=str, nargs=1, default=['Flaskerized_app'],
                        help="Name of your Flask app, not cannot be named 'app'")

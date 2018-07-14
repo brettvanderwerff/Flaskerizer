@@ -7,6 +7,7 @@ Flaskerizer_src/command_line_arguments.py script
  
 '''
 
+
 CONFIGURATION = {
        'top_level_path' : get_command_line_arguments()['top_level_path'][0],
        'templates_path': get_command_line_arguments()['templates_path'][0],
