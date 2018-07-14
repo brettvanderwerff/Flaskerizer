@@ -20,6 +20,15 @@ and converts it to something that looks like this "out of the box" with Flask:
 
 Flask: 0.12.1 or higher
 
+## Useage Case
+
+```
+$python flaskerizer.py 
+
+```
+
+
+
 ## Setup and Operation
 
 1. Download your favorite Bootstrap template. https://startbootstrap.com/, https://bootstrapmade.com/, and https://colorlib.com/wp/free-bootstrap-templates/ are good places to look if you don't already have one. There is an example template (Alstar_example) that you can use if you don't want to download one. 
