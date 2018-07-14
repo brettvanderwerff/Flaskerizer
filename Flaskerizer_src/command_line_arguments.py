@@ -10,19 +10,18 @@ def get_command_line_arguments():
     Gets values from command line arguments, which are used to set configuration values in the Flaskerizer_src/config.py
     script. Sets values to defaults if no command line arguments are given.
     '''
-    print(os.path.basename(sys.argv[0]))
-
+   
     parser = argparse.ArgumentParser(description='Flaskerizer: Convert Bootstrap templates to Flask apps')
 
-    if os.path.basename(sys.argv[0]) == '_jb_unittest_runner.py': # sets default '--top-level-path' and '--templates-path' values if file is being tested
+    if os.path.basename(sys.argv[0]) == 'flaskerizer.py':
 
-        parser.add_argument('--top-level-path', type=str, nargs=1, default=[os.path.dirname(Example.__file__)],
+        parser.add_argument('--top-level-path', type=str, nargs=1, required=True,
                            help='Full path of the top level folder of the Bootstrap template')
 
-        parser.add_argument('--templates-path', type=str, nargs=1,  default=[os.path.dirname(Example.__file__)],
+        parser.add_argument('--templates-path', type=str, nargs=1,  required=True,
                            help='Full path of the folder containing the HTML files of the Bootstrap template')
 
-    else:
+    else: # workaround sets default '--top-level-path' and '--templates-path' values if file is not run from flaskerizer.py (i.e. testing)
 
         parser.add_argument('--top-level-path', type=str, nargs=1, default=[os.path.dirname(Example.__file__)],
                             help='Full path of the top level folder of the Bootstrap template')
