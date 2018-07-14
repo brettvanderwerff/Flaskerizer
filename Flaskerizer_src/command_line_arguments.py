@@ -12,7 +12,7 @@ def get_command_line_arguments():
 
     parser = argparse.ArgumentParser(description='Flaskerizer: Convert Bootstrap templates to Flask apps')
 
-    parser.add_argument('--top-level-path', type=str, nargs=1, default=[os.path.dirname(Example.__file__)],
+    parser.add_argument('--top-level-path', type=str, nargs=1, default=[os.path.dirname(Example.__file__)], # ToDo set reuired=True
                        help='Full path of the top level folder of the Bootstrap template')
 
     parser.add_argument('--templates-path', type=str, nargs=1,  default=[os.path.dirname(Example.__file__)],
@@ -31,5 +31,5 @@ def get_command_line_arguments():
                        help='Create a Flask app with large package based structure')
 
     parser.set_defaults(large_app_structure=False)
-    return vars(parser.parse_args())
+    return vars(parser.parse_known_args()[0])
 
