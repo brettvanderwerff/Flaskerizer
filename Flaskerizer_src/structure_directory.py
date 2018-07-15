@@ -49,7 +49,7 @@ class StructureDirectory():
         '''Migration of all files detected by the detect_files method to their appropriate destinations in the
         Flaskerized_app directory (i.e. files with .css extension migrated to the css subfolder of the static folder.)
         '''
-        print('Migrating files to Flask app folders...')
+        print('Migrating static content to the static folder...')
         for name in migrate_dict:
             item_extension = name.split('.')[-1]
             shutil.copyfile(migrate_dict[name]['source_dir'],
@@ -85,7 +85,7 @@ class StructureDirectory():
         '''Detects files with the extension ".html" in the templates_path. These files are migrated to the "templates"
         folder of the Flaskerized_app directory.
         '''
-        print('Finding and migrating HTML files...')
+        print('Finding and migrating HTML files to the templates folder...')
         for file_name in os.listdir(self.templates_path):
             if file_name.endswith('.html'):
                 shutil.copyfile(os.path.join(self.templates_path, os.path.basename(file_name)),
@@ -160,6 +160,12 @@ class StructureDirectory():
 
                                     line = line.replace(migrate_dict[name]['link'][migrate_dict[name]['link'].find('/'):],
                                                         '/'.join(('/' + target_folders[extension]['subfolder'], name)))
+
+                        elif ('(../' + '/'.join(migrate_dict[name]['link'].split('/')[2:])+ ')') in line:
+                            for extension in target_folders:
+                                if name.endswith(extension):
+                                    line = line.replace('/'.join(migrate_dict[name]['link'].split('/')[2:]),
+                                                        '/'.join((target_folders[extension]['subfolder'], name)))
                     write_obj.write(line)
 
     def structure_directory(self):
