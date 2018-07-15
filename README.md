@@ -36,6 +36,15 @@ $python flaskerizer.py --top-level-path Flaskerizer_src\Examples\Alstar_example 
     
 
 ```
+Then enter in the terminal:
+
+```
+$python Flaskerized_app/Flaskerized_app.py  
+    
+
+```
+Open your browser and visit http://127.0.0.1:5000
+
 
 ## Command Line Arguments
 
