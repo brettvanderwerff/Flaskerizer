@@ -20,34 +20,79 @@ and converts it to something that looks like this "out of the box" with Flask:
 
 Flask: 0.12.1 or higher
 
-## Setup and Operation
+## Usage Case
+
+After cloning the repo and installing the dependencies, open a terminal in the top level folder of the repo and enter:
+
+On Windows:
+```
+$python flaskerizer.py --top-level-path Flaskerizer_src/Examples/Alstar_example --templates-path Flaskerizer_src/Examples/Alstar_example 
+    
+
+```
+On Linux:
+```
+$python flaskerizer.py --top-level-path Flaskerizer_src\Examples\Alstar_example --templates-path Flaskerizer_src\Examples\Alstar_example 
+    
+
+```
+
+## Command Line Arguments
+
+Flaskerizer is run by command line arguments. Command line arguments are always preceded by:
+
+`$python flaskerizer.py` (this may vary by environment, i.e. some users will enter python3 instead of python)
+
+#### Required Arguments:
+
+| Command | Description |
+| :---: | :---: |
+| --top-level-path | Path to the top level folder of the unzipped Bootstrap template |
+| --templates-path | Path to the folder containing the HTML files of the Bootstrap template |
+
+#### Optional Arguments:
+
+| Command | Description | Default Value
+| :---: | :---: | :---: |
+| --app-name | Flask app name (note: cannot be named 'app') | 'Flaskerized_app'
+| --app-path | path of the destination folder for your Flask app | $Flaskerizer_src\
+| --large-app-structure | creates a large structure package based Flask app | None
+| --no-large-app-structure | creates a small structure module based Flask app | None
+
+
+## Detailed Setup and Operation Example
 
 1. Download your favorite Bootstrap template. https://startbootstrap.com/, https://bootstrapmade.com/, and https://colorlib.com/wp/free-bootstrap-templates/ are good places to look if you don't already have one. There is an example template (Alstar_example) that you can use if you don't want to download one. 
 
 2. If the Bootstrap template is downloaded as a zipped file you will need to unzip the Bootstrap template.
 
-3. Open the configuration file(`Flaskerizer_src/config.py`) and:
+3. Open a terminal in the top level folder of the repo and enter:
 
-* set value of key *'top_level_path'* to the full path of the top level folder of the Bootstrap template (i.e. the folder that appears when you first unzip the Bootstrap template, see config.py for example).
+```
+$python flaskerizer.py --top-level-path Flaskerizer_src\Examples\Alstar_example --templates-path Flaskerizer_src\Examples\Alstar_example --no-large-app-structure --app-name my_app 
+       
+```
 
-* set value of key *'templates_path'* to the full path of the folder containing the HTML files of the Bootstrap template you downloaded. Note that there may be multiple folders that contain HTML files, generally you want to set the 'templates_path' value equal to the path of the folder with the *most* HTML files in it (see config.py for example).
+
+* `--top-level-path` should always be set to the full path of the top level folder of the Bootstrap template (i.e. the folder that appears when you first unzip the Bootstrap template).
+
+* `--templates-path` should always be set to the full path of the folder containing the HTML files of the Bootstrap template you downloaded. Note that there may be multiple folders that contain HTML files, generally you want to set the 'templates_path' value equal to the path of the folder with the *most* HTML files in it.
  
-4. Run the program by opening a terminal in the top level directory of the repo and entering `$ python flaskerizer.py` (this may vary slightly by environment and may take a few minutes to run depending on the Bootstrap template size).
 
-5. After running flaskerizer.py, clear your browser's cache and enter `$ python Flaskerized_app/app.py` in the terminal to launch the newly made Flask app.
+4. After running flaskerizer.py, clear your browser's cache and enter `$python my_app/my_app.py` in the terminal to launch the newly made Flask app (this may vary by environment, i.e. some users will enter python3 instead of python).
 
-6. View your website by opening the browser to your local address on port 5000 (i.e. http://127.0.0.1:5000 / http://0.0.0.0:5000) , Note: may have to enter http://127.0.0.1:5000/index.html / http://0.0.0.0:5000/index.html to route the  website homepage. **NOTE :** You may need to clear your browser's cache to view the website properly.
+5. View your website by opening the browser to your local address on port 5000 (i.e. http://127.0.0.1:5000 / http://0.0.0.0:5000) , Note: may have to enter http://127.0.0.1:5000/index.html / http://0.0.0.0:5000/index.html to route the  website homepage. **NOTE :** You may need to clear your browser's cache to view the website properly.
 
-7. You may get still get a few 404 errors for broken links that you might need to fix manually, the Flaskerizer is early in development and not perfect yet, but overall it seems to be doing a good job regardless of the Bootstrap template source. The best things you can do if you get broken link errors is to raise an issue with us and specify the template you are using and the error you are getting so that we can try to fix it. You can also email me at brett.vanderwerff@gmail.com.
+6. You may get still get a few 404 errors for broken links that you might need to fix manually, the Flaskerizer is early in development and not perfect yet, but overall it seems to be doing a good job regardless of the Bootstrap template source. The best things you can do if you get broken link errors is to raise an issue with us and specify the template you are using and the error you are getting so that we can try to fix it. You can also email me at brett.vanderwerff@gmail.com.
 
 
 
 ## Selection of large or small Flask application structure (optional)
 
-By default the value of *'large_app_structure'* in the configuration file (`Flaskerizer_src/config.py`) is set to `False`, which results in the creation of a small structure Flask app after running steps 1-4 under **Setup and Operation** with the basic 'app.py' module that contains both the Flask app object and all the routes:
+Using the command line argument `--no-large-app-structure`, results in the creation of a small structure module based Flask app after running steps 1-3 under **Detailed Setup and Operation Example** with the creation of a basic module that contains both the Flask app object and all the routes:
 ```
 .
-├── app.py    # Module with the Flask app and routes
+├── {{app-name}}.py    # Module with the Flask app and routes
 ├──static
 │   ├── css  
 │   ├── fonts
@@ -56,12 +101,12 @@ By default the value of *'large_app_structure'* in the configuration file (`Flas
 └── templates  
 ```
 
- By toggling the value of *'large_app_structure'* to `True` you are choosing to create a large structure package based Flask app as described in the Flask documentation 
+ By using the command line argument `--large-app-structure` you are choosing to create a large structure package based Flask app as described in the Flask documentation 
 @ http://flask.pocoo.org/docs/1.0/patterns/packages/ :
 
 ```
 .
-├──Flaskerized_app     # Package folder
+├──{{app-name}}     # Package folder
 │   ├── __init__.py    # File containing the Flask app object
 │   ├── routes.py      # File with the routes
 │   ├──static
@@ -72,21 +117,20 @@ By default the value of *'large_app_structure'* in the configuration file (`Flas
 │   └── templates
 └── setup.py  
 ```
-Launching the large structure Flask app is a bit different:
+Creating and launching the large structure Flask app is a bit different, here is an example:
 
-1. After running steps 1-4 under **Setup and Operation**, open the newly created Flaskerized_app folder.
+1. Complete steps 1 and 2 under **Detailed Setup and Operation Example**.
 
-2. Open the terminal and enter `$python -m venv venv` to create a new virtual environment (this may vary slightly by environment).
+2. Open the terminal and enter:
 
-3. Enter `$venv\scripts\activate` to activate the virtual environment on Windows or `$source venv/bin/activate` on Linux.
+```
+$python flaskerizer.py --top-level-path Flaskerizer_src\Examples\Alstar_example --templates-path Flaskerizer_src\Examples\Alstar_example --large-app-structure --app-name my_app 
+    
+    
+```
+3. Enter `$set FLASK_APP=my_app\my_app\__init__.py` on Windows or `$export FLASK_APP=my_app\my_app\__init__.py` on Linux.
 
-4. Enter `$pip install flask`.
-
-5. Enter `$set FLASK_APP=Flaskerized_app` on Windows or `$export FLASK_APP=Flaskerized_app` on Linux.
-
-6. Enter `$flask run`
-
-6. View your website by opening the browser to your local address on port 5000 (i.e. http://127.0.0.1:5000 / http://0.0.0.0:5000) , Note: may have to enter http://127.0.0.1:5000/index.html / http://0.0.0.0:5000/index.html to route the  website homepage. **NOTE :** You may need to clear your browser's cache to view the website properly.
+4. View your website by opening the browser to your local address on port 5000 (i.e. http://127.0.0.1:5000 / http://0.0.0.0:5000) , Note: may have to enter http://127.0.0.1:5000/index.html / http://0.0.0.0:5000/index.html to route the  website homepage. **NOTE :** You may need to clear your browser's cache to view the website properly.
 
 
 ## How it works

@@ -7,9 +7,11 @@ A program for automating the development of Flask apps from Bootstrap templates.
 to begin the flaskerization process on the example template 'Alstar_example'. To change the Bootstrap template from
 the default example to the template of your choice, please refer to the config.py file in the Flaskerizer_src directory.
 '''
+
 from Flaskerizer_src.config import CONFIGURATION
 from Flaskerizer_src.structure_directory import StructureDirectory
 from Flaskerizer_src.write_app import WriteApp
+
 
 if __name__ == '__main__':
     structure_directory_object = StructureDirectory(templates_path=CONFIGURATION['templates_path'],
