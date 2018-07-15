@@ -24,24 +24,12 @@ Flask: 0.12.1 or higher
 
 After cloning the repo and installing the dependencies, open a terminal in the top level folder of the repo and enter:
 
-On Windows:
-```
-$python flaskerizer.py --top-level-path Flaskerizer_src/Examples/Alstar_example --templates-path Flaskerizer_src/Examples/Alstar_example 
-    
-```
-On Linux:
 ```
 $python flaskerizer.py --top-level-path Flaskerizer_src\Examples\Alstar_example --templates-path Flaskerizer_src\Examples\Alstar_example 
     
 ```
 Then enter in the terminal:
 
-On Windows:
-```
-$python Flaskerized_app/Flaskerized_app.py  
-    
-```
-On Linux:
 ```
 $python Flaskerized_app\Flaskerized_app.py  
     
@@ -92,7 +80,7 @@ $python flaskerizer.py --top-level-path Flaskerizer_src\Examples\Alstar_example 
 * `--templates-path` should always be set to the full path of the folder containing the HTML files of the Bootstrap template you downloaded. Note that there may be multiple folders that contain HTML files, generally you want to set the 'templates_path' value equal to the path of the folder with the *most* HTML files in it.
  
 
-4. After running flaskerizer.py, clear your browser's cache and enter `$python my_app/my_app.py` in the terminal to launch the newly made Flask app (this may vary by environment, i.e. some users will enter python3 instead of python).
+4. After running flaskerizer.py, clear your browser's cache and enter `$python my_app\my_app.py` in the terminal to launch the newly made Flask app (this may vary by environment, i.e. some users will enter python3 instead of python).
 
 5. View your website by opening the browser to your local address on port 5000 (i.e. http://127.0.0.1:5000 / http://0.0.0.0:5000) , Note: may have to enter http://127.0.0.1:5000/index.html / http://0.0.0.0:5000/index.html to route the  website homepage. **NOTE :** You may need to clear your browser's cache to view the website properly.
 
@@ -138,10 +126,9 @@ Creating and launching the large structure Flask app is a bit different, here is
 
 ```
 $python flaskerizer.py --top-level-path Flaskerizer_src\Examples\Alstar_example --templates-path Flaskerizer_src\Examples\Alstar_example --large-app-structure --app-name my_app 
-    
-    
+        
 ```
-3. Enter `$set FLASK_APP=my_app\my_app\__init__.py` on Windows or `$export FLASK_APP=my_app\my_app\__init__.py` on Linux.
+3. Enter `$set FLASK_APP=my_app\my_app\__init__.py` on Windows or `$export FLASK_APP=my_app/my_app/__init__.py` on Linux.
 
 4. View your website by opening the browser to your local address on port 5000 (i.e. http://127.0.0.1:5000 / http://0.0.0.0:5000) , Note: may have to enter http://127.0.0.1:5000/index.html / http://0.0.0.0:5000/index.html to route the  website homepage. **NOTE :** You may need to clear your browser's cache to view the website properly.
 
