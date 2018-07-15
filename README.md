@@ -20,7 +20,7 @@ and converts it to something that looks like this "out of the box" with Flask:
 
 Flask: 0.12.1 or higher
 
-## Usage Case
+## Usage Case/Quickstart
 
 After cloning the repo and installing the dependencies, open a terminal in the top level folder of the repo and enter:
 
@@ -28,21 +28,25 @@ On Windows:
 ```
 $python flaskerizer.py --top-level-path Flaskerizer_src/Examples/Alstar_example --templates-path Flaskerizer_src/Examples/Alstar_example 
     
-
 ```
 On Linux:
 ```
 $python flaskerizer.py --top-level-path Flaskerizer_src\Examples\Alstar_example --templates-path Flaskerizer_src\Examples\Alstar_example 
     
-
 ```
 Then enter in the terminal:
 
+On Windows:
 ```
 $python Flaskerized_app/Flaskerized_app.py  
     
-
 ```
+On Linux:
+```
+$python Flaskerized_app\Flaskerized_app.py  
+    
+```
+
 Open your browser and visit http://127.0.0.1:5000
 
 
@@ -64,7 +68,7 @@ Flaskerizer is run by command line arguments. Command line arguments are always 
 | Command | Description | Default Value
 | :---: | :---: | :---: |
 | --app-name | Flask app name (note: cannot be named 'app') | 'Flaskerized_app'
-| --app-path | path of the destination folder for your Flask app | $Flaskerizer_src\
+| --app-path | path of the destination folder for your Flask app | Flaskerizer repo dir
 | --large-app-structure | creates a large structure package based Flask app | None
 | --no-large-app-structure | creates a small structure module based Flask app | None
 
