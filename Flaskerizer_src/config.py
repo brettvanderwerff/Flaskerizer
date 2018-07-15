@@ -17,6 +17,6 @@ CONFIGURATION = {
 }
 
 if CONFIGURATION['app_name'] == 'app':
-       print("The value of --app_name cannot be set to the string 'app'\n"
+       print("The value of --app-name cannot be set to the string 'app'\n"
              "Please change this configuration value to something valid like 'my_app' and try again")
        exit()
