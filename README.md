@@ -20,22 +20,22 @@ and converts it to something that looks like this "out of the box" with Flask:
 
 Flask: 0.12.1 or higher
 
-## Usage Case/Quickstart
+## Usage case/Quickstart
 
-After cloning the repo and installing the dependencies, open a terminal in the top level folder of the repo and enter:
+1. After cloning the repo and installing the dependencies, open a terminal in the top level folder of the repo and enter:
 
 ```
 $python flaskerizer.py --top-level-path Flaskerizer_src\Examples\Alstar_example --templates-path Flaskerizer_src\Examples\Alstar_example 
     
 ```
-Then enter in the terminal:
+2. Then enter in the terminal:
 
 ```
 $python Flaskerized_app\Flaskerized_app.py  
     
 ```
 
-Open your browser and visit http://127.0.0.1:5000
+3. Open your browser and visit http://127.0.0.1:5000
 
 
 ## Command Line Arguments
@@ -56,7 +56,7 @@ Flaskerizer is run by command line arguments. Command line arguments are always 
 | Command | Description | Default Value
 | :---: | :---: | :---: |
 | --app-name | Flask app name (note: cannot be named 'app') | 'Flaskerized_app'
-| --app-path | path of the destination folder for your Flask app | Flaskerizer repo dir
+| --app-path | path of the destination folder for your Flask app | Flaskerizer repo folder
 | --large-app-structure | creates a large structure package based Flask app | None
 | --no-large-app-structure | creates a small structure module based Flask app | None
 
@@ -165,11 +165,7 @@ We are beginner friendly.
 
 ### Running the tests
 
-Tests have been written for StructureDirectory and WriteApp classes and status_code_to_word function: 
-
-The Flaskerizer uses unittest for unit testing.
-
-You can also use [nose2](https://nose2.readthedocs.io/en/latest/) for running all the tests at once. Run `pip install nose2`  and then in the main directory run `nose2` to run the tests.
+You can use [nose2](https://nose2.readthedocs.io/en/latest/) for running all the tests at once. Run `pip install nose2`  and then in the main directory run `nose2` to run the tests.
 
 ## Contributors:
 
