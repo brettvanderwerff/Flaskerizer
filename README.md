@@ -130,7 +130,9 @@ $python flaskerizer.py --top-level-path Flaskerizer_src\Examples\Alstar_example 
 ```
 3. Enter `$set FLASK_APP=my_app\my_app\__init__.py` on Windows or `$export FLASK_APP=my_app/my_app/__init__.py` on Linux.
 
-4. View your website by opening the browser to your local address on port 5000 (i.e. http://127.0.0.1:5000 / http://0.0.0.0:5000) , Note: may have to enter http://127.0.0.1:5000/index.html / http://0.0.0.0:5000/index.html to route the  website homepage. **NOTE :** You may need to clear your browser's cache to view the website properly.
+4. Enter `$flask run`
+
+5. View your website by opening the browser to your local address on port 5000 (i.e. http://127.0.0.1:5000 / http://0.0.0.0:5000) , Note: may have to enter http://127.0.0.1:5000/index.html / http://0.0.0.0:5000/index.html to route the  website homepage. **NOTE :** You may need to clear your browser's cache to view the website properly.
 
 
 ## How it works
