@@ -1,0 +1,27 @@
+'''
+~~~~~~~~~~~~~~~~
+The Flaskerizer
+~~~~~~~~~~~~~~~~
+
+A program for automating the development of Flask apps from Bootstrap templates. Run this file ('flaskerizer_app.py')
+to begin the flaskerization process on the example template 'Alstar_example'. To change the Bootstrap template from
+the default example to the template of your choice, please refer to the config.py file in the flaskerizer_src directory.
+'''
+
+from flaskerizer.flaskerizer_src.config import CONFIGURATION
+from flaskerizer.flaskerizer_src.structure_directory import StructureDirectory
+from flaskerizer.flaskerizer_src.write_app import WriteApp
+
+
+if __name__ == '__main__':
+    structure_directory_object = StructureDirectory(templates_path=CONFIGURATION['templates_path'],
+                                                    top_level_path=CONFIGURATION['top_level_path'])
+
+    structure_directory_object.structure_directory()
+    write_app_object = WriteApp()
+    if CONFIGURATION['large_app_structure'] == True:
+        write_app_object.write_large_app()
+    elif CONFIGURATION['large_app_structure'] == False:
+        write_app_object.write_small_app()
+
+
