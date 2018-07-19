@@ -20,4 +20,4 @@ install:
   - pip install nose
 
 script:
-  - nosetests -v --ignore-files routes_test_file.py --ignore-files __init__.py #Need to ignore import statements in these test files
+  - nosetests -v --ignore-files routes_test_file.py #Need to ignore import statements in these test files
