@@ -18,7 +18,7 @@ install:
   - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &  
   - pip install -r requirements.txt
   - pip install nose
-  #- pip install nose-exclude
+  - pip install nose-exclude
 
 script:
-  - nosetests -v --ignore-files="(routes_test_file\.py|__init__\.py)" #Need to ignore import statements in these test files
+  - nosetests -v --ignore-files routes_test_file.py --exclude Test_application #Need to ignore import statements in these test files
