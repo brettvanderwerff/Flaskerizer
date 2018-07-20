@@ -7,7 +7,7 @@ long_description = 'The Flaskerizer automates the necessary directory building a
 
 setuptools.setup(
     name="flaskerizer",
-    version= "0.0.4",
+    version= "0.0.7",
     author="Brett Vanderwerff",
     author_email="brett.vanderwerff@gmail.com",
     long_description=long_description,
