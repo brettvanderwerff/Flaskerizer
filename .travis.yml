@@ -17,7 +17,7 @@ install:
   - export DISPLAY=':99.0'
   - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &  
   - pip install -r requirements.txt
-  - pip install nose
+  - pip install pytest
 
 script:
-  - nosetests -v --ignore-files routes_test_file.py --ignore-files Test_application #Need to ignore import statements in these test files
+  - pytest
