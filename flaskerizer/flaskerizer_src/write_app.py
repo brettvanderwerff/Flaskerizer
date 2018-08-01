@@ -1,15 +1,15 @@
-from flaskerizer.flaskerizer_src.config import CONFIGURATION
 from flaskerizer.flaskerizer_src.HTTP_status_dict import HTTP_status_dict
 from flaskerizer.flaskerizer_src.status_code_to_word import status_code_to_word
+from flaskerizer.flaskerizer_src.command_line_arguments import get_cmd_args
 import os
 
 class WriteApp():
     def __init__(self):
-        self.base_app_dir = os.path.join(CONFIGURATION['app_path'], os.path.basename(CONFIGURATION['app_name']))
-        if CONFIGURATION['large_app_structure'] == False:
+        self.base_app_dir = os.path.join(get_cmd_args()['app_path'], os.path.basename(get_cmd_args()['app_name']))
+        if get_cmd_args()['large_app_structure'] == False:
             self.flaskerized_app_dir = self.base_app_dir
-        elif CONFIGURATION['large_app_structure'] == True:
-            self.flaskerized_app_dir = os.path.join(self.base_app_dir, os.path.basename(CONFIGURATION['app_name']))
+        elif get_cmd_args()['large_app_structure'] == True:
+            self.flaskerized_app_dir = os.path.join(self.base_app_dir, os.path.basename(get_cmd_args()['app_name']))
 
     def get_routes(self):
         '''Gets the name of every HTML template in the templates folder.
@@ -61,7 +61,7 @@ class WriteApp():
                             '   install_requires=[\n'
                             '       \'flask\',\n'
                             '   ],\n'
-                            ')'.format(CONFIGURATION['app_name'], CONFIGURATION['app_name']))
+                            ')'.format(get_cmd_args()['app_name'], get_cmd_args()['app_name']))
 
 
     def write_small_app(self):
@@ -71,7 +71,7 @@ class WriteApp():
         '''
         print('Writing Flask app module...')
         with open(os.path.join(self.flaskerized_app_dir,
-                               os.path.basename('{}.py'.format(CONFIGURATION['app_name']))),'w') as write_obj:
+                               os.path.basename('{}.py'.format(get_cmd_args()['app_name']))),'w') as write_obj:
             write_obj.write('from flask import Flask, render_template\n\n')
             write_obj.write('app = Flask(__name__)\n\n')
             self.write_routes(write_obj)
@@ -90,10 +90,10 @@ class WriteApp():
         with open(os.path.join(self.flaskerized_app_dir, os.path.basename('__init__.py')), 'w') as write_obj:
             write_obj.write('from flask import Flask\n'
                             'app = Flask(__name__)\n\n'
-                            'import {}.routes'.format(CONFIGURATION['app_name']))
+                            'import {}.routes'.format(get_cmd_args()['app_name']))
         with open(os.path.join(self.flaskerized_app_dir, os.path.basename('routes.py')), 'w') as write_obj:
             write_obj.write('from flask import render_template\n'
-                            'from {} import app\n\n'.format(CONFIGURATION['app_name']))
+                            'from {} import app\n\n'.format(get_cmd_args()['app_name']))
             self.write_routes(write_obj)
         self.write_setup()
         print('Flaskerization complete')

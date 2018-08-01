@@ -1,7 +1,7 @@
 import io #needed to backport some open statements to python 2.7
 import os
-from flaskerizer.flaskerizer_src.config import CONFIGURATION
 from flaskerizer.flaskerizer_src.target_folders import target_folders
+from flaskerizer.flaskerizer_src.command_line_arguments import get_cmd_args
 import shutil
 
 class StructureDirectory():
@@ -14,11 +14,11 @@ class StructureDirectory():
         '''
         self.top_level_path = top_level_path
         self.templates_path = templates_path
-        self.base_app_dir = os.path.join(CONFIGURATION['app_path'], os.path.basename(CONFIGURATION['app_name']))
-        if CONFIGURATION['large_app_structure'] == False:
+        self.base_app_dir = os.path.join(get_cmd_args()['app_path'], os.path.basename(get_cmd_args()['app_name']))
+        if get_cmd_args()['large_app_structure'] == False:
             self.flaskerized_app_dir = self.base_app_dir
-        elif CONFIGURATION['large_app_structure'] == True:
-            self.flaskerized_app_dir = os.path.join(self.base_app_dir, os.path.basename(CONFIGURATION['app_name']))
+        elif get_cmd_args()['large_app_structure'] == True:
+            self.flaskerized_app_dir = os.path.join(self.base_app_dir, os.path.basename(get_cmd_args()['app_name']))
 
     def mkdir(self):
         '''Makes all the folders for the Flask application.
@@ -27,7 +27,7 @@ class StructureDirectory():
         if os.path.exists(self.base_app_dir):
             shutil.rmtree(self.base_app_dir)
         os.mkdir(self.base_app_dir)
-        if CONFIGURATION['large_app_structure'] == True:
+        if get_cmd_args()['large_app_structure'] == True:
             os.mkdir(self.flaskerized_app_dir)
 
         folders = {'templates': [''],
@@ -181,10 +181,7 @@ class StructureDirectory():
         self.detect_and_migrate_html_files()
         self.parse_links(migrate_dict)
 
-if __name__ == "__main__":
-    my_object = StructureDirectory(templates_path=CONFIGURATION['templates_path'],
-                                   top_level_path=CONFIGURATION['top_level_path'])
-    my_object.structure_directory()
+
 
 
 
