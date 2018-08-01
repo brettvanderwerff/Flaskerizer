@@ -1,5 +1,7 @@
 import setuptools
 
+description= 'The Flaskerizer automates the necessary directory building and link creation needed to make Bootstrap templates work "out of the box" with Flask.'
+
 with open("README.md", "r") as read_obj:
     long_description = read_obj.read()
 
@@ -8,6 +10,7 @@ setuptools.setup(
     version= "0.0.1",
     author="Brett Vanderwerff",
     author_email="brett.vanderwerff@gmail.com",
+    description=description,
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/brettvanderwerff/Flaskerizer",
