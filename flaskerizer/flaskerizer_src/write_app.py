@@ -14,7 +14,6 @@ class WriteApp():
     def get_routes(self):
         '''Gets the name of every HTML template in the templates folder.
         '''
-        print(self.flaskerized_app_dir)
         return [template for template in os.listdir(os.path.join(self.flaskerized_app_dir,
                                                                  os.path.basename('templates')))]
 

@@ -1,19 +1,20 @@
 import setuptools
 
-long_description = 'The Flaskerizer automates the necessary directory building and link creation needed to make ' \
-                   'Bootstrap templates work "out of the box" with Flask. The Flaskerizer also automatically creates ' \
-                   'the necessary files with the appropriate routes and basic error handling needed to serve the ' \
-                   'Bootstrap template as a Flask app.'
+with open("README.md", "r") as read_obj:
+    long_description = read_obj.read()
 
 setuptools.setup(
     name="flaskerizer",
-    version= "0.0.7",
+    version= "0.0.1",
     author="Brett Vanderwerff",
     author_email="brett.vanderwerff@gmail.com",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/brettvanderwerff/Flaskerizer",
     packages=setuptools.find_packages(),
+    install_requires=[
+              'flask',
+          ],
     entry_points={
               'console_scripts': [
                   'flaskerizer = flaskerizer.__main__:main'
@@ -30,5 +31,6 @@ setuptools.setup(
         "Operating System :: OS Independent",
         "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
         "Framework :: Flask",
-        "Operating System :: OS Independent"
+        "Operating System :: OS Independent",
+        "Development Status :: 3 - Alpha"
         ))
