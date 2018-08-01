@@ -210,7 +210,7 @@ $pyhton -m flaskerizer
 
 We are currently using [pytest](https://docs.pytest.org/en/latest/) for running all the tests at once. Run `$pip install pytest`  and then in the top level directory of the repo run `$pytest` to run the tests.
 
-## Contributors:
+### Contributors:
 
 A list of people that have contributed to Flaskerizer by completing a pull request:
 
