@@ -14,6 +14,7 @@ class WriteApp():
     def get_routes(self):
         '''Gets the name of every HTML template in the templates folder.
         '''
+        print(self.flaskerized_app_dir)
         return [template for template in os.listdir(os.path.join(self.flaskerized_app_dir,
                                                                  os.path.basename('templates')))]
 
@@ -99,9 +100,7 @@ class WriteApp():
         print('Flaskerization complete')
 
 
-if __name__ == '__main__':
-    my_object = WriteApp()
-    my_object.write_small_app()
+
 
 
 

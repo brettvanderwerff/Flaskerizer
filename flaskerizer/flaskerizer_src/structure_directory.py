@@ -5,7 +5,7 @@ from flaskerizer.flaskerizer_src.command_line_arguments import get_cmd_args
 import shutil
 
 class StructureDirectory():
-    def __init__(self, templates_path, top_level_path):
+    def __init__(self, templates_path, top_level_path, large_app_Structure):
         '''
         The top_level_path attribute of the StructureDirectory class is a path to the top level folder
          of the Bootstrap template source folder. The templates_path attribute of the StructureDirectory class is a
@@ -15,9 +15,9 @@ class StructureDirectory():
         self.top_level_path = top_level_path
         self.templates_path = templates_path
         self.base_app_dir = os.path.join(get_cmd_args()['app_path'], os.path.basename(get_cmd_args()['app_name']))
-        if get_cmd_args()['large_app_structure'] == False:
+        if large_app_Structure == False:
             self.flaskerized_app_dir = self.base_app_dir
-        elif get_cmd_args()['large_app_structure'] == True:
+        elif large_app_Structure == True:
             self.flaskerized_app_dir = os.path.join(self.base_app_dir, os.path.basename(get_cmd_args()['app_name']))
 
     def mkdir(self):

@@ -1,7 +1,6 @@
 from flaskerizer.flaskerizer_src.structure_directory import StructureDirectory
 import flaskerizer.flaskerizer_src.examples.Alstar_example as example
 import flaskerizer.flaskerizer_src.tests as tests
-from flaskerizer.flaskerizer_src.config import CONFIGURATION
 import flaskerizer
 import unittest
 import os
@@ -13,23 +12,17 @@ class TestStructureDirectory(unittest.TestCase):
         '''Instantiates an object 'test' from the StructureDirectory class. tests are written to test both cases where
         the config.py CONFIGURATION['large_app_structure'] is set to either True or False.
         '''
-        CONFIGURATION['app_name'] = 'Test_application'
-        CONFIGURATION['app_path'] = os.path.dirname(flaskerizer.__file__)
         self.test = StructureDirectory(templates_path= os.path.dirname(example.__file__),
-                                       top_level_path= os.path.dirname(example.__file__))
-        if CONFIGURATION['large_app_structure'] == False:
-            self.flaskerized_app_dir = os.path.join(os.path.dirname(flaskerizer.__file__),
-                                                    os.path.basename('Test_application'))
-            self.gold_standard_dir = os.path.join(os.path.dirname(tests.__file__),
-                                                  os.path.basename('testing_files'),
-                                                  os.path.basename('small_Test_application_test_folder'))
-        elif CONFIGURATION['large_app_structure'] == True:
-            self.flaskerized_app_dir = os.path.join(os.path.join(os.path.dirname(flaskerizer.__file__),
-                                                                 os.path.basename('Test_application')),
-                                                                 os.path.basename('Test_application'))
-            self.gold_standard_dir = os.path.join(os.path.dirname(tests.__file__),
-                                                  os.path.basename('testing_files'),
-                                                  os.path.basename('large_Test_application_test_folder'))
+                                       top_level_path= os.path.dirname(example.__file__),
+                                       large_app_Structure=True)
+
+
+        self.flaskerized_app_dir = os.path.join(os.path.join(os.path.dirname(flaskerizer.__file__),
+                                                             os.path.basename('Test_application')),
+                                                             os.path.basename('Test_application'))
+        self.gold_standard_dir = os.path.join(os.path.dirname(tests.__file__),
+                                              os.path.basename('testing_files'),
+                                              os.path.basename('large_Test_application_test_folder'))
 
 
 
@@ -70,13 +63,11 @@ class TestStructureDirectory(unittest.TestCase):
         self.test.detect_and_migrate_html_files()
         test_dir = os.path.join(self.flaskerized_app_dir,
                                         os.path.basename('templates'))
-        if CONFIGURATION['large_app_structure'] == False:
-            gold_standard_dir = os.path.join(self.gold_standard_dir,
-                                             os.path.basename('templates'))
-        elif CONFIGURATION['large_app_structure'] == True:
-            gold_standard_dir = os.path.join(self.gold_standard_dir,
-                                             os.path.basename('Test_application'),
-                                             os.path.basename('templates'))
+
+
+        gold_standard_dir = os.path.join(self.gold_standard_dir,
+                                         os.path.basename('Test_application'),
+                                         os.path.basename('templates'))
 
         test_file_list = []
         gold_standard_file_list = []
@@ -101,25 +92,20 @@ class TestStructureDirectory(unittest.TestCase):
         extensions = ['.js', '.css', '.jpg', '.png', 'gif', '.ico', '.otf',
                       '.eot', '.svg', '.ttf', '.woff', '.woff2']
         test_dir = self.flaskerized_app_dir
-        gold_standard_dir = os.path.join(os.path.dirname(tests.__file__),
-                                         os.path.basename('testing_files'),
-                                         os.path.basename('small_Test_application_test_folder'))
         test_file_list = []
         gold_standard_file_list = []
-        for dir in [test_dir, gold_standard_dir]:
+        for dir in [test_dir, self.gold_standard_dir]:
             for path, subdir, files in os.walk(dir):
                 for name in files:
                     for extension in extensions:
                         if name.endswith(extension):
                             if dir == test_dir:
                                 test_file_list.append(name)
-                            if dir == gold_standard_dir:
+                            if dir == self.gold_standard_dir:
                                 gold_standard_file_list.append(name)
         self.assertEqual(len(test_file_list), len(gold_standard_file_list))
 
 
 
-for state in [True, False]:
-    CONFIGURATION['large_app_structure'] = state #tests are run under both CONFIGURATION['large_app_structure'] == True or False
-    suite = unittest.TestLoader().loadTestsFromTestCase(TestStructureDirectory)
-    unittest.TextTestRunner().run(suite)
+if __name__ == '__main__':
+    unittest.main()

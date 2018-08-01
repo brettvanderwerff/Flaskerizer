@@ -1,5 +1,4 @@
 import flaskerizer.flaskerizer_src.examples.Alstar_example as example
-from flaskerizer.flaskerizer_src.config import CONFIGURATION
 from flaskerizer.flaskerizer_src.structure_directory import StructureDirectory
 from flaskerizer.flaskerizer_src.write_app import WriteApp
 import flaskerizer.flaskerizer_src.tests as tests
@@ -14,10 +13,9 @@ class TestWriteApp(unittest.TestCase):
         also instantiated from the WriteApp class. tests are written to test both cases where the config.py
         CONFIGURATION['large_app_structure'] is set to either True or False.
         '''
-        CONFIGURATION['app_name'] = 'Test_application'
-        CONFIGURATION['app_path'] = os.path.dirname(flaskerizer.__file__)
         structure_directory_object = StructureDirectory(templates_path=os.path.dirname(example.__file__),
-                                                        top_level_path=os.path.dirname(example.__file__))
+                                                        top_level_path=os.path.dirname(example.__file__),
+                                                        large_app_Structure=True)
 
         structure_directory_object.structure_directory()
         self.test = WriteApp()
@@ -34,23 +32,15 @@ class TestWriteApp(unittest.TestCase):
         CONFIGURATION['large_app_structure'] == False, tests if the 'routes.py' file written by write_large_app matches
         a gold standard version.
         '''
-        if CONFIGURATION['large_app_structure'] == False:
-            self.test.write_small_app()
-            test_dir = os.path.join(os.path.dirname(flaskerizer.__file__),
-                                   os.path.basename('Test_application'),
-                                   os.path.basename('Test_application.py'))
-            gold_dir = os.path.join(os.path.dirname(tests.__file__),
-                                    os.path.basename('testing_files'),
-                                    os.path.basename('app_test_file.py'))
-        elif CONFIGURATION['large_app_structure'] == True:
-            self.test.write_large_app()
-            test_dir = os.path.join(os.path.dirname(flaskerizer.__file__),
-                                   os.path.basename('Test_application'),
-                                   os.path.basename('Test_application'),
-                                   os.path.basename('routes.py'))
-            gold_dir = os.path.join(os.path.dirname(tests.__file__),
-                                    os.path.basename('testing_files'),
-                                    os.path.basename('routes_test_file.py'))
+
+        self.test.write_large_app()
+        test_dir = os.path.join(os.path.dirname(flaskerizer.__file__),
+                               os.path.basename('Test_application'),
+                               os.path.basename('Test_application'),
+                           os.path.basename('routes.py'))
+        gold_dir = os.path.join(os.path.dirname(tests.__file__),
+                                os.path.basename('testing_files'),
+                                os.path.basename('routes_test_file.py'))
         with open(test_dir, 'r') as test_obj:
             test_string = test_obj.read()
         with open(gold_dir) as gold_obj:
@@ -58,10 +48,8 @@ class TestWriteApp(unittest.TestCase):
         self.assertMultiLineEqual(test_string, gold_string)
 
 
-for state in [True, False]:
-    CONFIGURATION['large_app_structure'] = state #tests are run under both CONFIGURATION['large_app_structure'] == True or False
-    suite = unittest.TestLoader().loadTestsFromTestCase(TestWriteApp)
-    unittest.TextTestRunner().run(suite)
+if __name__ == '__main__':
+    unittest.main()
 
 
 

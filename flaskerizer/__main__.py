@@ -4,7 +4,8 @@ from flaskerizer.flaskerizer_src.write_app import WriteApp
 
 def main():
     structure_directory_object = StructureDirectory(templates_path=get_cmd_args()['templates_path'],
-                                                    top_level_path=get_cmd_args()['top_level_path'])
+                                                    top_level_path=get_cmd_args()['top_level_path'],
+                                                    large_app_Structure=get_cmd_args()['large_app_structure'])
 
     structure_directory_object.structure_directory()
     write_app_object = WriteApp()
