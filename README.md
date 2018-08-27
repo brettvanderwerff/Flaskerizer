@@ -202,7 +202,7 @@ We are beginner friendly.
 1. Clone the repo.
 2. Navigate to the top level directory, open a terminal, and enter:
 ```commandline
-$pyhton -m flaskerizer 
+$python -m flaskerizer 
 ```
 3. See previous sections in the readme for appropriate use of command line arguments.
 
