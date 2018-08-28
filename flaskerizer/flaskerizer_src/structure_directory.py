@@ -138,7 +138,9 @@ class StructureDirectory():
 
                         full_address = (target_folders[extension]['folder'],
                                                     target_folders[extension]['subfolder'], name)
-                        address = migrate_dict[name]['link']                            
+                        address = migrate_dict[name]['link']           
+                        
+                        query = address[address.find('/'):]                     
 
                         if ("../fonts/{}".format(name[6:])) in line: #if ../fonts/name[6:] change 
                                                                     #to ../fonts/name
@@ -154,8 +156,7 @@ class StructureDirectory():
                                 if ('../' +address) in line:#if ../filename.html in line
                                     for extension in target_folders: #for extension in every folder
                                         if name.endswith(extension): #if name ends with that extension 
-                                            line = line.replace(address,
-                                                    '/'.join(full_address))#replace filename with
+                                            line = line.replace(address,'/'.join(full_address))#replace filename with
                                                                 #folder/subfolder/filename
                             else:
                                 for extension in target_folders: #for every extension
@@ -167,11 +168,10 @@ class StructureDirectory():
                         elif address in line: #for single filename in line
                             for extension in target_folders: #for every extension 
                                 if name.endswith(extension): #for every filename with extension
-                                    line = line.replace(address,'/'.join(full_address))
+                                    line = line.replace(address,('/'.join(full_address)))
                                                         #replace filename with
                                                                 #folder/subfolder/filename
                         
-                        query = address[migrate_dict[name]['link'].find('/'):]    
 
                         elif ('..' + query) in line:
                             #for ../filename 
