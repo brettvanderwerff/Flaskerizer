@@ -135,6 +135,11 @@ class StructureDirectory():
             with io.open(file, 'a', encoding='utf-8') as write_obj: #open file to append
                 for line in line_list: #for every line in file
                     for name in migrate_dict: #for every filename in dict
+
+                        full_address = (target_folders[extension]['folder'],
+                                                    target_folders[extension]['subfolder'], name)
+                        address = migrate_dict[name]['link']                            
+
                         if ("../fonts/{}".format(name[6:])) in line: #if ../fonts/name[6:] change 
                                                                     #to ../fonts/name
                             line = line.replace("../fonts/{}".format(name[6:]),"../fonts/{}".format(name))
@@ -144,48 +149,44 @@ class StructureDirectory():
                             line = line.replace("@import url('{}')".format(name[6:]),
                                                 "@import url('{}')".format(name))
 
-                        elif ('../' + migrate_dict[name]['link']) in line: #if ../filename change 
+                        elif ('../' + address) in line: #if ../filename change 
                             if file.endswith('.html'): #if file is .html
-                                if ('../' + migrate_dict[name]['link']) in line:#if ../filename.html in line
+                                if ('../' +address) in line:#if ../filename.html in line
                                     for extension in target_folders: #for extension in every folder
                                         if name.endswith(extension): #if name ends with that extension 
-                                            line = line.replace(migrate_dict[name]['link'],
-                                                    '/'.join((target_folders[extension]['folder'],
-                                                    target_folders[extension]['subfolder'], name)))#replace filename with
+                                            line = line.replace(address,
+                                                    '/'.join(full_address))#replace filename with
                                                                 #folder/subfolder/filename
                             else:
                                 for extension in target_folders: #for every extension
                                     if name.endswith(extension): #for every name with that extension
-                                        line = line.replace(migrate_dict[name]['link'],
-                                                            '/'.join((target_folders[extension]['subfolder'], name)))
+                                        line = line.replace(address,'/'.join(full_address[1:]))
                                                             #replace filename with
                                                             #subfolder/name
 
-                        elif migrate_dict[name]['link'] in line: #for single filename in line
+                        elif address in line: #for single filename in line
                             for extension in target_folders: #for every extension 
                                 if name.endswith(extension): #for every filename with extension
-                                    line = line.replace(migrate_dict[name]['link'], 
-                                                        '/'.join((target_folders[extension]['folder'],
-                                                                  target_folders[extension]['subfolder'], name)))
+                                    line = line.replace(address,'/'.join(full_address))
                                                         #replace filename with
                                                                 #folder/subfolder/filename
-                                                                          
-                        elif ('..' + migrate_dict[name]['link'][migrate_dict[name]['link'].find('/'):]) in line:
+                        
+                        query = address[migrate_dict[name]['link'].find('/'):]    
+
+                        elif ('..' + query) in line:
                             #for ../filename 
                             for extension in target_folders: #for every extension
                                 if name.endswith(extension): #for every file with that extension
 
-                                    line = line.replace(migrate_dict[name]['link'][migrate_dict[name]['link'].find('/'):],
-                                                        '/'.join(('/' + target_folders[extension]['subfolder'], name)))
+                                    line = line.replace(query,'/'.join(('/' + full_address[1:])))
                                                         #replace ../filename with 
                                                         #subfolder/name
 
-                        elif ('(../' + '/'.join(migrate_dict[name]['link'].split('/')[2:])+ ')') in line:
+                        elif ('(../' + '/'.join(address.split('/')[2:])+ ')') in line:
                             #for ../sub-subfolder)
                             for extension in target_folders:
                                 if name.endswith(extension):
-                                    line = line.replace('/'.join(migrate_dict[name]['link'].split('/')[2:]),
-                                                        '/'.join((target_folders[extension]['subfolder'], name)))
+                                    line = line.replace('/'.join(address.split('/')[2:]),'/'.join(full_address[1:]))
                                                         #with subfolder/name
 
                     write_obj.write(line) #append new lines to file
