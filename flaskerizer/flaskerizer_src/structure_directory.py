@@ -124,6 +124,8 @@ class StructureDirectory():
         reference content of the css or javascript folder etc.).
         '''
         print('Fixing links to reflect Flask app structure, this may take several minutes...')
+
+        """Work in progress"""
         file_list = self.file_list()
         for file in file_list:
             line_list = self.load_file(file)
