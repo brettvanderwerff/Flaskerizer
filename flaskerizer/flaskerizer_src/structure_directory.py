@@ -68,18 +68,19 @@ class StructureDirectory():
         extensions = ['.js', '.css', '.jpg', '.png', 'gif', '.ico', '.otf', '.eot', '.svg', '.ttf', '.woff', '.woff2']
         path = self.top_level_path
         counter=0
-        for path, subdir, files in os.walk(path):
+        for path, subdir, files in os.walk(path): #for every directory in root, subdirectory in root
+                                                    # for every file in root and subdirectory
             for name in files:
                 counter +=1
                 duplicate_name = str(counter).zfill(6) + name # this prevents issues 2+ files have same names
-                for extension in extensions:
-                    if name.endswith(extension):
-                        migrate_dict[duplicate_name] = {'source_dir': '', 'link': ''}
-                        migrate_dict[duplicate_name]['source_dir'] = os.path.join(path, name)
+                for extension in extensions: #for every extension
+                    if name.endswith(extension): #if file is found with that extension
+                        migrate_dict[duplicate_name] = {'source_dir': '', 'link': ''}  #dict within dict
+                        migrate_dict[duplicate_name]['source_dir'] = os.path.join(path, name) #key is full link
                         migrate_dict[duplicate_name]['link'] = os.path.join(path, name).replace('\\', '/')[
-                                                     len(self.top_level_path) + 1:]
+                                                     len(self.top_level_path) + 1:] #value is abolute link - fullpath
 
-        return migrate_dict
+        return migrate_dict #key is full link and value is absolute link - fullpath
 
     def detect_and_migrate_html_files(self):
         '''Detects files with the extension ".html" in the templates_path. These files are migrated to the "templates"
@@ -126,49 +127,68 @@ class StructureDirectory():
         print('Fixing links to reflect Flask app structure, this may take several minutes...')
 
         """Work in progress"""
-        file_list = self.file_list()
-        for file in file_list:
-            line_list = self.load_file(file)
-            with io.open(file, 'a', encoding='utf-8') as write_obj:
-                for line in line_list:
-                    for name in migrate_dict:
-                        if ("../fonts/{}".format(name[6:])) in line:
+
+        file_list = self.file_list() #files in directory
+        for file in file_list: #for every file
+            line_list = self.load_file(file) # make a list of lines in file
+
+            with io.open(file, 'a', encoding='utf-8') as write_obj: #open file to append
+                for line in line_list: #for every line in file
+                    for name in migrate_dict: #for every filename in dict
+                        if ("../fonts/{}".format(name[6:])) in line: #if ../fonts/name[6:] change 
+                                                                    #to ../fonts/name
                             line = line.replace("../fonts/{}".format(name[6:]),"../fonts/{}".format(name))
-                        elif ("@import url('{}')".format(name[6:])) in line:
+
+                        elif ("@import url('{}')".format(name[6:])) in line: #if @import url(name[6:]) change
+                                                                            # to @import url(name)
                             line = line.replace("@import url('{}')".format(name[6:]),
                                                 "@import url('{}')".format(name))
-                        elif ('../' + migrate_dict[name]['link']) in line:
-                            if file.endswith('.html'):
-                                if ('../' + migrate_dict[name]['link']) in line:
-                                    for extension in target_folders:
-                                        if name.endswith(extension):
+
+                        elif ('../' + migrate_dict[name]['link']) in line: #if ../filename change 
+                            if file.endswith('.html'): #if file is .html
+                                if ('../' + migrate_dict[name]['link']) in line:#if ../filename.html in line
+                                    for extension in target_folders: #for extension in every folder
+                                        if name.endswith(extension): #if name ends with that extension 
                                             line = line.replace(migrate_dict[name]['link'],
-                                                                '/'.join((target_folders[extension]['folder'],
-                                                                          target_folders[extension]['subfolder'], name)))
+                                                    '/'.join((target_folders[extension]['folder'],
+                                                    target_folders[extension]['subfolder'], name)))#replace filename with
+                                                                #folder/subfolder/filename
                             else:
-                                for extension in target_folders:
-                                    if name.endswith(extension):
+                                for extension in target_folders: #for every extension
+                                    if name.endswith(extension): #for every name with that extension
                                         line = line.replace(migrate_dict[name]['link'],
                                                             '/'.join((target_folders[extension]['subfolder'], name)))
-                        elif migrate_dict[name]['link'] in line:
-                            for extension in target_folders:
-                                if name.endswith(extension):
-                                    line = line.replace(migrate_dict[name]['link'],
+                                                            #replace filename with
+                                                            #subfolder/name
+
+                        elif migrate_dict[name]['link'] in line: #for single filename in line
+                            for extension in target_folders: #for every extension 
+                                if name.endswith(extension): #for every filename with extension
+                                    line = line.replace(migrate_dict[name]['link'], 
                                                         '/'.join((target_folders[extension]['folder'],
                                                                   target_folders[extension]['subfolder'], name)))
+                                                        #replace filename with
+                                                                #folder/subfolder/filename
+                                                                          
                         elif ('..' + migrate_dict[name]['link'][migrate_dict[name]['link'].find('/'):]) in line:
-                            for extension in target_folders:
-                                if name.endswith(extension):
+                            #for ../filename 
+                            for extension in target_folders: #for every extension
+                                if name.endswith(extension): #for every file with that extension
 
                                     line = line.replace(migrate_dict[name]['link'][migrate_dict[name]['link'].find('/'):],
                                                         '/'.join(('/' + target_folders[extension]['subfolder'], name)))
+                                                        #replace ../filename with 
+                                                        #subfolder/name
 
                         elif ('(../' + '/'.join(migrate_dict[name]['link'].split('/')[2:])+ ')') in line:
+                            #for ../sub-subfolder)
                             for extension in target_folders:
                                 if name.endswith(extension):
                                     line = line.replace('/'.join(migrate_dict[name]['link'].split('/')[2:]),
                                                         '/'.join((target_folders[extension]['subfolder'], name)))
-                    write_obj.write(line)
+                                                        #with subfolder/name
+
+                    write_obj.write(line) #append new lines to file
 
     def structure_directory(self):
         '''
