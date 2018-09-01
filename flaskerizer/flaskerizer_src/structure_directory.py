@@ -151,38 +151,29 @@ class StructureDirectory():
         elif ("@import url('{}')".format(name[6:])) in line:
             line = line.replace("@import url('{}')".format(name[6:]),
                                 "@import url('{}')".format(name))
+        for extension in target_folders:
+                if name.endswith(extension):
+                    if ('../' + file_path) in line:
+                        if file.endswith('.html'):
+                            line = line.replace(file_path,
+                                                '/'.join((target_folders[extension]['folder'],
+                                                        target_folders[extension]['subfolder'], name)))
+                        else:
+                            line = line.replace(file_path,
+                                                '/'.join((target_folders[extension]['subfolder'], name)))
 
-        elif ('../' + file_path) in line:
-            if file.endswith('.html'):
-                for extension in target_folders:
-                    if name.endswith(extension):
+                    elif file_path in line:
                         line = line.replace(file_path,
                                             '/'.join((target_folders[extension]['folder'],
-                                                    target_folders[extension]['subfolder'], name)))
-            else:
-                for extension in target_folders:
-                    if name.endswith(extension):
-                        line = line.replace(file_path,
+                                                        target_folders[extension]['subfolder'], name)))
+
+                    elif ('..' + file_path[file_path.find('/'):]) in line:
+                        line = line.replace(file_path[file_path.find('/'):],
+                                            '/'.join(('/' + target_folders[extension]['subfolder'], name)))
+
+                    elif ('(../' + '/'.join(file_path.split('/')[2:])+ ')') in line:
+                        line = line.replace('/'.join(file_path.split('/')[2:]),
                                             '/'.join((target_folders[extension]['subfolder'], name)))
-
-        elif file_path in line:
-            for extension in target_folders:
-                if name.endswith(extension):
-                    line = line.replace(file_path,
-                                        '/'.join((target_folders[extension]['folder'],
-                                                    target_folders[extension]['subfolder'], name)))
-
-        elif ('..' + file_path[file_path.find('/'):]) in line:
-            for extension in target_folders:
-                if name.endswith(extension):
-                    line = line.replace(file_path[file_path.find('/'):],
-                                        '/'.join(('/' + target_folders[extension]['subfolder'], name)))
-
-        elif ('(../' + '/'.join(file_path.split('/')[2:])+ ')') in line:
-            for extension in target_folders:
-                if name.endswith(extension):
-                    line = line.replace('/'.join(file_path.split('/')[2:]),
-                                        '/'.join((target_folders[extension]['subfolder'], name)))
 
         return line
 
