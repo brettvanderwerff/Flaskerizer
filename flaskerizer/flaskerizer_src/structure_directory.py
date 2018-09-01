@@ -133,6 +133,9 @@ class StructureDirectory():
                 for line in line_list: 
                     for name in migrate_dict: 
 
+                        full_address = (target_folders[extension]['folder'],
+                                                        target_folders[extension]['subfolder'],
+                                                         name)
                         address = migrate_dict[name]['link']  #file path without top_level_path        
                         query = address[address.find('/'):]   #file path after first "/"                  
 
@@ -147,9 +150,6 @@ class StructureDirectory():
                             if file.endswith('.html'): 
                                 if ('../' +address) in line:
                                     for extension in target_folders: 
-                                        full_address = (target_folders[extension]['folder'],
-                                                        target_folders[extension]['subfolder'],
-                                                         name)
                                         if name.endswith(extension):
                                             line = line.replace(address,'/'.join(full_address))
                             else:
