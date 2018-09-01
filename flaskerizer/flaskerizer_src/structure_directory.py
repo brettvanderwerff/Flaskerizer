@@ -117,27 +117,7 @@ class StructureDirectory():
                 line_list.append(line)
         os.remove(file)
         return line_list
-
-    def parse_links(self, migrate_dict):
-        '''Iterates through every file returned by the "file_list" method and
-        adds /static/ to any line that should point to contents of the static folder of the Flask app (i.e. lines that
-        reference content of the css or javascript folder etc.).
-        '''
-        print('Fixing links to reflect Flask app structure, this may take several minutes...')
-        print("Work in progress")
-        file_list = self.file_list()
-
-        for file in file_list:
-            line_list = self.load_file(file)
-
-            with io.open(file, 'a', encoding='utf-8') as write_obj:
-
-                for line in line_list:
-                    for name in migrate_dict:
-                        line = change_file_path(name,file,line)
-                        
-                    write_obj.write(line)
-
+    
     def change_file_path(self,name,file,line):
         '''For every line in file iterator in parse_links adds /static/ (and counter in filename) that should point to
           contents of the static folder of the Flask app and return that line to be written in fileobj in parse_links'''
@@ -175,6 +155,25 @@ class StructureDirectory():
                                             '/'.join((target_folders[extension]['subfolder'], name)))
 
         return line
+    
+    def parse_links(self, migrate_dict):
+        '''Iterates through every file returned by the "file_list" method and
+        adds /static/ to any line that should point to contents of the static folder of the Flask app (i.e. lines that
+        reference content of the css or javascript folder etc.).
+        '''
+        print('Fixing links to reflect Flask app structure, this may take several minutes...')
+        file_list = self.file_list()
+
+        for file in file_list:
+            line_list = self.load_file(file)
+
+            with io.open(file, 'a', encoding='utf-8') as write_obj:
+
+                for line in line_list:
+                    for name in migrate_dict:
+                        line = change_file_path(name,file,line)
+                        
+                    write_obj.write(line)
 
     def structure_directory(self):
         '''
