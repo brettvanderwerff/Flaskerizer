@@ -139,42 +139,42 @@ class StructureDirectory():
                     write_obj.write(line)
 
     def change_file_path(self,name,file,line):
-         '''For every line in file iterator in parse_links adds /static/ (and counter in filename) that should point to
+        '''For every line in file iterator in parse_links adds /static/ (and counter in filename) that should point to
           contents of the static folder of the Flask app and return that line to be written in fileobj in parse_links'''
 
-            file_path = migrate_dict[name]['link']
+        file_path = migrate_dict[name]['link']
 
-            if ("../fonts/{}".format(name[6:])) in line:
-                line = line.replace("../fonts/{}".format(name[6:]),"../fonts/{}".format(name))
+        if ("../fonts/{}".format(name[6:])) in line:
+            line = line.replace("../fonts/{}".format(name[6:]),"../fonts/{}".format(name))
 
-            elif ("@import url('{}')".format(name[6:])) in line:
-                line = line.replace("@import url('{}')".format(name[6:]),
-                                    "@import url('{}')".format(name))
-            for extension in target_folders:
-                    if name.endswith(extension):
-                        if ('../' + file_path) in line:
-                            if file.endswith('.html'):
-                                line = line.replace(file_path,
-                                                    '/'.join((target_folders[extension]['folder'],
-                                                            target_folders[extension]['subfolder'], name)))
-                            else:
-                                line = line.replace(file_path,
-                                                    '/'.join((target_folders[extension]['subfolder'], name)))
-
-                        elif file_path in line:
+        elif ("@import url('{}')".format(name[6:])) in line:
+            line = line.replace("@import url('{}')".format(name[6:]),
+                                "@import url('{}')".format(name))
+        for extension in target_folders:
+                if name.endswith(extension):
+                    if ('../' + file_path) in line:
+                        if file.endswith('.html'):
                             line = line.replace(file_path,
                                                 '/'.join((target_folders[extension]['folder'],
-                                                            target_folders[extension]['subfolder'], name)))
-
-                        elif ('..' + file_path[file_path.find('/'):]) in line:
-                            line = line.replace(file_path[file_path.find('/'):],
-                                                '/'.join(('/' + target_folders[extension]['subfolder'], name)))
-
-                        elif ('(../' + '/'.join(file_path.split('/')[2:])+ ')') in line:
-                            line = line.replace('/'.join(file_path.split('/')[2:]),
+                                                        target_folders[extension]['subfolder'], name)))
+                        else:
+                            line = line.replace(file_path,
                                                 '/'.join((target_folders[extension]['subfolder'], name)))
 
-            return line
+                    elif file_path in line:
+                        line = line.replace(file_path,
+                                            '/'.join((target_folders[extension]['folder'],
+                                                        target_folders[extension]['subfolder'], name)))
+
+                    elif ('..' + file_path[file_path.find('/'):]) in line:
+                        line = line.replace(file_path[file_path.find('/'):],
+                                            '/'.join(('/' + target_folders[extension]['subfolder'], name)))
+
+                    elif ('(../' + '/'.join(file_path.split('/')[2:])+ ')') in line:
+                        line = line.replace('/'.join(file_path.split('/')[2:]),
+                                            '/'.join((target_folders[extension]['subfolder'], name)))
+
+        return line
 
     def structure_directory(self):
         '''
