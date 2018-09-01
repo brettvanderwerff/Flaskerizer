@@ -120,7 +120,7 @@ class StructureDirectory():
     
     def change_file_path(self,migrate_dict,name,file,line):
         '''For every line in file iterator in parse_links adds /static/ (and counter in filename) that should point to
-          contents of the static folder of the Flask app and return that line to be written in fileobj in parse_links'''
+          contents of the static folder of the Flask app and return that line to be written in writeobj in parse_links'''
 
         file_path = migrate_dict[name]['link']
 
@@ -130,27 +130,29 @@ class StructureDirectory():
         elif ("@import url('{}')".format(name[6:])) in line:
             line = line.replace("@import url('{}')".format(name[6:]),
                                 "@import url('{}')".format(name))
+
         for extension in target_folders:
-                if name.endswith(extension):
+            if name.endswith(extension):
 
-                    full_path = (target_folders[extension]['folder'],
-                                                        target_folders[extension]['subfolder'], name)
-                    if ('../' + file_path) in line:
-                        if file.endswith('.html'):
-                            line = line.replace(file_path,'/'.join(full_path))
-                        else:
-                            line = line.replace(file_path,'/'.join(full_path[1:]))
-
-                    elif file_path in line:
+                full_path = (target_folders[extension]['folder'],
+                            target_folders[extension]['subfolder'], name)
+                            
+                if ('../' + file_path) in line:
+                    if file.endswith('.html'):
                         line = line.replace(file_path,'/'.join(full_path))
+                    else:
+                        line = line.replace(file_path,'/'.join(full_path[1:]))
 
-                    elif ('..' + file_path[file_path.find('/'):]) in line:
-                        line = line.replace(file_path[file_path.find('/'):],
-                                            '/'.join(('/' + full_path[1:])))
+                elif file_path in line:
+                    line = line.replace(file_path,'/'.join(full_path))
 
-                    elif ('(../' + '/'.join(file_path.split('/')[2:])+ ')') in line:
-                        line = line.replace('/'.join(file_path.split('/')[2:]),
-                                            '/'.join(full_path[1:]))
+                elif ('..' + file_path[file_path.find('/'):]) in line:
+                    line = line.replace(file_path[file_path.find('/'):],
+                                        '/'.join(('/' + full_path[1:])))
+
+                elif ('(../' + '/'.join(file_path.split('/')[2:])+ ')') in line:
+                    line = line.replace('/'.join(file_path.split('/')[2:]),
+                                        '/'.join(full_path[1:]))
 
         return line
     
@@ -160,6 +162,7 @@ class StructureDirectory():
         reference content of the css or javascript folder etc.).
         '''
         print('Fixing links to reflect Flask app structure, this may take several minutes...')
+        
         file_list = self.file_list()
 
         for file in file_list:
