@@ -171,7 +171,7 @@ class StructureDirectory():
 
                 for line in line_list:
                     for name in migrate_dict:
-                        line = change_file_path(name,file,line)
+                        line = self.change_file_path(name,file,line)
                         
                     write_obj.write(line)
 
