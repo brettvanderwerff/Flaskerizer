@@ -118,7 +118,7 @@ class StructureDirectory():
         os.remove(file)
         return line_list
     
-    def change_file_path(self,name,file,line):
+    def change_file_path(self,migrate_dict,name,file,line):
         '''For every line in file iterator in parse_links adds /static/ (and counter in filename) that should point to
           contents of the static folder of the Flask app and return that line to be written in fileobj in parse_links'''
 
@@ -171,7 +171,7 @@ class StructureDirectory():
 
                 for line in line_list:
                     for name in migrate_dict:
-                        line = self.change_file_path(name,file,line)
+                        line = self.change_file_path(migrate_dict,name,file,line)
                         
                     write_obj.write(line)
 
