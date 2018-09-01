@@ -132,27 +132,25 @@ class StructureDirectory():
                                 "@import url('{}')".format(name))
         for extension in target_folders:
                 if name.endswith(extension):
+
+                    full_path = (target_folders[extension]['folder'],
+                                                        target_folders[extension]['subfolder'], name)
                     if ('../' + file_path) in line:
                         if file.endswith('.html'):
-                            line = line.replace(file_path,
-                                                '/'.join((target_folders[extension]['folder'],
-                                                        target_folders[extension]['subfolder'], name)))
+                            line = line.replace(file_path,'/'.join(full_path))
                         else:
-                            line = line.replace(file_path,
-                                                '/'.join((target_folders[extension]['subfolder'], name)))
+                            line = line.replace(file_path,'/'.join(full_path[1:]))
 
                     elif file_path in line:
-                        line = line.replace(file_path,
-                                            '/'.join((target_folders[extension]['folder'],
-                                                        target_folders[extension]['subfolder'], name)))
+                        line = line.replace(file_path,'/'.join(full_path))
 
                     elif ('..' + file_path[file_path.find('/'):]) in line:
                         line = line.replace(file_path[file_path.find('/'):],
-                                            '/'.join(('/' + target_folders[extension]['subfolder'], name)))
+                                            '/'.join(('/' + full_path[1:])))
 
                     elif ('(../' + '/'.join(file_path.split('/')[2:])+ ')') in line:
                         line = line.replace('/'.join(file_path.split('/')[2:]),
-                                            '/'.join((target_folders[extension]['subfolder'], name)))
+                                            '/'.join(full_path[1:]))
 
         return line
     
