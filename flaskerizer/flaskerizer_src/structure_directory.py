@@ -134,50 +134,56 @@ class StructureDirectory():
 
                 for line in line_list:
                     for name in migrate_dict:
-                        line = link_changer(name)
-                        file_path = migrate_dict[name]['link']
-
-                        if ("../fonts/{}".format(name[6:])) in line:
-                            line = line.replace("../fonts/{}".format(name[6:]),"../fonts/{}".format(name))
-
-                        elif ("@import url('{}')".format(name[6:])) in line:
-                            line = line.replace("@import url('{}')".format(name[6:]),
-                                                "@import url('{}')".format(name))
-                        elif ('../' + file_path) in line:
-                            if file.endswith('.html'):
-                                if ('../' + file_path) in line:
-                                    for extension in target_folders:
-                                        if name.endswith(extension):
-                                            line = line.replace(file_path,
-                                                                '/'.join((target_folders[extension]['folder'],
-                                                                          target_folders[extension]['subfolder'], name)))
-                            else:
-                                for extension in target_folders:
-                                    if name.endswith(extension):
-                                        line = line.replace(file_path,
-                                                            '/'.join((target_folders[extension]['subfolder'], name)))
-                        elif file_path in line:
-                            for extension in target_folders:
-                                if name.endswith(extension):
-                                    line = line.replace(file_path,
-                                                        '/'.join((target_folders[extension]['folder'],
-                                                                  target_folders[extension]['subfolder'], name)))
-                        elif ('..' + file_path[file_path.find('/'):]) in line:
-                            for extension in target_folders:
-                                if name.endswith(extension):
-
-                                    line = line.replace(file_path[file_path.find('/'):],
-                                                        '/'.join(('/' + target_folders[extension]['subfolder'], name)))
-
-                        elif ('(../' + '/'.join(file_path.split('/')[2:])+ ')') in line:
-                            for extension in target_folders:
-                                if name.endswith(extension):
-                                    line = line.replace('/'.join(file_path.split('/')[2:]),
-                                                        '/'.join((target_folders[extension]['subfolder'], name)))
+                        line = change_file_path(name,file,line)
+                        
                     write_obj.write(line)
 
-    def link_changer(self,line):
-        
+    def change_file_path(self,name,file,line):
+         '''Iterates through every line returned by the in file iterator in parse_links and
+        adds /static/ to any line (and counter in filename) that should point to contents of the static folder of the 
+        Flask app and return that line to be written in fileobj in parse_linkss'''
+
+        file_path = migrate_dict[name]['link']
+
+        if ("../fonts/{}".format(name[6:])) in line:
+            line = line.replace("../fonts/{}".format(name[6:]),"../fonts/{}".format(name))
+
+        elif ("@import url('{}')".format(name[6:])) in line:
+            line = line.replace("@import url('{}')".format(name[6:]),
+                                "@import url('{}')".format(name))
+
+        elif ('../' + file_path) in line:
+            if file.endswith('.html'):
+                for extension in target_folders:
+                    if name.endswith(extension):
+                        line = line.replace(file_path,
+                                            '/'.join((target_folders[extension]['folder'],
+                                                    target_folders[extension]['subfolder'], name)))
+            else:
+                for extension in target_folders:
+                    if name.endswith(extension):
+                        line = line.replace(file_path,
+                                            '/'.join((target_folders[extension]['subfolder'], name)))
+
+        elif file_path in line:
+            for extension in target_folders:
+                if name.endswith(extension):
+                    line = line.replace(file_path,
+                                        '/'.join((target_folders[extension]['folder'],
+                                                    target_folders[extension]['subfolder'], name)))
+
+        elif ('..' + file_path[file_path.find('/'):]) in line:
+            for extension in target_folders:
+                if name.endswith(extension):
+                    line = line.replace(file_path[file_path.find('/'):],
+                                        '/'.join(('/' + target_folders[extension]['subfolder'], name)))
+
+        elif ('(../' + '/'.join(file_path.split('/')[2:])+ ')') in line:
+            for extension in target_folders:
+                if name.endswith(extension):
+                    line = line.replace('/'.join(file_path.split('/')[2:]),
+                                        '/'.join((target_folders[extension]['subfolder'], name)))
+
         return line
 
     def structure_directory(self):
