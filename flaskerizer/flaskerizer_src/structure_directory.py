@@ -12,8 +12,8 @@ class StructureDirectory():
          path to the HTML files in the Bootstrap template source folder that will be migrated to the Flask 'templates'
         folder.
         '''
-        self.top_level_path = top_level_path.strip('/').strip('\\') #strip trailing slashes from path
-        self.templates_path = templates_path.strip('/').strip('\\') #strip trailing slashes from path
+        self.top_level_path = top_level_path
+        self.templates_path = templates_path
         self.base_app_dir = os.path.join(get_cmd_args()['app_path'], os.path.basename(get_cmd_args()['app_name']))
         if large_app_Structure == False:
             self.flaskerized_app_dir = self.base_app_dir
