@@ -7,7 +7,7 @@ with open("README.md", "r") as read_obj:
 
 setuptools.setup(
     name="flaskerizer",
-    version= "0.0.1",
+    version= "0.0.2",
     author="Brett Vanderwerff",
     author_email="brett.vanderwerff@gmail.com",
     description=description,
