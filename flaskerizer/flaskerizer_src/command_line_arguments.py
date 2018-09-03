@@ -38,6 +38,10 @@ def get_cmd_args():
                   "Please change this configuration value to something valid like 'my_app' and try again")
             exit()
 
+        args_dict = vars(parser.parse_known_args()[0])
+        args_dict['top_level_path'] = args_dict['top_level_path'].strip('/').strip('\\') #strip trailing path slashes
+        args_dict['templates_path'] = args_dict['templates_path'].strip('/').strip('\\') #strip trailing path slashes
+
 
     else: # This is needed for when command_line_arguments.py is run by unit tests as a way to set default command line arguments
         parser.add_argument('--top-level-path', type=str, default=os.path.dirname(example.__file__), dest='top_level_path')
@@ -50,8 +54,10 @@ def get_cmd_args():
 
         parser.add_argument('--large-app-structure', default=True, dest='large_app_structure', action='store_true')
 
+        args_dict = vars(parser.parse_known_args()[0])
 
-    return vars(parser.parse_known_args()[0])
+
+    return args_dict
 
 
 
