@@ -117,55 +117,65 @@ class StructureDirectory():
                 line_list.append(line)
         os.remove(file)
         return line_list
+    
+    def change_file_path(self,migrate_dict,name,file,line):
+        '''For every line iterated by the parse_links method, the change_file_path method adds 
+        the string "/static/" along with a string for the appropriate subfolder according to 
+        the extension of file and changes link to new path.'''
 
+        print('Fixing links to reflect Flask app structure, this may take several minutes...')
+        
+        file_path = migrate_dict[name]['link']
+
+        if ("../fonts/{}".format(name[6:])) in line:
+            line = line.replace("../fonts/{}".format(name[6:]),"../fonts/{}".format(name))
+
+        elif ("@import url('{}')".format(name[6:])) in line:
+            line = line.replace("@import url('{}')".format(name[6:]),
+                                "@import url('{}')".format(name))
+
+        for extension in target_folders:
+            if name.endswith(extension):
+
+                full_path = (target_folders[extension]['folder'],
+                            target_folders[extension]['subfolder'], name)
+                            
+                if ('../' + file_path) in line:
+                    if file.endswith('.html'):
+                        line = line.replace(file_path,'/'.join(full_path))
+                    else:
+                        line = line.replace(file_path,'/'.join(full_path[1:]))
+
+                elif file_path in line:
+                    line = line.replace(file_path,'/'.join(full_path))
+
+                elif ('..' + file_path[file_path.find('/'):]) in line:
+                    line = line.replace(file_path[file_path.find('/'):],
+                                        '/'.join(('/' + full_path[1:])))
+
+                elif ('(../' + '/'.join(file_path.split('/')[2:])+ ')') in line:
+                    line = line.replace('/'.join(file_path.split('/')[2:]),
+                                        '/'.join(full_path[1:]))
+
+        return line
+    
     def parse_links(self, migrate_dict):
         '''Iterates through every file returned by the "file_list" method and
         adds /static/ to any line that should point to contents of the static folder of the Flask app (i.e. lines that
         reference content of the css or javascript folder etc.).
         '''
-        print('Fixing links to reflect Flask app structure, this may take several minutes...')
+        
         file_list = self.file_list()
+
         for file in file_list:
             line_list = self.load_file(file)
+
             with io.open(file, 'a', encoding='utf-8') as write_obj:
+
                 for line in line_list:
                     for name in migrate_dict:
-                        if ("../fonts/{}".format(name[6:])) in line:
-                            line = line.replace("../fonts/{}".format(name[6:]),"../fonts/{}".format(name))
-                        elif ("@import url('{}')".format(name[6:])) in line:
-                            line = line.replace("@import url('{}')".format(name[6:]),
-                                                "@import url('{}')".format(name))
-                        elif ('../' + migrate_dict[name]['link']) in line:
-                            if file.endswith('.html'):
-                                if ('../' + migrate_dict[name]['link']) in line:
-                                    for extension in target_folders:
-                                        if name.endswith(extension):
-                                            line = line.replace(migrate_dict[name]['link'],
-                                                                '/'.join((target_folders[extension]['folder'],
-                                                                          target_folders[extension]['subfolder'], name)))
-                            else:
-                                for extension in target_folders:
-                                    if name.endswith(extension):
-                                        line = line.replace(migrate_dict[name]['link'],
-                                                            '/'.join((target_folders[extension]['subfolder'], name)))
-                        elif migrate_dict[name]['link'] in line:
-                            for extension in target_folders:
-                                if name.endswith(extension):
-                                    line = line.replace(migrate_dict[name]['link'],
-                                                        '/'.join((target_folders[extension]['folder'],
-                                                                  target_folders[extension]['subfolder'], name)))
-                        elif ('..' + migrate_dict[name]['link'][migrate_dict[name]['link'].find('/'):]) in line:
-                            for extension in target_folders:
-                                if name.endswith(extension):
-
-                                    line = line.replace(migrate_dict[name]['link'][migrate_dict[name]['link'].find('/'):],
-                                                        '/'.join(('/' + target_folders[extension]['subfolder'], name)))
-
-                        elif ('(../' + '/'.join(migrate_dict[name]['link'].split('/')[2:])+ ')') in line:
-                            for extension in target_folders:
-                                if name.endswith(extension):
-                                    line = line.replace('/'.join(migrate_dict[name]['link'].split('/')[2:]),
-                                                        '/'.join((target_folders[extension]['subfolder'], name)))
+                        line = self.change_file_path(migrate_dict,name,file,line)
+                        
                     write_obj.write(line)
 
     def structure_directory(self):
