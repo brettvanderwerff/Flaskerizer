@@ -119,9 +119,12 @@ class StructureDirectory():
         return line_list
     
     def change_file_path(self,migrate_dict,name,file,line):
-        '''For every line in file iterator in parse_links adds /static/ (and counter in filename) that should point to
-          contents of the static folder of the Flask app and return that line to be written in writeobj in parse_links'''
+        '''For every line iterated by the parse_links method, the change_file_path method adds 
+        the string "/static/" along with a string for the appropriate subfolder according to 
+        the extension of file and changes link to new path.'''
 
+        print('Fixing links to reflect Flask app structure, this may take several minutes...')
+        
         file_path = migrate_dict[name]['link']
 
         if ("../fonts/{}".format(name[6:])) in line:
@@ -161,7 +164,6 @@ class StructureDirectory():
         adds /static/ to any line that should point to contents of the static folder of the Flask app (i.e. lines that
         reference content of the css or javascript folder etc.).
         '''
-        print('Fixing links to reflect Flask app structure, this may take several minutes...')
         
         file_list = self.file_list()
 
