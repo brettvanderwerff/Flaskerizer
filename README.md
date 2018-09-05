@@ -32,7 +32,7 @@ $pip install flaskerizer
 2. Run Flaskerizer as a command line tool.
 
 ```commandline
-$flaskerizer --I 'Path to top level folder of the template' --T 'Path to folder contatining HTML files of template' --O 'Path of Flask app'
+$flaskerizer --i 'Path to top level folder of the template' --T 'Path to folder contatining HTML files of template' --o 'Path of Flask app'
 
 ```
 
@@ -48,15 +48,15 @@ $flaskerizer
 
 | Command | Description | Default Value
 | :---: | :---: | :---: |
-| --I | Path to the top level folder of the unzipped Bootstrap template | None
+| --i | Path to the top level folder of the unzipped Bootstrap template | None
 | --T | Path to the folder containing the HTML files of the Bootstrap template | None
-| --O | Path of the destination folder for your Flask app | None
+| --o | Path of the destination folder for your Flask app | None
 
 #### Optional Arguments:
 
 | Command | Description | Default Value
 | :---: | :---: | :---: |
-| --N | Flask app name (note: cannot be named 'app') | 'Flaskerized_app'
+| --n | Flask app name (note: cannot be named 'app') | 'Flaskerized_app'
 | --L | Creates a large structure package based Flask app | None
 | --S | Creates a small structure module based Flask app | None
 
@@ -76,17 +76,17 @@ $pip install flaskerizer
 4. Run Flaskerizer as a command line tool using the arguments specified in the previous sections of the readme.
 
 ```commandline
-$flaskerizer --I 'Path to the top level folder of the unzipped Bootstrap template' --T 'Path to the folder containing the HTML files of the Bootstrap template' --O 'Path of the destination folder for your Flask app' --S --N my_app 
+$flaskerizer --i 'Path to the top level folder of the unzipped Bootstrap template' --T 'Path to the folder containing the HTML files of the Bootstrap template' --o 'Path of the destination folder for your Flask app' --S --n my_app 
        
 ```
 
 
-* `--I` should always be set to the full path of the top level folder of the Bootstrap template (i.e. the folder that appears when you first unzip the Bootstrap template).
+* `--i` should always be set to the full path of the top level folder of the Bootstrap template (i.e. the folder that appears when you first unzip the Bootstrap template).
 
 * `--T` should always be set to the full path of the folder containing the HTML files of the Bootstrap template you downloaded. Note that there may be multiple folders that contain HTML files, generally you want to set the 'templates_path' value equal to the path of the folder with the *most* HTML files in it.
  
 
-5. After running flaskerizer, navigate to the directory you indicated with the `--O` argument as the destination of your newly written Flask app, clear your browser's cache, open a terminal, and enter:
+5. After running flaskerizer, navigate to the directory you indicated with the `--o` argument as the destination of your newly written Flask app, clear your browser's cache, open a terminal, and enter:
  
  ```commandline
  $python my_app/my_app.py
@@ -146,11 +146,11 @@ Creating and launching the large structure Flask app is a bit different, here is
 2. Open the terminal and enter:
 
 ```commandline
-$flaskerizer --I 'Path to the top level folder of the unzipped Bootstrap template' --T 'Path to the folder containing the HTML files of the Bootstrap template' --O 'Path of the destination folder for your Flask app' --L --N my_app 
+$flaskerizer --i 'Path to the top level folder of the unzipped Bootstrap template' --T 'Path to the folder containing the HTML files of the Bootstrap template' --o 'Path of the destination folder for your Flask app' --L --n my_app 
         
 ```
 
-3. After running flaskerizer, navigate to the directory you indicated with the `--O` argument as the destination of your newly written Flask app, open a terminal, and enter:
+3. After running flaskerizer, navigate to the directory you indicated with the `--o` argument as the destination of your newly written Flask app, open a terminal, and enter:
 
 ```commandline
 $set FLASK_APP=my_app\my_app\__init__.py
