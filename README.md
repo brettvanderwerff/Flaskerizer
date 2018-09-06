@@ -32,7 +32,7 @@ $pip install flaskerizer
 2. Run Flaskerizer as a command line tool.
 
 ```commandline
-$flaskerizer --i 'Path to top level folder of the template' --t 'Path to folder contatining HTML files of template' --o 'Path of Flask app'
+$flaskerizer --i 'Path to top level folder of the template' --t 'Path to folder contatining HTML files of template' --o 'Path to Flask app'
 
 ```
 
