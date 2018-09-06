@@ -149,7 +149,7 @@ class StructureDirectory():
 
                 elif ('..' + file_path[file_path.find('/'):]) in line:
                     line = line.replace(file_path[file_path.find('/'):],
-                                        '/'.join(('/' + full_path[1:])))
+                                        '/'.join(('/' + str(full_path[1:]))))
 
                 elif ('(../' + '/'.join(file_path.split('/')[2:])+ ')') in line:
                     line = line.replace('/'.join(file_path.split('/')[2:]),
