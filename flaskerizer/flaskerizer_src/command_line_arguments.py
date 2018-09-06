@@ -22,7 +22,7 @@ def get_cmd_args():
         parser.add_argument('--n', type=str, default='Flaskerized_app', dest='app_name',
                             help="Name of your Flask app, note cannot be named 'app'")
 
-        parser.add_argument('--p', type=str, required=True, dest='app_path',
+        parser.add_argument('--o', type=str, required=True, dest='app_path',
                             help='Full path of the destination folder for your Flask app')
 
         parser.add_argument('--L', dest='large_app_structure', action='store_true',
@@ -50,7 +50,7 @@ def get_cmd_args():
 
         parser.add_argument('--n', type=str, default='Test_application', dest='app_name')
 
-        parser.add_argument('--p', type=str, default=os.path.dirname(flaskerizer.__file__), dest='app_path')
+        parser.add_argument('--o', type=str, default=os.path.dirname(flaskerizer.__file__), dest='app_path')
 
         parser.add_argument('--L', default=True, dest='large_app_structure', action='store_true')
 
