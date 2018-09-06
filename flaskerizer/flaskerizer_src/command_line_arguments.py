@@ -34,7 +34,7 @@ def get_cmd_args():
         parser.set_defaults(large_app_structure=False)
 
         if vars(parser.parse_known_args()[0])['app_name'] == 'app':
-            print("The value of --n cannot be set to the string 'app'\n"
+            print("The value of --app-name cannot be set to the string 'app'\n"
                   "Please change this configuration value to something valid like 'my_app' and try again")
             exit()
 
@@ -55,7 +55,6 @@ def get_cmd_args():
         parser.add_argument('--L', default=True, dest='large_app_structure', action='store_true')
 
         args_dict = vars(parser.parse_known_args()[0])
-
 
     return args_dict
 
