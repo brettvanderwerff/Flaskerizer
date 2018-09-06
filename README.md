@@ -88,17 +88,17 @@ $flaskerizer --i 'Path to the top level folder of the unzipped Bootstrap templat
 
 5. After running flaskerizer, navigate to the directory you indicated with the `--p` argument as the destination of your newly written Flask app, clear your browser's cache, open a terminal, and enter:
  
+on Linux:
+
  ```commandline
  $python my_app/my_app.py
  ```
- 
- on Linux or:
- 
- 
+ or on Windows: 
+
  ```commandline
  $python my_app\my_app.py
  ```
- on Windows
+
  
  
  in the terminal to launch the newly made Flask app (this may vary by environment, i.e. some users will enter python3 instead of python).
