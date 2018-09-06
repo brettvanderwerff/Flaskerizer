@@ -93,7 +93,7 @@ on Linux:
  ```commandline
  $python my_app/my_app.py
  ```
- or on Windows: 
+ on Windows: 
 
  ```commandline
  $python my_app\my_app.py
