@@ -93,7 +93,7 @@ on Linux:
  ```commandline
  $python my_app/my_app.py
  ```
- on Windows: 
+on Windows: 
 
  ```commandline
  $python my_app\my_app.py
@@ -152,17 +152,17 @@ $flaskerizer --i 'Path to the top level folder of the unzipped Bootstrap templat
 
 3. After running flaskerizer, navigate to the directory you indicated with the `--p` argument as the destination of your newly written Flask app, open a terminal, and enter:
 
+on Windows:
+
 ```commandline
 $set FLASK_APP=my_app\my_app\__init__.py
 
 ```
-on Windows or
+on Linux:
 
 ```commandline
 $export FLASK_APP=my_app/my_app/__init__.py
 ```
-
-on Linux.
 
 4. Enter `$flask run`
 
