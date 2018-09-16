@@ -3,6 +3,7 @@ addons:
   apt:
     packages:
     - xvfb
+    
 python:
   - "2.7"
   - "3.4"
