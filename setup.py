@@ -7,7 +7,7 @@ with open("README.md", "r") as read_obj:
 
 setuptools.setup(
     name="flaskerizer",
-    version= "0.0.4",
+    version= "0.0.7",
     author="Brett Vanderwerff",
     author_email="brett.vanderwerff@gmail.com",
     description=description,
@@ -17,6 +17,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     install_requires=[
               'flask',
+              'numpy',
           ],
     entry_points={
               'console_scripts': [
