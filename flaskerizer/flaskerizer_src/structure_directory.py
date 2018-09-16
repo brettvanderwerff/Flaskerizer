@@ -3,7 +3,9 @@ import os
 from flaskerizer.flaskerizer_src.target_folders import target_folders
 from flaskerizer.flaskerizer_src.command_line_arguments import get_cmd_args
 import multiprocessing
+import numpy as np
 import shutil
+import time
 
 class StructureDirectory():
     def __init__(self, templates_path, top_level_path, large_app_Structure):
@@ -158,36 +160,37 @@ class StructureDirectory():
 
         return line
     
-    def parse_links(self, migrate_dict, file):
-        '''Iterates through every file returned by the "file_list" method and
+    def parse_links(self, migrate_dict, file_list):
+        '''Iterates through every file in the "file_list" argument and
         adds /static/ to any line that should point to contents of the static folder of the Flask app (i.e. lines that
         reference content of the css or javascript folder etc.).
         '''
-        line_list = self.load_file(file)
 
-        with io.open(file, 'a', encoding='utf-8') as write_obj:
+        for file in file_list:
+            line_list = self.load_file(file)
 
-            for line in line_list:
-                for name in migrate_dict:
-                    line = self.change_file_path(migrate_dict,name,file,line)
+            with io.open(file, 'a', encoding='utf-8') as write_obj:
 
-                write_obj.write(line)
+                for line in line_list:
+                    for name in migrate_dict:
+                        line = self.change_file_path(migrate_dict,name,file,line)
+
+                    write_obj.write(line)
 
     def multi_proc(self, migrate_dict):
         '''
-        Manages multi-processing of parse_links. Spawns a set of parse_links process equal to the number of cores that
-        the user has. Allows those processes to complete before spawning a new set of processes.
+        Manages multi-processing of parse_links. Spawns a set of parse_links processes equal to the number of cores that
+        the user has. Allows those processes to complete before moving on.
         '''
         print('Fixing links to reflect Flask app structure, this may take several minutes...')
-        file_list = self.file_list()
+        full_file_list = self.file_list() # complete list of all files that need to be parsed
         cores = multiprocessing.cpu_count()
-        for i in range(0, len(file_list), cores):
-            chunk_list  = file_list[i:i+cores]
-            processess = [multiprocessing.Process(target=self.parse_links, args=(migrate_dict, file)) for file in chunk_list]
-            for process in processess:
-                process.start()
-            for process in processess: # waits for set of spawned processes to complete before spawning more.
-                process.join()
+        chunk_list = np.array_split(full_file_list, cores) # divide full_file_list by number of cores
+        processess = [multiprocessing.Process(target=self.parse_links, args=(migrate_dict, sub_file_list)) for sub_file_list in chunk_list]
+        for process in processess:
+            process.start()
+        for process in processess: # waits for set of spawned processes to complete before spawning more.
+            process.join()
 
     def structure_directory(self):
         '''
@@ -200,7 +203,9 @@ class StructureDirectory():
         migrate_dict = self.detect_static_files()
         self.migrate_files(migrate_dict)
         self.detect_and_migrate_html_files()
+        start_time = time.time()
         self.multi_proc(migrate_dict)
+        print(time.time() - start_time)
 
 
 
