@@ -203,9 +203,7 @@ class StructureDirectory():
         migrate_dict = self.detect_static_files()
         self.migrate_files(migrate_dict)
         self.detect_and_migrate_html_files()
-        start_time = time.time()
         self.multi_proc(migrate_dict)
-        print(time.time() - start_time)
 
 
 
