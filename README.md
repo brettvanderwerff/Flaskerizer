@@ -188,7 +188,7 @@ Methods of the WriteApp class automatically write a python script 'app.py' with 
 
 ## Contribution Guidelines
 
-We are beginner friendly.
+We are beginner friendly. We love bug reports.
 
 1. Comment on an issue you would like assigned to you. 
 2. Fork the Flaskerizer repo onto your Github.
