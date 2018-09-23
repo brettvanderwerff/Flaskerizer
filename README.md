@@ -19,6 +19,7 @@ and converts it to something that looks like this "out of the box" with Flask:
 ## Dependencies
 
 Flask: 0.12.3 or higher
+
 Numpy 1.15.1 or higher
 
 ## Usage case/Quickstart
