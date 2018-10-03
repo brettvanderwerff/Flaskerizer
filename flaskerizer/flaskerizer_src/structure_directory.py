@@ -144,20 +144,24 @@ class StructureDirectory():
                 if ('../' + file_path) in line:
                     if file.endswith('.html'):
                         line = line.replace(file_path,'/'.join(full_path))
+                        break
                     else:
                         line = line.replace(file_path,'/'.join(full_path[1:]))
+                        break      
 
                 elif file_path in line:
                     line = line.replace(file_path,'/'.join(full_path))
+                    break
 
                 elif ('..' + file_path[file_path.find('/'):]) in line:
                     line = line.replace(file_path[file_path.find('/'):],
                                         '/'.join(('/' + str(full_path[1:]))))
+                    break                    
 
                 elif ('(../' + '/'.join(file_path.split('/')[2:])+ ')') in line:
                     line = line.replace('/'.join(file_path.split('/')[2:]),
                                         '/'.join(full_path[1:]))
-
+                    break
         return line
     
     def parse_links(self, migrate_dict, file_list):
